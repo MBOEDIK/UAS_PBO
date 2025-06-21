@@ -1,70 +1,75 @@
 package Models;
 
+import Models.Book.Book;
+import Models.User.User;
+import service.Reportable;
+
+
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.Objects;
 
-public class Peminjaman {
-    private String idPeminjaman;
-    private Anggota anggota;
-    private Buku buku;
-    private LocalDate tanggalPinjam;
+
+
+public class Peminjaman implements Reportable {
+    public enum Status {
+        AKTIF, SELESAI
+    }
+
+    private final String idPeminjaman;
+    private final User peminjam;
+    private final Book buku;
+    private final LocalDate tanggalPinjam;
     private LocalDate tanggalKembali;
+    private Status status;
 
-    public Peminjaman(String idPeminjaman, Anggota anggota, Buku buku, LocalDate tanggalPinjam, LocalDate tanggalKembali) {
+    public Peminjaman(String idPeminjaman, User peminjam, Book buku, LocalDate tanggalPinjam) {
+        if (idPeminjaman == null || peminjam == null || buku == null || tanggalPinjam == null)
+            throw new IllegalArgumentException("Semua data wajib diisi.");
         this.idPeminjaman = idPeminjaman;
-        this.anggota = anggota;
+        this.peminjam = peminjam;
         this.buku = buku;
         this.tanggalPinjam = tanggalPinjam;
+        this.status = Status.AKTIF;
+    }
+
+    public void selesaikan(LocalDate tanggalKembali) {
         this.tanggalKembali = tanggalKembali;
+        this.status = Status.SELESAI;
     }
 
-    public String getIdPeminjaman() {
-        return idPeminjaman;
+    public boolean isTerlambat(LocalDate batas) {
+        return status == Status.AKTIF && LocalDate.now().isAfter(batas);
     }
 
-    public void setIdPeminjaman(String idPeminjaman) {
-        this.idPeminjaman = idPeminjaman;
-    }
+    public String getIdPeminjaman() { return idPeminjaman; }
+    public User getPeminjam() { return peminjam; }
+    public Book getBuku() { return buku; }
+    public LocalDate getTanggalPinjam() { return tanggalPinjam; }
+    public LocalDate getTanggalKembali() { return tanggalKembali; }
+    public Status getStatus() { return status; }
 
-    public Anggota getAnggota() {
-        return anggota;
-    }
-
-    public void setAnggota(Anggota anggota) {
-        this.anggota = anggota;
-    }
-
-    public Buku getBuku() {
-        return buku;
-    }
-
-    public void setBuku(Buku buku) {
-        this.buku = buku;
-    }
-
-    public LocalDate getTanggalPinjam() {
-        return tanggalPinjam;
-    }
-
-    public void setTanggalPinjam(LocalDate tanggalPinjam) {
-        this.tanggalPinjam = tanggalPinjam;
-    }
-
-    public LocalDate getTanggalKembali() {
-        return tanggalKembali;
-    }
-
-    public void setTanggalKembali(LocalDate tanggalKembali) {
-        this.tanggalKembali = tanggalKembali;
+    @Override
+    public String generateReport() {
+        return String.format("Peminjaman[%s] oleh %s\nBuku: %s (%s)\nTanggal Pinjam: %s\nStatus: %s",
+                idPeminjaman,
+                peminjam.getNama(),
+                buku.getJudul(),
+                buku.getCategory(),
+                tanggalPinjam,
+                status);
     }
 
     @Override
-    public String toString() {
-        return "Peminjaman{" +
-                "id='" + idPeminjaman + '\'' +
-                ", anggota=" + anggota.getNama() +
-                ", buku=" + buku.getJudul() +
-                ", pinjam=" + tanggalPinjam +
-                ", kembali=" + tanggalKembali +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Peminjaman)) return false;
+        Peminjaman that = (Peminjaman) o;
+        return Objects.equals(idPeminjaman, that.idPeminjaman);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idPeminjaman);
     }
 }
