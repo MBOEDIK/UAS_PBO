@@ -1,5 +1,9 @@
 package Models.Book;
 
+/**
+ * Kelas turunan Book untuk buku non-fiksi.
+ * Menambahkan atribut subjectArea.
+ */
 public class NonFictionBook extends Book {
     private String subjectArea;
 

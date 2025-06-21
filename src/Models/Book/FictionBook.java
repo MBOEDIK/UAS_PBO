@@ -1,5 +1,9 @@
 package Models.Book;
 
+/**
+ * Kelas turunan Book untuk buku fiksi.
+ * Menambahkan atribut genre.
+ */
 public class FictionBook extends Book {
     private String genre;
 

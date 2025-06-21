@@ -2,16 +2,21 @@ package Models;
 
 import Models.Book.Book;
 import Models.User.User;
-import service.Reportable;
+import service.Reporttable;
 
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
+/**
+ * Kelas Peminjaman merepresentasikan data transaksi peminjaman buku oleh user.
+ */
 
-
-public class Peminjaman implements Reportable {
+public class Peminjaman implements Reporttable {
+    /**
+     * Status dari peminjaman buku.
+     */
     public enum Status {
         AKTIF, SELESAI
     }
@@ -23,6 +28,9 @@ public class Peminjaman implements Reportable {
     private LocalDate tanggalKembali;
     private Status status;
 
+    /**
+     * Konstruktor peminjaman dengan validasi.
+     */
     public Peminjaman(String idPeminjaman, User peminjam, Book buku, LocalDate tanggalPinjam) {
         if (idPeminjaman == null || peminjam == null || buku == null || tanggalPinjam == null)
             throw new IllegalArgumentException("Semua data wajib diisi.");
@@ -33,11 +41,17 @@ public class Peminjaman implements Reportable {
         this.status = Status.AKTIF;
     }
 
+    /**
+     * Menandai peminjaman sebagai selesai.
+     */
     public void selesaikan(LocalDate tanggalKembali) {
         this.tanggalKembali = tanggalKembali;
         this.status = Status.SELESAI;
     }
 
+    /**
+     * Mengecek apakah peminjaman melewati batas.
+     */
     public boolean isTerlambat(LocalDate batas) {
         return status == Status.AKTIF && LocalDate.now().isAfter(batas);
     }
@@ -49,6 +63,9 @@ public class Peminjaman implements Reportable {
     public LocalDate getTanggalKembali() { return tanggalKembali; }
     public Status getStatus() { return status; }
 
+    /**
+     * Menghasilkan laporan ringkas dari transaksi peminjaman.
+     */
     @Override
     public String generateReport() {
         return String.format("Peminjaman[%s] oleh %s\nBuku: %s (%s)\nTanggal Pinjam: %s\nStatus: %s",
