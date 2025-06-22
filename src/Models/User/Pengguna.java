@@ -1,6 +1,6 @@
 package Models.User;
 
-public abstract class Pengguna {
+public class Pengguna {
     //ATTRIBUTE
     private String idPengguna;    // ID unik pengguna
     private String namaPengguna;// Nama pengguna
