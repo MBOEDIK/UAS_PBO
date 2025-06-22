@@ -1,20 +1,18 @@
 package Models.User;
 
-public class Admin extends Pengguna {
-    String nipAdmin ;
+public abstract class Admin extends Pengguna {
+    //ATTRIBUTE
+    private String nipAdmin ;
 
-    //menerapkan super dari class parent
-    Admin(String idUser, String nama, String alamatUser, int nomorHpUser, String nipAdmin) {
-        super(idUser, nama, alamatUser, nomorHpUser);
-    }
-
-    //getter
-    public String getNipAdmin () {
-        return nipAdmin ;
-    }
-
-    //setter
-    public void setNipAdmin(String nipAdmin) {
+    //CONSTRUCTOR
+    Admin(String idPengguna, String namaPengguna, String alamatPengguna, String nomorHpPengguna, String nipAdmin) {
+        super(idPengguna, namaPengguna, alamatPengguna, nomorHpPengguna);
         this.nipAdmin = nipAdmin;
     }
+
+    //GETTER
+    public String getNipAdmin () { return nipAdmin ; }
+
+    //SETTER
+    public void setNipAdmin(String nipAdmin) { this.nipAdmin = nipAdmin; }
 }

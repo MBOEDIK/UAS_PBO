@@ -1,51 +1,46 @@
 package Models.User;
 
 public abstract class Pengguna {
-    protected String idUser;    // ID unik pengguna
-    protected String nama;// Nama pengguna
-    protected String alamatUser; // alamar user
-    protected int nomorHpUser;// kosong delapan berapa mass
+    //ATTRIBUTE
+    private String idPengguna;    // ID unik pengguna
+    private String namaPengguna;// Nama pengguna
+    private String alamatPengguna; // alamar user
+    private String nomorHpPengguna;// kosong delapan berapa mass
 
-
-    Pengguna (String idUser, String nama, String alamatUser, int nomorHpUser) {
-        this.idUser = idUser;
-        this.nama = nama ;
-        this.alamatUser = alamatUser ;
-        this.nomorHpUser = nomorHpUser ;
+    //CONSTRUCTOR
+    Pengguna (String idPengguna, String namaPengguna, String alamatPengguna, String nomorHpPengguna) {
+        this.idPengguna = idPengguna;
+        this.namaPengguna = namaPengguna ;
+        this.alamatPengguna = alamatPengguna ;
+        this.nomorHpPengguna = nomorHpPengguna ;
     }
 
-    // Getter methods
+    //GETTER
     public String getIdPengguna() {
-        return idUser;
+        return idPengguna;
     }
-
     public String getNamaPengguna() {
-        return nama;
+        return namaPengguna;
     }
-
     public String getAlamatPengguna() {
-        return alamatUser;
+        return alamatPengguna;
+    }
+    public String getNomorHPPengguna() {
+        return nomorHpPengguna;
     }
 
-    public int getNomorHPPengguna() {
-        return nomorHpUser;
-    }
-
-    // Setter methods
+    //SETTER
     public void setIdPengguna(String idPengguna) {
-        this.idUser = idPengguna;
+        this.idPengguna = idPengguna;
     }
-
     public void setNamaPengguna(String namaPengguna) {
-        this.nama = namaPengguna;
+        this.namaPengguna = namaPengguna;
     }
-
     public void setAlamatPengguna(String alamatPengguna) {
-        this.alamatUser = alamatPengguna;
+        this.alamatPengguna = alamatPengguna;
     }
-
-    public void setNomorHPPengguna(int nomorHPPengguna) {
-        this.nomorHpUser = nomorHPPengguna;
+    public void setNomorHPPengguna(String nomorHPPengguna) {
+        this.nomorHpPengguna = nomorHPPengguna;
     }
 
 }

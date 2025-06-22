@@ -1,7 +1,7 @@
 package Models;
 
 public class Peminjaman {
-    //ini atribut dari class peminjaman
+    //ATTRIBUTE
     private String idPeminjaman ;
     private String idAnggota ;
     private String idKodeBuku ;
@@ -9,7 +9,7 @@ public class Peminjaman {
     private String tglKembali ;
     private String statusPengembalian ;
 
-    //ini adalah constructor
+    //CONSTRUCTOR
     Peminjaman (String idPeminjaman, String idAnggota, String idKodeBuku, String tglKembali, String tglPinjam, String statusPengembalian ) {
         this.idPeminjaman = idPeminjaman ;
         this.idAnggota = idAnggota;
@@ -18,7 +18,7 @@ public class Peminjaman {
         this.tglKembali = tglKembali;
         this.statusPengembalian = statusPengembalian;
     }
-    // Getter Methodd
+    //GETTER
     public String getIdPeminjaman() {
         return idPeminjaman;
     }
@@ -43,7 +43,7 @@ public class Peminjaman {
         return statusPengembalian;
     }
 
-    // Setter Methodd
+    //SETTER
     public void setIdPeminjaman(String idPeminjaman) {
         this.idPeminjaman = idPeminjaman;
     }
@@ -68,7 +68,7 @@ public class Peminjaman {
         this.statusPengembalian = statusPengembalian;
     }
 
-    // Method untuk mereport
+    //Method untuk nampilin data peminjaman
     public String generateReport() {
         return "ID Peminjaman : " + idPeminjaman + "\n" +
                 "ID Anggota    : " + idAnggota + "\n" +

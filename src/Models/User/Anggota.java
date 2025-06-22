@@ -1,34 +1,25 @@
 package Models.User;
 
 public class Anggota extends Pengguna {
-
+    //ATTRIBUTE
     private boolean terlambatMengembalikan ;
     private int maksimalPinjamBuku ;
 
-    //menerapkan super
-    Anggota(String idUser, String nama, String alamatUser, int nomorHpUser) {
-        super(idUser, nama, alamatUser, nomorHpUser);
-        this.terlambatMengembalikan = false ;
-        this.maksimalPinjamBuku = 3 ;
+    Anggota(String idPengguna, String namaPengguna, String alamatPengguna, String nomorHpPengguna, Boolean terlambatMengembalikan,int maksimalPinjamBuku) {
+        super(idPengguna, namaPengguna, alamatPengguna, nomorHpPengguna);
+        this.terlambatMengembalikan = terlambatMengembalikan ;
+        this.maksimalPinjamBuku = maksimalPinjamBuku ;
     }
 
-    // Getter untuk status keterlambatan
+    //GETTER
     public boolean getTerlambatMengembalikan() {
         return terlambatMengembalikan;
     }
-
-    // Setter untuk status keterlambatan
-    public void setTerlambatMengembalikan(boolean terlambatMengembalikan) {
-        this.terlambatMengembalikan = terlambatMengembalikan;
-    }
-
-    // Getter untuk batas maksimal pinjam buku
     public int getMaksimalPinjamBuku() {
         return maksimalPinjamBuku;
     }
 
-    // Setter untuk batas maksimal pinjam buku
-    public void setMaksimalPinjamBuku(int maksimalPinjamBuku) {
-        this.maksimalPinjamBuku = maksimalPinjamBuku;
-    }
+    //SETTER
+    public void setTerlambatMengembalikan(boolean terlambatMengembalikan) { this.terlambatMengembalikan = terlambatMengembalikan; }
+    public void setMaksimalPinjamBuku(int maksimalPinjamBuku) { this.maksimalPinjamBuku = maksimalPinjamBuku; }
 }

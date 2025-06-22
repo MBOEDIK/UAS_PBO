@@ -1,4 +1,4 @@
-package service;
+package Interface;
 /**
  * Interface Reportable digunakan untuk objek yang bisa menghasilkan laporan.
  */
