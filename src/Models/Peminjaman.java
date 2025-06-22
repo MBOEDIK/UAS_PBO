@@ -1,12 +1,11 @@
 package Models;
 
-import Models.Book.Book;
-import Models.User.User;
+import Models.Book.Buku;
+import Models.User.Pengguna;
 import service.Reporttable;
 
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 /**
@@ -22,8 +21,8 @@ public class Peminjaman implements Reporttable {
     }
 
     private final String idPeminjaman;
-    private final User peminjam;
-    private final Book buku;
+    private final Pengguna peminjam;
+    private final Buku buku;
     private final LocalDate tanggalPinjam;
     private LocalDate tanggalKembali;
     private Status status;
@@ -31,7 +30,7 @@ public class Peminjaman implements Reporttable {
     /**
      * Konstruktor peminjaman dengan validasi.
      */
-    public Peminjaman(String idPeminjaman, User peminjam, Book buku, LocalDate tanggalPinjam) {
+    public Peminjaman(String idPeminjaman, Pengguna peminjam, Buku buku, LocalDate tanggalPinjam) {
         if (idPeminjaman == null || peminjam == null || buku == null || tanggalPinjam == null)
             throw new IllegalArgumentException("Semua data wajib diisi.");
         this.idPeminjaman = idPeminjaman;
@@ -57,8 +56,8 @@ public class Peminjaman implements Reporttable {
     }
 
     public String getIdPeminjaman() { return idPeminjaman; }
-    public User getPeminjam() { return peminjam; }
-    public Book getBuku() { return buku; }
+    public Pengguna getPeminjam() { return peminjam; }
+    public Buku getBuku() { return buku; }
     public LocalDate getTanggalPinjam() { return tanggalPinjam; }
     public LocalDate getTanggalKembali() { return tanggalKembali; }
     public Status getStatus() { return status; }

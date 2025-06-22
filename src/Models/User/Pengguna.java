@@ -1,6 +1,6 @@
 package Models.User;
 
-public abstract class User {
+public abstract class Pengguna {
     protected String id;    // ID unik pengguna
     protected String nama;  // Nama pengguna
 
@@ -9,7 +9,7 @@ public abstract class User {
      * @param id ID pengguna, tidak boleh kosong
      * @param nama Nama pengguna, minimal 3 karakter
      */
-    public User(String id, String nama) {
+    public Pengguna(String id, String nama) {
         if (id == null || id.isBlank()) throw new IllegalArgumentException("ID tidak boleh kosong.");
         if (nama == null || nama.length() < 3) throw new IllegalArgumentException("Nama minimal 3 karakter.");
         this.id = id;
