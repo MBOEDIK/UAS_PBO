@@ -13,6 +13,7 @@ public abstract class Pengguna {
         this.alamatUser = alamatUser ;
         this.nomorHpUser = nomorHpUser ;
     }
+
     // Getter methods
     public String getIdPengguna() {
         return idUser;
