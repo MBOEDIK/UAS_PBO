@@ -1,37 +1,50 @@
 package Models.User;
 
 public abstract class Pengguna {
-    protected String id;    // ID unik pengguna
-    protected String nama;  // Nama pengguna
+    protected String idUser;    // ID unik pengguna
+    protected String nama;// Nama pengguna
+    protected String alamatUser; // alamar user
+    protected int nomorHpUser;// kosong delapan berapa mass
 
-    /**
-     * Konstruktor untuk kelas User.
-     * @param id ID pengguna, tidak boleh kosong
-     * @param nama Nama pengguna, minimal 3 karakter
-     */
-    public Pengguna(String id, String nama) {
-        if (id == null || id.isBlank()) throw new IllegalArgumentException("ID tidak boleh kosong.");
-        if (nama == null || nama.length() < 3) throw new IllegalArgumentException("Nama minimal 3 karakter.");
-        this.id = id;
-        this.nama = nama;
+
+    Pengguna (String idUser, String nama, String alamatUser, int nomorHpUser) {
+        this.idUser = idUser;
+        this.nama = nama ;
+        this.alamatUser = alamatUser ;
+        this.nomorHpUser = nomorHpUser ;
+    }
+    // Getter methods
+    public String getIdPengguna() {
+        return idUser;
     }
 
-    public String getId() { return id; }
-    public String getNama() { return nama; }
-
-    /**
-     * Setter nama pengguna dengan validasi minimal 3 karakter.
-     * @param nama nama baru
-     */
-    public void setNama(String nama) {
-        if (nama == null || nama.length() < 3)
-            throw new IllegalArgumentException("Nama minimal 3 karakter.");
-        this.nama = nama;
+    public String getNamaPengguna() {
+        return nama;
     }
 
-    /**
-     * Method abstrak untuk menunjukkan peran pengguna.
-     * @return "Administrator" atau "Anggota"
-     */
-    public abstract String showRole();
+    public String getAlamatPengguna() {
+        return alamatUser;
+    }
+
+    public int getNomorHPPengguna() {
+        return nomorHpUser;
+    }
+
+    // Setter methods
+    public void setIdPengguna(String idPengguna) {
+        this.idUser = idPengguna;
+    }
+
+    public void setNamaPengguna(String namaPengguna) {
+        this.nama = namaPengguna;
+    }
+
+    public void setAlamatPengguna(String alamatPengguna) {
+        this.alamatUser = alamatPengguna;
+    }
+
+    public void setNomorHPPengguna(int nomorHPPengguna) {
+        this.nomorHpUser = nomorHPPengguna;
+    }
+
 }
