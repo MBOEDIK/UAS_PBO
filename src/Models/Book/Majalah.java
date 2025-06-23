@@ -5,8 +5,9 @@ public class Majalah extends Buku {
     private String topikBuku;
 
     //CONSTRUCTOR
-    public Majalah(String kodeBuku, String judulBuku, String kategoriBuku, String pengarangBuku, String tahunTerbitBuku, Boolean ketersediaanBuku) {
+    public Majalah(String kodeBuku, String judulBuku, String kategoriBuku, String pengarangBuku, String tahunTerbitBuku, Boolean ketersediaanBuku, String topikBuku) {
         super(kodeBuku, judulBuku, kategoriBuku, pengarangBuku, tahunTerbitBuku, ketersediaanBuku);
+        this.topikBuku = topikBuku;
     }
 
     //GETTER

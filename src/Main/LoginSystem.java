@@ -1,37 +1,35 @@
-package Controllers;
+package Main;
 
+import Main.Menu.MenuUtama;
 import Models.PenyimpananData;
 import Models.User.Admin;
 import Models.User.Anggota;
 import Models.User.Pengguna;
 
-import javax.swing.*;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 //INI CLASS YG HANDLE SEMUA URUSAN LOGIN LOGINAN
 public class LoginSystem {
 
 //ATTRIBUTE
-    String username = "", password = "";
-    String statusPengguna = "";
-    Pengguna pengguna;
+    private static String username = "", password = "";
+    private static String statusPengguna = "";
 
 //OBJECT
-    Scanner input = new Scanner(System.in);
-    PenyimpananData data = new PenyimpananData();
-    ArrayList<Pengguna> penggunaList = new ArrayList<>();
+    static Scanner input = new Scanner(System.in);
 
 //DATA SEMENTARA (UNTUK UJI COBA VALIDASI AJA, NANTI INI DIHAPUS AJA KALO UDH ADA DATABSE)
-    public void dummyData(){
-        data.getPengguna().add(new Admin("024231", "Prabowo", "Tegalgondo, Malang, Jawa Timur, Indoneisia", "08123456789", "prabowo123", "123456789", "53244342522423425"));
-        data.getPengguna().add(new Anggota("0242313", "Budi", "Ngade, Ternate, Maluku Utara, Indonesia", "082278925369", "MBOEDIK", "iniPassword123", false, 3));
+     public static void dummyData(){
+        PenyimpananData.getPengguna().add(new Admin("024231", "Prabowo", "Tegalgondo, Malang, Jawa Timur, Indoneisia", "08123456789", "prabowo123", "123456789", "53244342522423425"));
+        PenyimpananData.getPengguna().add(new Anggota("0242313", "Budi", "Ngade, Ternate, Maluku Utara, Indonesia", "082278925369", "MBOEDIK", "iniPassword123", false, 3));
     }
 
 //METHODS
+//====================================================================
+
     //logika menu login
-    public void tampilanLoginUtama(){
-        //====================================================================
+    public static void tampilanLoginUtama(){
+        //--------------------------------------------------------------------
 
         //pilih status pengguna (admin atau anggota)
         while (true){
@@ -53,7 +51,7 @@ public class LoginSystem {
             break;
         }
 
-        //====================================================================
+        //--------------------------------------------------------------------
 
         //input login
         loop : while (true){
@@ -62,10 +60,10 @@ public class LoginSystem {
             System.out.print("Masukkan Password: "); password = input.nextLine();
 
             //validasi login
-            for(Pengguna pengguna : data.getPengguna()){
+            for(Pengguna pengguna : PenyimpananData.getPengguna()){
                 if(username.equals(pengguna.getUsername()) && password.equals(pengguna.getPassword())){
                     if(statusPengguna.equals("ADMIN") && pengguna instanceof Admin){
-                        System.out.println("Panggil MenuSystem Admin");
+                        MenuUtama.menuAdmin();
                         break loop; //"loop" ini maksudnya nge-break "while (true)"
                     }
                     else if(statusPengguna.equals("ANGGOTA") && pengguna instanceof Anggota){
@@ -79,7 +77,7 @@ public class LoginSystem {
                 }
             }
 
-            //====================================================================
+            //--------------------------------------------------------------------
         }
     }
 

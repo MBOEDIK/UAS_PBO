@@ -5,8 +5,9 @@ public class Novel extends Buku {
     private String genreBuku;
 
     //CONSTRUCTOR
-    public Novel(String kodeBuku, String judulBuku, String kategoriBuku, String pengarangBuku, String tahunTerbitBuku, Boolean ketersediaanBuku) {
+    public Novel(String kodeBuku, String judulBuku, String kategoriBuku, String pengarangBuku, String tahunTerbitBuku, Boolean ketersediaanBuku, String genreBuku) {
         super(kodeBuku, judulBuku, kategoriBuku, pengarangBuku, tahunTerbitBuku, ketersediaanBuku);
+        this.genreBuku = genreBuku;
     }
 
     //GETTER

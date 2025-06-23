@@ -12,9 +12,9 @@ public class PenyimpananData {
     private static ArrayList<Peminjaman> dataPeminjaman = new ArrayList<>();
 
     //GETTER
-    public ArrayList<Pengguna> getPengguna(){ return dataPengguna; }
-    public ArrayList<Buku> getBuku(){ return dataBuku; }
-    public ArrayList<Peminjaman> getDataPeminjaman(){ return dataPeminjaman; }
+    public static ArrayList<Pengguna> getPengguna(){ return dataPengguna; }
+    public static ArrayList<Buku> getBuku(){ return dataBuku; }
+    public static ArrayList<Peminjaman> getDataPeminjaman(){ return dataPeminjaman; }
 
     //SETTER
     public void setDataPengguna(ArrayList<Pengguna> pengguna) { this.dataPengguna = pengguna; }
