@@ -5,8 +5,8 @@ public class Anggota extends Pengguna {
     private boolean terlambatMengembalikan ;
     private int maksimalPinjamBuku ;
 
-    Anggota(String idPengguna, String namaPengguna, String alamatPengguna, String nomorHpPengguna, Boolean terlambatMengembalikan,int maksimalPinjamBuku) {
-        super(idPengguna, namaPengguna, alamatPengguna, nomorHpPengguna);
+    public Anggota(String idPengguna, String namaPengguna, String alamatPengguna, String nomorHpPengguna, String username, String password, Boolean terlambatMengembalikan,int maksimalPinjamBuku) {
+        super(idPengguna, namaPengguna, alamatPengguna, nomorHpPengguna, username, password);
         this.terlambatMengembalikan = terlambatMengembalikan ;
         this.maksimalPinjamBuku = maksimalPinjamBuku ;
     }

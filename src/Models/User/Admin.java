@@ -1,12 +1,12 @@
 package Models.User;
 
-public abstract class Admin extends Pengguna {
+public class Admin extends Pengguna {
     //ATTRIBUTE
-    private String nipAdmin ;
+    protected String nipAdmin ;
 
     //CONSTRUCTOR
-    Admin(String idPengguna, String namaPengguna, String alamatPengguna, String nomorHpPengguna, String nipAdmin) {
-        super(idPengguna, namaPengguna, alamatPengguna, nomorHpPengguna);
+    public Admin(String idPengguna, String namaPengguna, String alamatPengguna, String nomorHpPengguna, String username, String password, String nipAdmin) {
+        super(idPengguna, namaPengguna, alamatPengguna, nomorHpPengguna, username, password);
         this.nipAdmin = nipAdmin;
     }
 

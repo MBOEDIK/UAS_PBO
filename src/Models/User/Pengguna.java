@@ -2,17 +2,22 @@ package Models.User;
 
 public abstract class Pengguna {
     //ATTRIBUTE
-    private String idPengguna;    // ID unik pengguna
-    private String namaPengguna;// Nama pengguna
-    private String alamatPengguna; // alamar user
-    private String nomorHpPengguna;// kosong delapan berapa mass
+    private String idPengguna;
+    private String namaPengguna;
+    private String alamatPengguna;
+    private String nomorHpPengguna;
+    private String username;
+    private String password;
+
 
     //CONSTRUCTOR
-    Pengguna (String idPengguna, String namaPengguna, String alamatPengguna, String nomorHpPengguna) {
+    public Pengguna (String idPengguna, String namaPengguna, String alamatPengguna, String nomorHpPengguna, String username, String password) {
         this.idPengguna = idPengguna;
         this.namaPengguna = namaPengguna ;
         this.alamatPengguna = alamatPengguna ;
         this.nomorHpPengguna = nomorHpPengguna ;
+        this.username = username;
+        this.password = password;
     }
 
     //GETTER
@@ -28,6 +33,8 @@ public abstract class Pengguna {
     public String getNomorHPPengguna() {
         return nomorHpPengguna;
     }
+    public String getUsername(){ return username; }
+    public String getPassword(){ return password; }
 
     //SETTER
     public void setIdPengguna(String idPengguna) {
@@ -42,5 +49,7 @@ public abstract class Pengguna {
     public void setNomorHPPengguna(String nomorHPPengguna) {
         this.nomorHpPengguna = nomorHPPengguna;
     }
+    public void setUsername(String username){ this.username = username; }
+    public void setPassword(String password){ this.username = password; }
 
 }

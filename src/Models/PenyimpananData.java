@@ -7,9 +7,9 @@ import java.util.ArrayList;
 
 public class PenyimpananData {
     //ATTRIBUTE
-    private ArrayList<Pengguna> dataPengguna = new ArrayList<>();
-    private ArrayList<Buku> dataBuku = new ArrayList<>();
-    private ArrayList<Peminjaman> dataPeminjaman = new ArrayList<>();
+    private static ArrayList<Pengguna> dataPengguna = new ArrayList<>();
+    private static ArrayList<Buku> dataBuku = new ArrayList<>();
+    private static ArrayList<Peminjaman> dataPeminjaman = new ArrayList<>();
 
     //GETTER
     public ArrayList<Pengguna> getPengguna(){ return dataPengguna; }
