@@ -214,6 +214,11 @@ public class SubMenuManajemenBuku {
         String inputStr;
 
         loop : while (true){
+            if (PenyimpananData.getBuku().size() == 0){
+                System.out.print("Buku kosong!\n");
+                break loop;
+            }
+
             System.out.print("\nDetail Buku ->");
             for (int i = 0; i < PenyimpananData.getBuku().size(); i++){
                 System.out.print("\n      "+(i + 1)+". "+PenyimpananData.getBuku().get(i).getJudulBuku());
