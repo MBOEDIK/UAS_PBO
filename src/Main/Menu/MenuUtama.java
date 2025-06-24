@@ -1,5 +1,7 @@
 package Main.Menu;
 
+import Main.Menu.SubMenuAdmin.SubMenuDetailPeminjaman;
+
 import java.util.Scanner;
 
 /*
@@ -33,7 +35,7 @@ public class MenuUtama {
                     "\n-- HALAMAN ADMIN --" +
                     "\n1. Manajemen Buku" +
                     "\n2. Manajemen Anggota" +
-                    "\n3. Manajemen Peminjaman" +
+                    "\n3. Detail Peminjaman" +
                     "\n4. Log out" +
                     "\nPilih menu: ");
             inputInt = input.nextInt();
@@ -47,8 +49,10 @@ public class MenuUtama {
                     MenuAdmin.menuManajemenPengguna();
                     continue;
                 case 3:
-                    MenuAdmin.menuManajemenPeminjaman();
+                    MenuAdmin.menuDetailPeminjaman();
                     continue;
+                case 4:
+                    break loop;
                 default:
                     System.out.print("Pilihan tidak ada!\n");
                     continue;
@@ -65,7 +69,7 @@ public class MenuUtama {
      * TODO: Implementasikan logika untuk case 1 (peminjaman) dan case 2 (pengembalian).
      * Perlu ditambahkan integrasi dengan sistem peminjaman dan validasi input.
      */
-    public void menuAnggota(){
+    public static void menuAnggota(){
         System.out.print("" +
                 "\n-- HALAMAN Anggota --" +
                 "\n1. Peminjaman" +

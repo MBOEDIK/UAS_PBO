@@ -1,5 +1,6 @@
 package Main.Menu;
 
+import Main.Menu.SubMenuAdmin.SubMenuDetailPeminjaman;
 import Main.Menu.SubMenuAdmin.SubMenuManajemenBuku;
 import Main.Menu.SubMenuAdmin.SubMenuManajemenPengguna;
 
@@ -38,7 +39,7 @@ public class MenuAdmin {
                     "\n1. Tambah Buku" +
                     "\n2. Edit Buku" +
                     "\n3. Hapus Buku" +
-                    "\n4. Tampilkan Buku" +
+                    "\n4. Tampilkan Detail Buku" +
                     "\n5. Kembali ke Halaman Admin" +
                     "\nMasukkan Pilihan: ");
             subInputInt = input.nextInt();
@@ -71,7 +72,7 @@ public class MenuAdmin {
                     "\n1. Tambah Pengguna" +
                     "\n2. Edit Pengguna" +
                     "\n3. Hapus Pengguna" +
-                    "\n4. Tampilkan Pengguna" +
+                    "\n4. Tampilkan Detail Pengguna" +
                     "\n5. Kembali ke Halaman Admin" +
                     "\nMasukkan Pilihan: ");
             subInputInt = input.nextInt();
@@ -97,8 +98,8 @@ public class MenuAdmin {
 
     //============================================================================================================================================================================================================
 
-    public static void menuManajemenPeminjaman(){
-
+    public static void menuDetailPeminjaman(){
+        SubMenuDetailPeminjaman.menuDetailPeminjaman();
     }
 
     //============================================================================================================================================================================================================

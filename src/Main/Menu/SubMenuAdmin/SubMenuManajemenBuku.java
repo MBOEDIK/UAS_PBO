@@ -56,19 +56,19 @@ public class SubMenuManajemenBuku {
                     case "n": terindeksSinta = "Tidak Terindeks"; break;
                     default: terindeksSinta = "-"; break;
                 }
-                BukuController.tambah(IdGenerator.idBuku(), judulBuku, kategoriBuku, pengarangBuku, tahunTerbitBuku, true, institusiBuku, terindeksSinta);
+                BukuController.tambah(IdGenerator.generate(), judulBuku, kategoriBuku, pengarangBuku, tahunTerbitBuku, true, institusiBuku, terindeksSinta);
                 break;
             case "majalah":
                 System.out.print("Topik buku: "); String topikBuku = input.nextLine();
-                BukuController.tambah(IdGenerator.idBuku(), judulBuku, kategoriBuku, pengarangBuku, tahunTerbitBuku, true, topikBuku);
+                BukuController.tambah(IdGenerator.generate(), judulBuku, kategoriBuku, pengarangBuku, tahunTerbitBuku, true, topikBuku);
                 break;
             case "novel":
                 System.out.print("Genre buku: "); String genreBuku = input.nextLine();
-                BukuController.tambah(IdGenerator.idBuku(), judulBuku, kategoriBuku, pengarangBuku, tahunTerbitBuku, true, genreBuku);
+                BukuController.tambah(IdGenerator.generate(), judulBuku, kategoriBuku, pengarangBuku, tahunTerbitBuku, true, genreBuku);
                 break;
             case "textbook":
                 System.out.print("Bidang Ilmu: "); String bidangIlmu = input.nextLine();
-                BukuController.tambah(IdGenerator.idBuku(), judulBuku, kategoriBuku, pengarangBuku, tahunTerbitBuku, true, bidangIlmu);
+                BukuController.tambah(IdGenerator.generate(), judulBuku, kategoriBuku, pengarangBuku, tahunTerbitBuku, true, bidangIlmu);
                 break;
             default:
                 System.out.print("Kategori tidak valid, batal menambahkan buku.\n");

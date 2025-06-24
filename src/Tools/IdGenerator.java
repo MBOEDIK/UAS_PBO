@@ -8,17 +8,11 @@ public class IdGenerator {
     private static int counterIdPengguna = 1;
     private static int counterIdBuku = 1;
 
-    public static String idPengguna() {
+    public static String generate() {
         String datePart = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMM"));
         String id = datePart + "-" + String.format("%03d", counterIdPengguna);
         counterIdPengguna++;
         return id;
     }
 
-    public static String idBuku() {
-        String datePart = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMM"));
-        String id = datePart + "-" + String.format("%03d", counterIdPengguna);
-        counterIdPengguna++;
-        return id;
-    }
 }

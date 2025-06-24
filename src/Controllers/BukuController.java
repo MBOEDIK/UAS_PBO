@@ -62,20 +62,6 @@ public class BukuController {
      * dan 7 khusus untuk status Sinta pada jurnal ilmiah. Method ini melakukan type casting
      * dinamis untuk mengakses method setter yang sesuai dengan jenis buku yang sedang diedit.
      */
-
-
-    /*kodebuku
-     * judul
-     * kategori
-     * pengarang
-     * tahunTerbit
-     * institusi
-     * topik
-     * genre
-     * bidangIlmu
-     * terindeksSinta
-     * ketersediaanBuku*/
-
     public static void edit(int indeksBuku, String attribute, String nilai){
         switch (attribute){
             case "kodeBuku": PenyimpananData.getBuku().get(indeksBuku).setKodeBuku(nilai); break;

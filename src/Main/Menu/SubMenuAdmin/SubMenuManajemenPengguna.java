@@ -1,18 +1,11 @@
 package Main.Menu.SubMenuAdmin;
 
-import Controllers.BukuController;
 import Controllers.PenggunaController;
-import Models.Book.JurnalIlmiah;
-import Models.Book.Majalah;
-import Models.Book.Novel;
-import Models.Book.TextBook;
 import Models.PenyimpananData;
 import Models.User.Admin;
 import Models.User.Anggota;
 import Tools.IdGenerator;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class SubMenuManajemenPengguna {
@@ -44,12 +37,12 @@ public class SubMenuManajemenPengguna {
                 System.out.print("NIP Admin: "); String nipAdmin = input.nextLine();
                 System.out.print("*Buat Username: "); username = input.nextLine();
                 System.out.print("*Buat Password: "); password = input.nextLine();
-                PenggunaController.tambah(IdGenerator.idPengguna(), jenisPengguna, namaPengguna, alamatPengguna, nomorHpPengguna, username, password, nipAdmin);
+                PenggunaController.tambah(IdGenerator.generate(), jenisPengguna, namaPengguna, alamatPengguna, nomorHpPengguna, username, password, nipAdmin);
                 break;
             case "anggota":
                 System.out.print("*Buat Username: "); username = input.nextLine();
                 System.out.print("*Buat Password: "); password = input.nextLine();
-                PenggunaController.tambah(IdGenerator.idPengguna(), jenisPengguna, namaPengguna, jenisPengguna, nomorHpPengguna, username, password, true, 3);
+                PenggunaController.tambah(IdGenerator.generate(), jenisPengguna, namaPengguna, jenisPengguna, nomorHpPengguna, username, password, true, 3);
                 break;
             default:
                 System.out.print("Jenis Pengguna tidak valid, batal menambahkan Pengguna.\n");
@@ -262,4 +255,4 @@ public class SubMenuManajemenPengguna {
     }
 
     //============================================================================================================================================================================================================
-    }
+}

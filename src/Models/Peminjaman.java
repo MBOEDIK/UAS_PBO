@@ -10,7 +10,7 @@ public class Peminjaman {
     private String statusPengembalian ;
 
     //CONSTRUCTOR
-    Peminjaman (String idPeminjaman, String idAnggota, String idKodeBuku, String tglKembali, String tglPinjam, String statusPengembalian ) {
+    public Peminjaman (String idPeminjaman, String idAnggota, String idKodeBuku, String tglKembali, String tglPinjam, String statusPengembalian) {
         this.idPeminjaman = idPeminjaman ;
         this.idAnggota = idAnggota;
         this.idKodeBuku = idKodeBuku;
@@ -22,23 +22,18 @@ public class Peminjaman {
     public String getIdPeminjaman() {
         return idPeminjaman;
     }
-
     public String getIdAnggota() {
         return idAnggota;
     }
-
     public String getKodebuku() {
         return idKodeBuku;
     }
-
     public String getTanggalPinjam() {
         return tglPinjam;
     }
-
     public String getTanggalKembali() {
         return tglKembali;
     }
-
     public String getStatusKeterlambatanPengembalian() {
         return statusPengembalian;
     }
@@ -47,23 +42,18 @@ public class Peminjaman {
     public void setIdPeminjaman(String idPeminjaman) {
         this.idPeminjaman = idPeminjaman;
     }
-
-    public void setStatusKeterlambatanPengembalian(String idAnggota) {
+    public void setIdAnggota(String idAnggota) {
         this.idAnggota = idAnggota;
     }
-
     public void setKodeBuku(String kodeBuku) {
         this.idKodeBuku = kodeBuku;
     }
-
     public void setTanggalPinjam(String tanggalPinjam) {
         this.tglPinjam = tanggalPinjam;
     }
-
     public void setTanggalKembali(String tanggalKembali) {
         this.tglKembali = tanggalKembali;
     }
-
     public void setStatusKeterlambatan(String statusPengembalian) {
         this.statusPengembalian = statusPengembalian;
     }
