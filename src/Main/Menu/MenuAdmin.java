@@ -4,6 +4,13 @@ import Main.Menu.SubMenuAdmin.SubMenuManajemenBuku;
 
 import java.util.Scanner;
 
+/*
+ * Kelas MenuAdmin berfungsi sebagai antarmuka utama untuk semua fitur administratif sistem.
+ * Bertanggung jawab untuk menampilkan dan mengarahkan alur menu manajemen buku, anggota,
+ * dan peminjaman. Berinteraksi dengan berbagai SubMenu untuk operasi spesifik dan menggunakan
+ * Scanner untuk menerima input pengguna. Kelas ini menjadi penghubung antara pengguna admin
+ * dengan fungsionalitas sistem yang lebih kompleks.
+ */
 public class MenuAdmin {
 
 //ATTRIBUTES
@@ -17,6 +24,12 @@ public class MenuAdmin {
 //METHODS
     //============================================================================================================================================================================================================
 
+    /*
+     * Menyediakan antarmuka menu untuk manajemen buku lengkap dengan pilihan operasi CRUD.
+     * Method ini menampilkan opsi menu dan mengarahkan ke submenu yang sesuai berdasarkan input.
+     * Menggunakan loop while untuk menjaga menu tetap aktif sampai pengguna memilih keluar.
+     * Tidak menerima parameter apapun dan tidak mengembalikan nilai.
+     */
     public static void menuManajemenBuku(){
         loop : while (true){
             System.out.print("" +
@@ -50,12 +63,22 @@ public class MenuAdmin {
 
     //============================================================================================================================================================================================================
 
+    /*
+     * Tempat untuk mengimplementasikan antarmuka manajemen anggota.
+     * TODO: Implementasikan logika untuk menambah, mengedit, menghapus, dan melihat anggota.
+     * Saat ini masih berupa stub dan perlu dikembangkan sesuai kebutuhan sistem.
+     */
     public static void menuManajemenAnggota(){
 
     }
 
     //============================================================================================================================================================================================================
 
+    /*
+     * Tempat untuk mengimplementasikan antarmuka manajemen peminjaman.
+     * TODO: Implementasikan logika untuk memproses peminjaman, pengembalian, dan riwayat.
+     * Perlu ditambahkan validasi status peminjaman dan integrasi dengan data buku/anggota.
+     */
     public static void menuManajemenPeminjaman(){
 
     }

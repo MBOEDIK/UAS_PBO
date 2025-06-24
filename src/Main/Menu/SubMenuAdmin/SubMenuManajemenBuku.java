@@ -6,6 +6,13 @@ import Models.PenyimpananData;
 
 import java.util.Scanner;
 
+/*
+ * Kelas SubMenuManajemenBuku bertanggung jawab untuk menangani antarmuka pengguna terkait
+ * manajemen buku dalam sistem. Berperan sebagai perantara antara pengguna admin dengan
+ * controller buku, menyediakan menu interaktif untuk operasi CRUD buku. Kelas ini bekerja
+ * sama erat dengan BukuController untuk pemrosesan data dan PenyimpananData untuk akses
+ * penyimpanan.
+ */
 public class SubMenuManajemenBuku {
 
     //ATTRIBUTES
@@ -18,6 +25,16 @@ public class SubMenuManajemenBuku {
     //METHODS
     //============================================================================================================================================================================================================
 
+    /*
+     * Menangani proses penambahan buku baru ke sistem berdasarkan input pengguna.
+     * Method ini memandu pengguna melalui serangkaian input untuk semua atribut buku
+     * yang diperlukan, dengan penanganan khusus untuk setiap kategori buku:
+     * - Jurnal Ilmiah memerlukan institusi dan status Sinta
+     * - Majalah memerlukan topik
+     * - Novel memerlukan genre
+     * - Textbook memerlukan bidang ilmu
+     * Semua buku baru secara default dibuat dengan status tersedia (true).
+     */
     public static void menuTambahBuku(){
 
         System.out.print("\nTambah Buku ->");
@@ -59,6 +76,15 @@ public class SubMenuManajemenBuku {
 
     //============================================================================================================================================================================================================
 
+    /*
+     * Menyediakan antarmuka untuk mengedit atribut buku yang ada dalam sistem.
+     * Menampilkan daftar buku yang tersedia dan memungkinkan pengguna memilih:
+     * 1. Buku yang akan diedit
+     * 2. Atribut spesifik yang akan diubah
+     * 3. Nilai baru untuk atribut tersebut
+     * Method ini secara dinamis menyesuaikan opsi edit berdasarkan kategori buku,
+     * termasuk penanganan khusus untuk konversi input (seperti y/n ke boolean).
+     */
     public static void menuEditBuku(){
         int inputInt, subInputInt;
 
@@ -172,6 +198,15 @@ public class SubMenuManajemenBuku {
 
     //============================================================================================================================================================================================================
 
+    /*
+     * Menangani proses penghapusan buku dari sistem.
+     * Menampilkan daftar buku yang tersedia dan meminta konfirmasi sebelum
+     * menghapus. Memiliki penanganan khusus untuk kasus:
+     * - Daftar buku kosong
+     * - Input indeks tidak valid
+     * - Konfirmasi penghapusan
+     * Operasi penghapusan bersifat permanen dan langsung mempengaruhi data.
+     */
     public static void menuHapusBuku(){
         int inputInt, subInputInt;
         String inputStr;
@@ -209,6 +244,12 @@ public class SubMenuManajemenBuku {
 
     //============================================================================================================================================================================================================
 
+    /*
+     * Menampilkan detail lengkap dari buku yang dipilih pengguna.
+     * Menyajikan semua atribut buku dalam format terstruktur, dengan penyesuaian
+     * otomatis berdasarkan kategori buku. Memungkinkan pengguna untuk melihat
+     * detail multiple buku secara berurutan tanpa kembali ke menu utama.
+     */
     public static void menuDetailBuku(){
         int inputInt, subInputInt;
         String inputStr;

@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc6a1436-3eff-4291-bac5-c9c1dc1445f5" name="Changes" comment="" />
+    <list default="true" id="dc6a1436-3eff-4291-bac5-c9c1dc1445f5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Main/Menu/MenuAnggota.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/BukuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/BukuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interface/Reporttable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Menu/MenuAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Menu/MenuAdmin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Menu/MenuUtama.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Menu/MenuUtama.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Menu/SubMenuAdmin/SubMenuManajemenBuku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Menu/SubMenuAdmin/SubMenuManajemenBuku.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,22 +38,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "tahap4-implementasi-controller-budi",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/KULIAH/-+=INFORMATIKA=+-/Gudang Kode/Java/PBO_F_Budi_256/Tugas",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;tahap4-implementasi-controller-budi&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/KULIAH/-+=INFORMATIKA=+-/Gudang Kode/Java/PBO_F_Budi_256/Tugas&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main.Main" />
@@ -89,24 +97,6 @@
           <url>file://$PROJECT_DIR$/src/Models/PenyimpananData.java</url>
           <line>7</line>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/Main/Menu/SubMenuAdmin/SubMenuManajemenBuku.java</url>
-          <line>60</line>
-          <properties class="Main.Menu.SubMenuAdmin.SubMenuManajemenBuku">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/Main/Menu/SubMenuAdmin/SubMenuManajemenBuku.java</url>
-          <line>211</line>
-          <properties class="Main.Menu.SubMenuAdmin.SubMenuManajemenBuku" method="menuDetailBuku">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

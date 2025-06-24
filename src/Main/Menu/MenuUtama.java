@@ -2,7 +2,11 @@ package Main.Menu;
 
 import java.util.Scanner;
 
-//CLASS UNTUK NGATUR LOGIKA MENU
+/*
+ * Kelas MenuUtama merupakan pusat navigasi sistem yang mengatur alur menu utama untuk admin dan anggota.
+ * Bertanggung jawab untuk menampilkan opsi menu dan mengarahkan pengguna ke fungsi yang sesuai berdasarkan peran (admin/anggota).
+ * Berinteraksi dengan Scanner untuk input pengguna dan kelas MenuAdmin untuk fungsi administratif.
+ */
 public class MenuUtama {
 
 //ATTRIBUTES
@@ -16,7 +20,13 @@ public class MenuUtama {
 //METHODS
     //============================================================================================================================================================================================================
 
-    //logika untuk menu admin
+    /*
+     * Menyediakan antarmuka menu utama untuk pengguna dengan role admin.
+     * Method ini menampilkan pilihan menu admin dan mengarahkan ke fungsi yang sesuai.
+     * Menggunakan loop while untuk menjaga menu tetap aktif sampai admin memilih logout.
+     * Tidak menerima parameter dan tidak mengembalikan nilai.
+     * Catatan: Case 2 dan 3 masih perlu diimplementasikan untuk manajemen anggota dan peminjaman.
+     */
     public static void menuAdmin(){
         loop : while (true){
             System.out.print("" +
@@ -45,7 +55,13 @@ public class MenuUtama {
 
     //============================================================================================================================================================================================================
 
-    //logika untuk menu anggota
+
+    /*
+     * Menyediakan antarmuka menu utama untuk pengguna dengan role anggota.
+     * Menampilkan opsi peminjaman, pengembalian, dan logout bagi anggota.
+     * TODO: Implementasikan logika untuk case 1 (peminjaman) dan case 2 (pengembalian).
+     * Perlu ditambahkan integrasi dengan sistem peminjaman dan validasi input.
+     */
     public void menuAnggota(){
         System.out.print("" +
                 "\n-- HALAMAN Anggota --" +
