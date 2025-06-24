@@ -62,29 +62,28 @@ public class MenuUtama {
 
     //============================================================================================================================================================================================================
 
-
-    /*
-     * Menyediakan antarmuka menu utama untuk pengguna dengan role anggota.
-     * Menampilkan opsi peminjaman, pengembalian, dan logout bagi anggota.
-     * TODO: Implementasikan logika untuk case 1 (peminjaman) dan case 2 (pengembalian).
-     * Perlu ditambahkan integrasi dengan sistem peminjaman dan validasi input.
-     */
     public static void menuAnggota(){
-        System.out.print("" +
-                "\n-- HALAMAN Anggota --" +
-                "\n1. Peminjaman" +
-                "\n2. Pengembalian" +
-                "\n3. Log out" +
-                "\nPilih menu: ");
-        int pilihan = input.nextInt();
-        input.nextLine();
+        loop : while (true){
+            System.out.print("" +
+                    "\n-- HALAMAN Anggota --" +
+                    "\n1. Peminjaman" +
+                    "\n2. Pengembalian" +
+                    "\n3. Log out" +
+                    "\nPilih menu: ");
+            int pilihan = input.nextInt();
+            input.nextLine();
 
-        switch (pilihan){
-            case 1: break;
-            case 2: break;
-            case 3: break;
-            default:
-                System.out.print("Pilihan tidak ada!\n");
+            switch (pilihan){
+                case 1:
+                    MenuAnggota.peminjaman();
+                    continue;
+                case 2:
+                    MenuAnggota.pengembalian();
+                    continue loop;
+                case 3: break loop;
+                default:
+                    System.out.print("Pilihan tidak ada!\n");
+            }
         }
     }
 

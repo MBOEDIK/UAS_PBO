@@ -2,6 +2,8 @@ package Main;
 
 import Main.Menu.MenuAdmin;
 import Main.Menu.MenuUtama;
+import Models.Book.Majalah;
+import Models.Book.Novel;
 import Models.PenyimpananData;
 import Models.User.Admin;
 import Models.User.Anggota;
@@ -19,12 +21,15 @@ public class LoginSystem {
 
 //OBJECT
     static Scanner input = new Scanner(System.in);
+    private static Pengguna penggunaSaatIni;
 
 //DATA SEMENTARA (UNTUK UJI COBA VALIDASI AJA, NANTI INI DIHAPUS AJA KALO UDH ADA DATABSE)
      public static void dummyData(){
         PenyimpananData.getPengguna().add(new Admin(IdGenerator.generate(), "Admin","Prabowo", "Tegalgondo, Malang, Jawa Timur, Indoneisia", "08123456789", "prabowo123", "123456789", "53244342522423425"));
-        PenyimpananData.getPengguna().add(new Anggota(IdGenerator.generate(), "Anggota", "Budi", "Ngade, Ternate, Maluku Utara, Indonesia", "082278925369", "MBOEDIK", "iniPassword123", false, 3));
-    }
+        PenyimpananData.getPengguna().add(new Anggota(IdGenerator.generate(), "Anggota", "Budi", "Ngade, Ternate, Maluku Utara, Indonesia", "082278925369", "MBOEDIK", "iniPassword123", false, 3, 0));
+        PenyimpananData.getBuku().add(new Majalah(IdGenerator.generate(), "Buku Majalah A", "Majalah", "Cahyono", "2022", true, "Fisika Kuantum"));
+        PenyimpananData.getBuku().add(new Novel(IdGenerator.generate(), "Buku Novel C", "Novel", "Agus", "1999", true, "Misteri"));
+     }
 
 //METHODS
 //====================================================================
@@ -62,25 +67,35 @@ public class LoginSystem {
                 System.out.print("\nMasukkan Username: "); username = input.nextLine();
                 System.out.print("Masukkan Password: "); password = input.nextLine();
 
+                int i = 0;
+
                 //validasi login
-                for(Pengguna pengguna : PenyimpananData.getPengguna()){
+                subSubLoop : for(Pengguna pengguna : PenyimpananData.getPengguna()){
                     if(username.equals(pengguna.getUsername()) && password.equals(pengguna.getPassword())){
                         if(statusPengguna.equals("ADMIN") && pengguna instanceof Admin){
+                            penggunaSaatIni = pengguna;
                             MenuUtama.menuAdmin();
                             continue loop;
                         }
                         if(statusPengguna.equals("ANGGOTA") && pengguna instanceof Anggota){
+                            penggunaSaatIni = pengguna;
                             MenuUtama.menuAnggota();
-                            continue subLoop;
+                            continue loop;
                         }
                     }
-                    else {
+                    if (i == PenyimpananData.getPengguna().size() - 1){
                         System.out.print("Username/Password salah!\n");
                         continue subLoop;
                     }
+                    i++;
                 }
             }
         }
     }
+
+    //====================================================================
+
+    //getter
+    public static Pengguna getPenggunaSaatIni(){ return penggunaSaatIni; }
 
 }

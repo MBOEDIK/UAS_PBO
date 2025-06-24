@@ -45,7 +45,8 @@ public class SubMenuDetailPeminjaman {
                     "\n      3. Kode Buku: "+PenyimpananData.getDataPeminjaman().get(inputInt).getKodebuku()+"" +
                     "\n      4. Tanggal Pinjam: "+PenyimpananData.getDataPeminjaman().get(inputInt).getTanggalPinjam()+"" +
                     "\n      5. Tanggal Kembali: "+PenyimpananData.getDataPeminjaman().get(inputInt).getTanggalKembali()+"" +
-                    "\n      6. Status Keterlambatan: "+PenyimpananData.getDataPeminjaman().get(inputInt).getStatusKeterlambatanPengembalian()+"");
+                    "\n      6. Deadline Peminjaman: "+PenyimpananData.getDataPeminjaman().get(inputInt).getDeadlinePeminjaman()+"" +
+                    "\n      7. Status Keterlambatan: "+PenyimpananData.getDataPeminjaman().get(inputInt).getStatusKeterlambatanPengembalian()+"");
 
             System.out.print("\nIngin melihat detail peminjaman lain juga? (y/n): "); inputStr = input.nextLine();
 

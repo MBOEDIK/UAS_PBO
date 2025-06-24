@@ -42,7 +42,7 @@ public class SubMenuManajemenPengguna {
             case "anggota":
                 System.out.print("*Buat Username: "); username = input.nextLine();
                 System.out.print("*Buat Password: "); password = input.nextLine();
-                PenggunaController.tambah(IdGenerator.generate(), jenisPengguna, namaPengguna, jenisPengguna, nomorHpPengguna, username, password, true, 3);
+                PenggunaController.tambah(IdGenerator.generate(), jenisPengguna, namaPengguna, jenisPengguna, nomorHpPengguna, username, password, true, 3, 0);
                 break;
             default:
                 System.out.print("Jenis Pengguna tidak valid, batal menambahkan Pengguna.\n");
@@ -237,11 +237,13 @@ public class SubMenuManajemenPengguna {
                     else {
                         terlambatMengembalikan = "Tidak";
                     }
+
                     System.out.print("" +
                             "\n      6. Terlambat Mengembalikan: "+terlambatMengembalikan+"" +
                             "\n      7. Maksimal Pinjam Buku: "+anggota.getMaksimalPinjamBuku()+"" +
-                            "\n      8. Username: "+anggota.getUsername()+"" +
-                            "\n      9. Password: "+anggota.getPassword()+"");
+                            "\n      8. Jumlah Pinjam Buku: "+anggota.getJumlahPinjamBuku()+"" +
+                            "\n      9. Username: "+anggota.getUsername()+"" +
+                            "\n      10. Password: "+anggota.getPassword()+"");
                     break;
             }
 

@@ -18,8 +18,8 @@ public class PenggunaController {
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    public static void tambah(String idPengguna, String jenisPengguna, String namaPengguna, String alamatPengguna, String nomorHpPengguna, String username, String password, Boolean terlambatMengembalikan,int maksimalPinjamBuku){
-        PenyimpananData.getPengguna().add(new Anggota(idPengguna, jenisPengguna, namaPengguna, alamatPengguna, nomorHpPengguna, username, password, terlambatMengembalikan, maksimalPinjamBuku));
+    public static void tambah(String idPengguna, String jenisPengguna, String namaPengguna, String alamatPengguna, String nomorHpPengguna, String username, String password, Boolean terlambatMengembalikan,int maksimalPinjamBuku, int jumlahPinjamBuku){
+        PenyimpananData.getPengguna().add(new Anggota(idPengguna, jenisPengguna, namaPengguna, alamatPengguna, nomorHpPengguna, username, password, terlambatMengembalikan, maksimalPinjamBuku, jumlahPinjamBuku));
     }
 
     //============================================================================================================================================================================================================
