@@ -5,8 +5,8 @@ public class Admin extends Pengguna {
     protected String nipAdmin ;
 
     //CONSTRUCTOR
-    public Admin(String idPengguna, String namaPengguna, String alamatPengguna, String nomorHpPengguna, String username, String password, String nipAdmin) {
-        super(idPengguna, namaPengguna, alamatPengguna, nomorHpPengguna, username, password);
+    public Admin(String idPengguna, String jenisPengguna, String namaPengguna, String alamatPengguna, String nomorHpPengguna, String username, String password, String nipAdmin) {
+        super(idPengguna, jenisPengguna, namaPengguna, alamatPengguna, nomorHpPengguna, username, password);
         this.nipAdmin = nipAdmin;
     }
 

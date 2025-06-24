@@ -3,6 +3,7 @@ package Models.User;
 public abstract class Pengguna {
     //ATTRIBUTE
     private String idPengguna;
+    private String jenisPengguna;
     private String namaPengguna;
     private String alamatPengguna;
     private String nomorHpPengguna;
@@ -11,8 +12,9 @@ public abstract class Pengguna {
 
 
     //CONSTRUCTOR
-    public Pengguna (String idPengguna, String namaPengguna, String alamatPengguna, String nomorHpPengguna, String username, String password) {
+    public Pengguna (String idPengguna, String jenisPengguna,String namaPengguna, String alamatPengguna, String nomorHpPengguna, String username, String password) {
         this.idPengguna = idPengguna;
+        this.jenisPengguna = jenisPengguna;
         this.namaPengguna = namaPengguna ;
         this.alamatPengguna = alamatPengguna ;
         this.nomorHpPengguna = nomorHpPengguna ;
@@ -23,6 +25,9 @@ public abstract class Pengguna {
     //GETTER
     public String getIdPengguna() {
         return idPengguna;
+    }
+    public String getJenisPengguna() {
+        return jenisPengguna;
     }
     public String getNamaPengguna() {
         return namaPengguna;
@@ -39,6 +44,9 @@ public abstract class Pengguna {
     //SETTER
     public void setIdPengguna(String idPengguna) {
         this.idPengguna = idPengguna;
+    }
+    public void setJenisPengguna(String jenisPengguna) {
+        this.jenisPengguna = jenisPengguna;
     }
     public void setNamaPengguna(String namaPengguna) {
         this.namaPengguna = namaPengguna;

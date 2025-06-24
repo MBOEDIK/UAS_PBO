@@ -1,6 +1,7 @@
 package Main.Menu;
 
 import Main.Menu.SubMenuAdmin.SubMenuManajemenBuku;
+import Main.Menu.SubMenuAdmin.SubMenuManajemenPengguna;
 
 import java.util.Scanner;
 
@@ -63,22 +64,39 @@ public class MenuAdmin {
 
     //============================================================================================================================================================================================================
 
-    /*
-     * Tempat untuk mengimplementasikan antarmuka manajemen anggota.
-     * TODO: Implementasikan logika untuk menambah, mengedit, menghapus, dan melihat anggota.
-     * Saat ini masih berupa stub dan perlu dikembangkan sesuai kebutuhan sistem.
-     */
-    public static void menuManajemenAnggota(){
+    public static void menuManajemenPengguna(){
+        loop : while (true){
+            System.out.print("" +
+                    "\n-- Manajemen Pengguna --" +
+                    "\n1. Tambah Pengguna" +
+                    "\n2. Edit Pengguna" +
+                    "\n3. Hapus Pengguna" +
+                    "\n4. Tampilkan Pengguna" +
+                    "\n5. Kembali ke Halaman Admin" +
+                    "\nMasukkan Pilihan: ");
+            subInputInt = input.nextInt();
+            input.nextLine();
 
+            switch (subInputInt){
+                case 1:
+                    SubMenuManajemenPengguna.menuTambahPengguna();
+                    continue;
+                case 2:
+                    SubMenuManajemenPengguna.menuEditPengguna();
+                    continue;
+                case 3:
+                    SubMenuManajemenPengguna.menuHapusPengguna();
+                    continue;
+                case 4:
+                    SubMenuManajemenPengguna.menuDetailPengguna();
+                    continue;
+                case 5: break loop;
+            }
+        }
     }
 
     //============================================================================================================================================================================================================
 
-    /*
-     * Tempat untuk mengimplementasikan antarmuka manajemen peminjaman.
-     * TODO: Implementasikan logika untuk memproses peminjaman, pengembalian, dan riwayat.
-     * Perlu ditambahkan validasi status peminjaman dan integrasi dengan data buku/anggota.
-     */
     public static void menuManajemenPeminjaman(){
 
     }

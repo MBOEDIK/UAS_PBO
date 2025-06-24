@@ -62,37 +62,48 @@ public class BukuController {
      * dan 7 khusus untuk status Sinta pada jurnal ilmiah. Method ini melakukan type casting
      * dinamis untuk mengakses method setter yang sesuai dengan jenis buku yang sedang diedit.
      */
-    public static void edit(int indeksBuku, int indeksPengeditan, String nilaiString){
-        switch (indeksPengeditan){
-            case 1: PenyimpananData.getBuku().get(indeksBuku).setKodeBuku(nilaiString); break;
-            case 2: PenyimpananData.getBuku().get(indeksBuku).setJudulBuku(nilaiString); break;
-            case 3: PenyimpananData.getBuku().get(indeksBuku).setKategoriBuku(nilaiString); break;
-            case 4: PenyimpananData.getBuku().get(indeksBuku).setPengarangBuku(nilaiString); break;
-            case 5: PenyimpananData.getBuku().get(indeksBuku).setTahunTerbitBuku(nilaiString); break;
-            case 6:
-                switch (PenyimpananData.getBuku().get(indeksBuku).getKategoriBuku().toLowerCase()){
-                    case "jurnal ilmiah":
-                        JurnalIlmiah jurnalIlmiah = (JurnalIlmiah) PenyimpananData.getBuku().get(indeksBuku);
-                        jurnalIlmiah.setInstitusi(nilaiString);
-                        break;
-                    case "majalah":
-                        Majalah majalah = (Majalah) PenyimpananData.getBuku().get(indeksBuku);
-                        majalah.setTopikBuku(nilaiString);
-                        break;
-                    case "novel":
-                        Novel novel = (Novel) PenyimpananData.getBuku().get(indeksBuku);
-                        novel.setGenreBuku(nilaiString);
-                        break;
-                    case "textbook":
-                        TextBook textbook = (TextBook) PenyimpananData.getBuku().get(indeksBuku);
-                        textbook.setBidangIlmu(nilaiString);
-                        break;
-                }
-                break;
-            case 7:
+
+
+    /*kodebuku
+     * judul
+     * kategori
+     * pengarang
+     * tahunTerbit
+     * institusi
+     * topik
+     * genre
+     * bidangIlmu
+     * terindeksSinta
+     * ketersediaanBuku*/
+
+    public static void edit(int indeksBuku, String attribute, String nilai){
+        switch (attribute){
+            case "kodeBuku": PenyimpananData.getBuku().get(indeksBuku).setKodeBuku(nilai); break;
+            case "judul": PenyimpananData.getBuku().get(indeksBuku).setJudulBuku(nilai); break;
+            case "kategori": PenyimpananData.getBuku().get(indeksBuku).setKategoriBuku(nilai); break;
+            case "pengarang": PenyimpananData.getBuku().get(indeksBuku).setPengarangBuku(nilai); break;
+            case "tahunTerbit": PenyimpananData.getBuku().get(indeksBuku).setTahunTerbitBuku(nilai); break;
+            case "institusi":
                 JurnalIlmiah jurnalIlmiah = (JurnalIlmiah) PenyimpananData.getBuku().get(indeksBuku);
-                jurnalIlmiah.setTerindeksSinta(nilaiString);
+                jurnalIlmiah.setInstitusi(nilai);
                 break;
+            case "topik":
+                Majalah majalah = (Majalah) PenyimpananData.getBuku().get(indeksBuku);
+                majalah.setTopikBuku(nilai);
+                break;
+            case "genre":
+                Novel novel = (Novel) PenyimpananData.getBuku().get(indeksBuku);
+                novel.setGenreBuku(nilai);
+                break;
+            case "bidangIlmu":
+                TextBook textBook = (TextBook) PenyimpananData.getBuku().get(indeksBuku);
+                textBook.setBidangIlmu(nilai);
+                break;
+            case "terindeksSinta":
+                JurnalIlmiah jurnalIlmiah1 = (JurnalIlmiah) PenyimpananData.getBuku().get(indeksBuku);
+                jurnalIlmiah1.setTerindeksSinta(nilai);
+                break;
+
         }
     }
 
@@ -103,13 +114,8 @@ public class BukuController {
      * mempengaruhi atribut ketersediaanBuku. Ada duplikasi baris kode setKetersediaanBuku
      * yang mungkin merupakan kesalahan implementasi atau sengaja dibuat untuk kompatibilitas.
      */
-    public static void edit(int indeksBuku, int indeksPengeditan, Boolean nilaiBoolean){
-        switch (indeksPengeditan){
-            case 7, 8:
-                PenyimpananData.getBuku().get(indeksBuku).setKetersediaanBuku(nilaiBoolean);
-                break;
-        }
-        PenyimpananData.getBuku().get(indeksBuku).setKetersediaanBuku(nilaiBoolean);
+    public static void edit(int indeksBuku, String attribute, Boolean nilai){
+        PenyimpananData.getBuku().get(indeksBuku).setKetersediaanBuku(nilai);
     }
 
     //============================================================================================================================================================================================================

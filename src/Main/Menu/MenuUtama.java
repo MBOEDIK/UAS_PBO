@@ -43,9 +43,12 @@ public class MenuUtama {
                 case 1:
                     MenuAdmin.menuManajemenBuku();
                     continue ;
-                case 2: continue;
-                case 3: continue;
-                case 4: continue;
+                case 2:
+                    MenuAdmin.menuManajemenPengguna();
+                    continue;
+                case 3:
+                    MenuAdmin.menuManajemenPeminjaman();
+                    continue;
                 default:
                     System.out.print("Pilihan tidak ada!\n");
                     continue;

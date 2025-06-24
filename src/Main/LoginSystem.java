@@ -5,6 +5,7 @@ import Models.PenyimpananData;
 import Models.User.Admin;
 import Models.User.Anggota;
 import Models.User.Pengguna;
+import Tools.IdGenerator;
 
 import java.util.Scanner;
 
@@ -20,8 +21,8 @@ public class LoginSystem {
 
 //DATA SEMENTARA (UNTUK UJI COBA VALIDASI AJA, NANTI INI DIHAPUS AJA KALO UDH ADA DATABSE)
      public static void dummyData(){
-        PenyimpananData.getPengguna().add(new Admin("024231", "Prabowo", "Tegalgondo, Malang, Jawa Timur, Indoneisia", "08123456789", "prabowo123", "123456789", "53244342522423425"));
-        PenyimpananData.getPengguna().add(new Anggota("0242313", "Budi", "Ngade, Ternate, Maluku Utara, Indonesia", "082278925369", "MBOEDIK", "iniPassword123", false, 3));
+        PenyimpananData.getPengguna().add(new Admin(IdGenerator.idPengguna(), "Admin","Prabowo", "Tegalgondo, Malang, Jawa Timur, Indoneisia", "08123456789", "prabowo123", "123456789", "53244342522423425"));
+        PenyimpananData.getPengguna().add(new Anggota(IdGenerator.idPengguna(), "Anggota", "Budi", "Ngade, Ternate, Maluku Utara, Indonesia", "082278925369", "MBOEDIK", "iniPassword123", false, 3));
     }
 
 //METHODS

@@ -1,15 +1,21 @@
 package Main.Menu.SubMenuAdmin;
 
 import Controllers.BukuController;
+import Controllers.PenggunaController;
 import Models.Book.JurnalIlmiah;
 import Models.Book.Majalah;
 import Models.Book.Novel;
 import Models.Book.TextBook;
 import Models.PenyimpananData;
+import Models.User.Admin;
+import Models.User.Anggota;
+import Tools.IdGenerator;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class SubMenuManajemenAnggota {
+public class SubMenuManajemenPengguna {
 
     //ATTRIBUTES
     private static String inputStr;
@@ -21,148 +27,129 @@ public class SubMenuManajemenAnggota {
     //METHODS
     //============================================================================================================================================================================================================
 
-    public static void menuTambahBuku(){
+    public static void menuTambahPengguna(){
 
-        System.out.print("\nTambah Buku ->");
-        System.out.print("\nKategori buku (Jurnal Ilmiah, Majalah, Novel, Textbook): ");
-        String kategoriBuku = input.nextLine();
+        System.out.print("\nTambah Pengguna ->");
+        System.out.print("\nJenis Pengguna (Admin/Anggota): ");
+        String jenisPengguna = input.nextLine();
 
-        System.out.print("Kode buku: "); String kodeBuku = input.nextLine();
-        System.out.print("Judul buku: "); String judulBuku = input.nextLine();
-        System.out.print("Pengarang buku: "); String pengarangBuku = input.nextLine();
-        System.out.print("Tahun terbit buku: "); String tahunTerbitBuku = input.nextLine();
+        System.out.print("Nama lengkap Pengguna: "); String namaPengguna = input.nextLine();
+        System.out.print("Alamat lengkap Pengguna: "); String alamatPengguna = input.nextLine();
+        System.out.print("Nomor handphone Pengguna: "); String nomorHpPengguna = input.nextLine();
 
-        switch (kategoriBuku.toLowerCase()){
-            case "jurnal ilmiah":
-                System.out.print("Institusi: "); String institusiBuku = input.nextLine();
-                System.out.print("Terindeks Sinta (y/n): "); String terindeksSinta = input.nextLine();
-                switch (terindeksSinta.toLowerCase()){
-                    case "y": terindeksSinta = "Terindeks"; break;
-                    case "n": terindeksSinta = "Tidak Terindeks"; break;
-                    default: terindeksSinta = "-"; break;
-                }
-                BukuController.tambah(kodeBuku, judulBuku, kategoriBuku, pengarangBuku, tahunTerbitBuku, true, institusiBuku, terindeksSinta);
+        String username, password;
+
+        switch (jenisPengguna.toLowerCase()){
+            case "admin":
+                System.out.print("NIP Admin: "); String nipAdmin = input.nextLine();
+                System.out.print("*Buat Username: "); username = input.nextLine();
+                System.out.print("*Buat Password: "); password = input.nextLine();
+                PenggunaController.tambah(IdGenerator.idPengguna(), jenisPengguna, namaPengguna, alamatPengguna, nomorHpPengguna, username, password, nipAdmin);
                 break;
-            case "majalah":
-                System.out.print("Topik buku: "); String topikBuku = input.nextLine();
-                BukuController.tambah(kodeBuku, judulBuku, kategoriBuku, pengarangBuku, tahunTerbitBuku, true, topikBuku);
-                break;
-            case "novel":
-                System.out.print("Genre buku: "); String genreBuku = input.nextLine();
-                BukuController.tambah(kodeBuku, judulBuku, kategoriBuku, pengarangBuku, tahunTerbitBuku, true, genreBuku);
-                break;
-            case "textbook":
-                System.out.print("Bidang Ilmu: "); String bidangIlmu = input.nextLine();
-                BukuController.tambah(kodeBuku, judulBuku, kategoriBuku, pengarangBuku, tahunTerbitBuku, true, bidangIlmu);
+            case "anggota":
+                System.out.print("*Buat Username: "); username = input.nextLine();
+                System.out.print("*Buat Password: "); password = input.nextLine();
+                PenggunaController.tambah(IdGenerator.idPengguna(), jenisPengguna, namaPengguna, jenisPengguna, nomorHpPengguna, username, password, true, 3);
                 break;
             default:
-                System.out.print("Kategori tidak valid, batal menambahkan buku.\n");
+                System.out.print("Jenis Pengguna tidak valid, batal menambahkan Pengguna.\n");
         }
     }
 
     //============================================================================================================================================================================================================
 
-    public static void menuEditBuku(){
+    public static void menuEditPengguna(){
         int inputInt, subInputInt;
 
         loop : while (true){
-            if (PenyimpananData.getBuku().size() == 0){
-                System.out.print("Buku kosong!\n");
+            if (PenyimpananData.getPengguna().size() == 0){
+                System.out.print("Pengguna kosong!\n");
                 break loop;
             }
 
-            System.out.print("\nEdit Buku ->");
-            for (int i = 0; i < PenyimpananData.getBuku().size(); i++){
-                System.out.print("\n      "+(i + 1)+". "+PenyimpananData.getBuku().get(i).getJudulBuku());
+            System.out.print("\nEdit Pengguna ->");
+            for (int i = 0; i < PenyimpananData.getPengguna().size(); i++){
+                System.out.print("\n      "+(i + 1)+". "+PenyimpananData.getPengguna().get(i).getNamaPengguna());
             }
-            System.out.print("\nPilih index buku yang ingin diedit: "); inputInt = input.nextInt() - 1; input.nextLine();
+            System.out.print("\nPilih index Pengguna yang ingin diedit: "); inputInt = input.nextInt() - 1; input.nextLine();
 
-            if (inputInt > PenyimpananData.getBuku().size()) {
+            if (inputInt > PenyimpananData.getPengguna().size()) {
                 System.out.print("pilihan tidak ada!\n");
                 continue;
             }
 
             System.out.print("" +
-                    "      1. Kode Buku" +
-                    "\n      2. Judul Buku" +
-                    "\n      3. Kategori Buku" +
-                    "\n      4. Pengarang Buku" +
-                    "\n      5. Tahun Terbit Buku");
+                    "      1. Jenis Pengguna" +
+                    "\n      2. Nama Pengguna" +
+                    "\n      3. Alamat Pengguna" +
+                    "\n      4. Nomor Handphone Pengguna");
 
-            if (PenyimpananData.getBuku().get(inputInt).getKategoriBuku().toLowerCase().equals("jurnal ilmiah")) {
-                System.out.print("" +
-                        "\n      6. Institusi" +
-                        "\n      7. Terindeks Sinta" +
-                        "\n      8. Ketersediaan Buku");
-            }
-            if (PenyimpananData.getBuku().get(inputInt).getKategoriBuku().toLowerCase().equals("majalah")){
-                System.out.print("" +
-                        "\n      6. topik Buku" +
-                        "\n      7. Ketersediaan Buku");
-            }
-            if (PenyimpananData.getBuku().get(inputInt).getKategoriBuku().toLowerCase().equals("novel")){
-                System.out.print("" +
-                        "\n      6. Genre Buku" +
-                        "\n      7. Ketersediaan Buku");
-            }
-            if (PenyimpananData.getBuku().get(inputInt).getKategoriBuku().toLowerCase().equals("textbook")){
-                System.out.print("" +
-                        "\n      6. Bidang Ilmu" +
-                        "\n      7. Ketersediaan Buku");
+            switch (PenyimpananData.getPengguna().get(inputInt).getJenisPengguna().toLowerCase()){
+                case "admin":
+                    System.out.print("" +
+                            "\n      6. NIP Admin" +
+                            "\n      7. Username" +
+                            "\n      8. Password");
+                    break;
+                case "anggota":
+                    System.out.print("" +
+                            "\n      6. Username" +
+                            "\n      7. Password");
+                    break;
             }
 
             System.out.print("\nPilih index pengeditan: "); subInputInt = input.nextInt(); input.nextLine();
 
-            String placeHolder = "";
+            String placeHolder1 = "", attributeDiEdit = "";
+            Boolean nilaiBoolean = true;
 
             switch (subInputInt){
-                case 1: placeHolder = "kode buku baru"; break;
-                case 2: placeHolder = "judul baru"; break;
-                case 3: placeHolder = "kategori baru (Jurnal Ilmiah, Majalah, Novel, Textbook)"; break;
-                case 4: placeHolder = "pengarang baru"; break;
-                case 5: placeHolder = "tahun terbit baru"; break;
+                case 1: placeHolder1 = "jenis baru"; attributeDiEdit = "jenis"; break;
+                case 2: placeHolder1 = "nama baru"; attributeDiEdit = "nama"; break;
+                case 3: placeHolder1 = "alamat baru"; attributeDiEdit = "alamat";  break;
+                case 4: placeHolder1 = "nomor handphone baru"; attributeDiEdit = "nomorHP"; break;
+                case 5:
+                    switch (PenyimpananData.getPengguna().get(inputInt).getJenisPengguna().toLowerCase()){
+                        case "admin": placeHolder1 = "NIP Admin baru"; attributeDiEdit = "nipAdmin"; break;
+                        case "anggota": placeHolder1 = "terlambat mengembalikan baru (y/n)"; attributeDiEdit = "terlambatMengembalikan"; break;
+                    }
+                    break;
                 case 6:
-                    switch (PenyimpananData.getBuku().get(inputInt).getKategoriBuku().toLowerCase()){
-                        case "jurnal ilmiah": placeHolder = "institusi baru"; break;
-                        case "majalah": placeHolder = "topik baru"; break;
-                        case "novel": placeHolder = "genre baru"; break;
-                        case "textbook": placeHolder = "bidang ilmu baru"; break;
+                    switch (PenyimpananData.getPengguna().get(inputInt).getJenisPengguna().toLowerCase()){
+                        case "admin": placeHolder1 = "username baru"; attributeDiEdit = "username"; break;
+                        case "anggota": placeHolder1 = "maksimal pinjam buku baru (masukkan angka)"; attributeDiEdit = "maksimalPinjamBuku"; break;
                     }
                     break;
                 case 7:
-                    switch (PenyimpananData.getBuku().get(inputInt).getKategoriBuku().toLowerCase()){
-                        case "jurnal ilmiah": placeHolder = "terindeks sinta baru (y/n)"; break;
-                        default: placeHolder = "ketersediaan buku baru (y/n)";
+                    switch (PenyimpananData.getPengguna().get(inputInt).getJenisPengguna().toLowerCase()){
+                        case "admin": placeHolder1 = "password baru"; attributeDiEdit = "password"; break;
+                        case "anggota": placeHolder1 = "username baru"; attributeDiEdit = "username"; break;
                     }
                     break;
                 case 8:
-                    switch (PenyimpananData.getBuku().get(inputInt).getKategoriBuku().toLowerCase()){
-                        case "jurnal ilmiah": placeHolder = "ketersediaan buku baru (y/n)"; break;
-                        default: System.out.print("Pilihan tidak ada!"); break;
+                    placeHolder1 = "password baru"; attributeDiEdit = "password"; break;
+            }
+
+            System.out.print("Masukkan "+placeHolder1+": "); inputStr = input.nextLine();
+
+            if (subInputInt == 6 && PenyimpananData.getPengguna().get(inputInt).getJenisPengguna().toLowerCase().equals("anggota")){
+                switch (inputStr.toLowerCase()){
+                    case "y": nilaiBoolean = true; break;
+                    case "n": nilaiBoolean = false; break;
+                }
+                PenggunaController.edit(inputInt, attributeDiEdit, nilaiBoolean);
+            }
+            if (subInputInt == 7 && PenyimpananData.getPengguna().get(inputInt).getJenisPengguna().toLowerCase().equals("anggota")){
+                for (char c : inputStr.toCharArray()){
+                    if (!Character.isDigit(c)){
+                        System.out.print("Mengedit Pengguna batal dikarenakan input bukan angka.\n");
+                        continue loop;
                     }
-                    break;
+                }
+                PenggunaController.edit(inputInt, attributeDiEdit, Integer.parseInt(inputStr));
             }
 
-            System.out.print("Masukkan "+placeHolder+": "); inputStr = input.nextLine();
-
-            if (subInputInt == 7 && PenyimpananData.getBuku().get(inputInt).getKategoriBuku().toLowerCase().equals("jurnal ilmiah")){
-                switch (inputStr.toLowerCase()){
-                    case "y": inputStr = "Terindeks"; break;
-                    case "n": inputStr = "Tidak Terindeks"; break;
-                    default: inputStr = "-"; break;
-                }
-                BukuController.edit(inputInt, subInputInt, inputStr);
-            }
-            if ((subInputInt == 8 && PenyimpananData.getBuku().get(inputInt).getKategoriBuku().toLowerCase().equals("jurnal ilmiah")) || (subInputInt == 7 && !PenyimpananData.getBuku().get(inputInt).getKategoriBuku().toLowerCase().equals("jurnal ilmiah"))){
-                switch (inputStr.toLowerCase()){
-                    case "y": inputBool = true; break;
-                    default: inputBool = false;
-                }
-                BukuController.edit(inputInt, subInputInt, inputBool);
-            }
-            else {
-                BukuController.edit(inputInt, subInputInt, inputStr);
-            }
+            PenggunaController.edit(inputInt, attributeDiEdit, inputStr);
 
             System.out.print("Ingin mengedit lagi? (y/n): "); inputStr = input.nextLine();
 
@@ -175,32 +162,32 @@ public class SubMenuManajemenAnggota {
 
     //============================================================================================================================================================================================================
 
-    public static void menuHapusBuku(){
+    public static void menuHapusPengguna(){
         int inputInt, subInputInt;
         String inputStr;
 
         loop : while (true){
-            if (PenyimpananData.getBuku().size() == 0){
-                System.out.print("Buku kosong!\n");
+            if (PenyimpananData.getPengguna().size() == 0){
+                System.out.print("Pengguna kosong!\n");
                 break loop;
             }
 
-            System.out.print("\nHapus Buku ->");
-            for (int i = 0; i < PenyimpananData.getBuku().size(); i++){
-                System.out.print("\n      "+(i + 1)+". "+PenyimpananData.getBuku().get(i).getJudulBuku());
+            System.out.print("\nHapus Pengguna ->");
+            for (int i = 0; i < PenyimpananData.getPengguna().size(); i++){
+                System.out.print("\n      "+(i + 1)+". "+PenyimpananData.getPengguna().get(i).getNamaPengguna());
             }
-            System.out.print("\nPilih index buku yang ingin dihapus: "); inputInt = input.nextInt() - 1; input.nextLine();
+            System.out.print("\nPilih index Pengguna yang ingin dihapus: "); inputInt = input.nextInt() - 1; input.nextLine();
 
-            if (inputInt > PenyimpananData.getBuku().size() || inputInt < 0) {
+            if (inputInt > PenyimpananData.getPengguna().size() || inputInt < 0) {
                 System.out.print("pilihan tidak ada!\n");
                 continue;
             }
 
-            System.out.print("Kamu yakin ingin menghapus buku \""+PenyimpananData.getBuku().get(inputInt).getJudulBuku()+"\"? (y/n): "); inputStr = input.nextLine();
+            System.out.print("Kamu yakin ingin menghapus Pengguna \""+PenyimpananData.getPengguna().get(inputInt).getNamaPengguna()+"\"? (y/n): "); inputStr = input.nextLine();
 
             switch (inputStr.toLowerCase()){
                 case "y":
-                    BukuController.hapus(inputInt);
+                    PenggunaController.hapus(inputInt);
                     break loop;
                 default:
                     System.out.print("Batal menghapus objek.\n");
@@ -212,67 +199,56 @@ public class SubMenuManajemenAnggota {
 
     //============================================================================================================================================================================================================
 
-    public static void menuDetailBuku(){
+    public static void menuDetailPengguna(){
         int inputInt, subInputInt;
         String inputStr;
 
         loop : while (true){
-            if (PenyimpananData.getBuku().size() == 0){
-                System.out.print("Buku kosong!\n");
+            if (PenyimpananData.getPengguna().size() == 0){
+                System.out.print("Pengguna kosong!\n");
                 break loop;
             }
 
-            System.out.print("\nDetail Buku ->");
-            for (int i = 0; i < PenyimpananData.getBuku().size(); i++){
-                System.out.print("\n      "+(i + 1)+". "+PenyimpananData.getBuku().get(i).getJudulBuku());
+            System.out.print("\nDetail Pengguna ->");
+            for (int i = 0; i < PenyimpananData.getPengguna().size(); i++){
+                System.out.print("\n      "+(i + 1)+". "+PenyimpananData.getPengguna().get(i).getNamaPengguna());
             }
-            System.out.print("\nPilih index buku yang ingin ditampilkan detail informasinya: "); inputInt = input.nextInt() - 1; input.nextLine();
+            System.out.print("\nPilih index Pengguna yang ingin ditampilkan detail informasinya: "); inputInt = input.nextInt() - 1; input.nextLine();
 
-            if (inputInt > PenyimpananData.getBuku().size() || inputInt < 0) {
+            if (inputInt > PenyimpananData.getPengguna().size() || inputInt < 0) {
                 System.out.print("pilihan tidak ada!\n");
                 continue;
             }
 
             System.out.print("" +
-                    "      1. Kode Buku: "+PenyimpananData.getBuku().get(inputInt).getKodeBuku()+"" +
-                    "\n      2. Judul: "+PenyimpananData.getBuku().get(inputInt).getJudulBuku()+"" +
-                    "\n      3. Kategori: "+PenyimpananData.getBuku().get(inputInt).getKategoriBuku()+"" +
-                    "\n      4. Pengarang: "+PenyimpananData.getBuku().get(inputInt).getPengarangBuku()+"" +
-                    "\n      5. Tahun Terbit: "+PenyimpananData.getBuku().get(inputInt).getTahunTerbitBuku()+"");
+                    "      1. ID Pengguna: "+PenyimpananData.getPengguna().get(inputInt).getIdPengguna()+"" +
+                    "\n      2. Nama Pengguna: "+PenyimpananData.getPengguna().get(inputInt).getNamaPengguna()+"" +
+                    "\n      3. Jenis Pengguna: "+PenyimpananData.getPengguna().get(inputInt).getJenisPengguna()+"" +
+                    "\n      4. Alamat Pengguna: "+PenyimpananData.getPengguna().get(inputInt).getAlamatPengguna()+"" +
+                    "\n      5. Nomor HP Pengguna: "+PenyimpananData.getPengguna().get(inputInt).getNomorHPPengguna()+"");
 
-            String ketersediaanBuku;
-            if (PenyimpananData.getBuku().get(inputInt).getKetersediaanBuku()){
-                ketersediaanBuku = "Tersedia";
-            }else {
-                ketersediaanBuku = "Tidak Tersedia";
-            }
-
-
-            switch (PenyimpananData.getBuku().get(inputInt).getKategoriBuku().toLowerCase()){
-                case "jurnal ilmiah":
-                    JurnalIlmiah jurnalIlmiah = (JurnalIlmiah) PenyimpananData.getBuku().get(inputInt);
+            switch (PenyimpananData.getPengguna().get(inputInt).getJenisPengguna().toLowerCase()){
+                case "admin":
+                    Admin admin = (Admin) PenyimpananData.getPengguna().get(inputInt);
                     System.out.print("" +
-                            "\n      6. Institusi: "+jurnalIlmiah.getInstitusi()+"" +
-                            "\n      7. Terindeks Sinta: "+jurnalIlmiah.getTerindeksSinta()+"" +
-                            "\n      8. Ketersediaan Buku: "+ketersediaanBuku+"");
+                            "\n      6. NIP Pengguna: "+admin.getNipAdmin()+"" +
+                            "\n      7. Username: "+admin.getUsername()+"" +
+                            "\n      8. Password: "+admin.getPassword()+"");
                     break;
-                case "majalah":
-                    Majalah majalah = (Majalah) PenyimpananData.getBuku().get(inputInt);
+                case "anggota":
+                    Anggota anggota = (Anggota) PenyimpananData.getPengguna().get(inputInt);
+                    String terlambatMengembalikan;
+                    if (anggota.getTerlambatMengembalikan()){
+                        terlambatMengembalikan = "Ya";
+                    }
+                    else {
+                        terlambatMengembalikan = "Tidak";
+                    }
                     System.out.print("" +
-                            "\n      6. topik Buku: "+majalah.getTopikBuku()+"" +
-                            "\n      7. Ketersediaan Buku: "+ketersediaanBuku+"");
-                    break;
-                case "novel":
-                    Novel novel = (Novel) PenyimpananData.getBuku().get(inputInt);
-                    System.out.print("" +
-                            "\n      6. Genre Buku: "+novel.getGenreBuku()+"" +
-                            "\n      7. Ketersediaan Buku: "+ketersediaanBuku+"");
-                    break;
-                case "textbook":
-                    TextBook textBook = (TextBook) PenyimpananData.getBuku().get(inputInt);
-                    System.out.print("" +
-                            "\n      6. Bidang Ilmu: "+textBook.getBidangIlmu()+"" +
-                            "\n      7. Ketersediaan Buku: "+ketersediaanBuku+"");
+                            "\n      6. Terlambat Mengembalikan: "+terlambatMengembalikan+"" +
+                            "\n      7. Maksimal Pinjam Buku: "+anggota.getMaksimalPinjamBuku()+"" +
+                            "\n      8. Username: "+anggota.getUsername()+"" +
+                            "\n      9. Password: "+anggota.getPassword()+"");
                     break;
             }
 
@@ -284,4 +260,6 @@ public class SubMenuManajemenAnggota {
             }
         }
     }
-}
+
+    //============================================================================================================================================================================================================
+    }
