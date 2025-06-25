@@ -80,14 +80,14 @@ public class SubMenuManajemenPengguna {
             switch (PenyimpananData.getPengguna().get(inputInt).getJenisPengguna().toLowerCase()){
                 case "admin":
                     System.out.print("" +
-                            "\n      6. NIP Admin" +
-                            "\n      7. Username" +
-                            "\n      8. Password");
+                            "\n      5. NIP Admin" +
+                            "\n      6. Username" +
+                            "\n      7. Password");
                     break;
                 case "anggota":
                     System.out.print("" +
-                            "\n      6. Username" +
-                            "\n      7. Password");
+                            "\n      5. Username" +
+                            "\n      6. Password");
                     break;
             }
 
@@ -104,43 +104,21 @@ public class SubMenuManajemenPengguna {
                 case 5:
                     switch (PenyimpananData.getPengguna().get(inputInt).getJenisPengguna().toLowerCase()){
                         case "admin": placeHolder1 = "NIP Admin baru"; attributeDiEdit = "nipAdmin"; break;
-                        case "anggota": placeHolder1 = "terlambat mengembalikan baru (y/n)"; attributeDiEdit = "terlambatMengembalikan"; break;
+                        case "anggota": placeHolder1 = "username baru"; attributeDiEdit = "username"; break;
                     }
                     break;
                 case 6:
                     switch (PenyimpananData.getPengguna().get(inputInt).getJenisPengguna().toLowerCase()){
                         case "admin": placeHolder1 = "username baru"; attributeDiEdit = "username"; break;
-                        case "anggota": placeHolder1 = "maksimal pinjam buku baru (masukkan angka)"; attributeDiEdit = "maksimalPinjamBuku"; break;
+                        case "anggota": placeHolder1 = "password baru"; attributeDiEdit = "password"; break;
                     }
                     break;
                 case 7:
-                    switch (PenyimpananData.getPengguna().get(inputInt).getJenisPengguna().toLowerCase()){
-                        case "admin": placeHolder1 = "password baru"; attributeDiEdit = "password"; break;
-                        case "anggota": placeHolder1 = "username baru"; attributeDiEdit = "username"; break;
-                    }
+                    placeHolder1 = "password baru"; attributeDiEdit = "password";
                     break;
-                case 8:
-                    placeHolder1 = "password baru"; attributeDiEdit = "password"; break;
             }
 
             System.out.print("Masukkan "+placeHolder1+": "); inputStr = input.nextLine();
-
-            if (subInputInt == 6 && PenyimpananData.getPengguna().get(inputInt).getJenisPengguna().toLowerCase().equals("anggota")){
-                switch (inputStr.toLowerCase()){
-                    case "y": nilaiBoolean = true; break;
-                    case "n": nilaiBoolean = false; break;
-                }
-                PenggunaController.edit(inputInt, attributeDiEdit, nilaiBoolean);
-            }
-            if (subInputInt == 7 && PenyimpananData.getPengguna().get(inputInt).getJenisPengguna().toLowerCase().equals("anggota")){
-                for (char c : inputStr.toCharArray()){
-                    if (!Character.isDigit(c)){
-                        System.out.print("Mengedit Pengguna batal dikarenakan input bukan angka.\n");
-                        continue loop;
-                    }
-                }
-                PenggunaController.edit(inputInt, attributeDiEdit, Integer.parseInt(inputStr));
-            }
 
             PenggunaController.edit(inputInt, attributeDiEdit, inputStr);
 
@@ -247,7 +225,7 @@ public class SubMenuManajemenPengguna {
                     break;
             }
 
-            System.out.print("\nIngin melihat detail buku lain juga? (y/n): "); inputStr = input.nextLine();
+            System.out.print("\nIngin melihat detail Pengguna lain juga? (y/n): "); inputStr = input.nextLine();
 
             switch (inputStr.toLowerCase()){
                 case "y": continue loop;

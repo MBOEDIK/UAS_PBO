@@ -25,8 +25,8 @@ public class LoginSystem {
 
 //DATA SEMENTARA (UNTUK UJI COBA VALIDASI AJA, NANTI INI DIHAPUS AJA KALO UDH ADA DATABSE)
      public static void dummyData(){
-        PenyimpananData.getPengguna().add(new Admin(IdGenerator.generate(), "Admin","Prabowo", "Tegalgondo, Malang, Jawa Timur, Indoneisia", "08123456789", "prabowo123", "123456789", "53244342522423425"));
-        PenyimpananData.getPengguna().add(new Anggota(IdGenerator.generate(), "Anggota", "Budi", "Ngade, Ternate, Maluku Utara, Indonesia", "082278925369", "MBOEDIK", "iniPassword123", false, 3, 0));
+        PenyimpananData.getPengguna().add(new Admin(IdGenerator.generate(), "Admin","Prabowo", "Tegalgondo, Malang, Jawa Timur, Indoneisia", "08123456789", "a", "a", "53244342522423425"));
+        PenyimpananData.getPengguna().add(new Anggota(IdGenerator.generate(), "Anggota", "Budi", "Ngade, Ternate, Maluku Utara, Indonesia", "082278925369", "a", "a", false, 3, 0));
         PenyimpananData.getBuku().add(new Majalah(IdGenerator.generate(), "Buku Majalah A", "Majalah", "Cahyono", "2022", true, "Fisika Kuantum"));
         PenyimpananData.getBuku().add(new Novel(IdGenerator.generate(), "Buku Novel C", "Novel", "Agus", "1999", true, "Misteri"));
      }

@@ -58,6 +58,6 @@ public abstract class Pengguna {
         this.nomorHpPengguna = nomorHPPengguna;
     }
     public void setUsername(String username){ this.username = username; }
-    public void setPassword(String password){ this.username = password; }
+    public void setPassword(String password){ this.password = password; }
 
 }

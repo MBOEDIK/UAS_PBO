@@ -35,20 +35,6 @@ public class PenggunaController {
         }
     }
 
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-    public static void edit(int indeksPengguna, String attribute, Boolean nilai){
-        Anggota anggota = (Anggota) PenyimpananData.getPengguna().get(indeksPengguna);
-        anggota.setTerlambatMengembalikan(nilai);
-    }
-
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-    public static void edit(int indeksPengguna, String attribute, int nilai){
-        Anggota anggota = (Anggota) PenyimpananData.getPengguna().get(indeksPengguna);
-        anggota.setMaksimalPinjamBuku(nilai);
-    }
-
     //============================================================================================================================================================================================================
 
     public static void hapus(int indeks){

@@ -117,23 +117,19 @@ public class SubMenuManajemenBuku {
                 case "jurnal ilmiah":
                     System.out.print("" +
                             "\n      6. Institusi" +
-                            "\n      7. Terindeks Sinta" +
-                            "\n      8. Ketersediaan Buku");
+                            "\n      7. Terindeks Sinta");
                     break;
                 case "majalah":
                     System.out.print("" +
-                            "\n      6. topik Buku" +
-                            "\n      7. Ketersediaan Buku");
+                            "\n      6. topik Buku");
                     break;
                 case "novel":
                     System.out.print("" +
-                            "\n      6. Genre Buku" +
-                            "\n      7. Ketersediaan Buku");
+                            "\n      6. Genre Buku");
                     break;
                 case "textbook":
                     System.out.print("" +
-                            "\n      6. Bidang Ilmu" +
-                            "\n      7. Ketersediaan Buku");
+                            "\n      6. Bidang Ilmu");
                     break;
             }
 
@@ -157,28 +153,12 @@ public class SubMenuManajemenBuku {
                     }
                     break;
                 case 7:
-                    switch (PenyimpananData.getBuku().get(inputInt).getKategoriBuku().toLowerCase()){
-                        case "jurnal ilmiah": placeHolder1 = "terindeks sinta baru (y/n)"; attributeDiEdit = "terindeksSinta"; break;
-                        default: placeHolder1 = "ketersediaan buku baru (y/n)"; attributeDiEdit = "ketersediaanBuku";
-                    }
-                    break;
-                case 8:
-                    switch (PenyimpananData.getBuku().get(inputInt).getKategoriBuku().toLowerCase()){
-                        case "jurnal ilmiah": placeHolder1 = "ketersediaan buku baru (y/n)"; attributeDiEdit = "ketersediaanBuku"; break;
-                        default: System.out.print("Pilihan tidak ada!"); break;
-                    }
+                    placeHolder1 = "terindeks sinta baru (y/n)"; attributeDiEdit = "terindeksSinta";
                     break;
             }
 
             System.out.print("Masukkan "+placeHolder1+": "); inputStr = input.nextLine();
 
-            if (subInputInt == 7 && !PenyimpananData.getPengguna().get(inputInt).getJenisPengguna().toLowerCase().equals("jurnal ilmiah")){
-                switch (inputStr.toLowerCase()){
-                    case "y": nilaiBoolean = true; break;
-                    case "n": nilaiBoolean = false; break;
-                }
-                PenggunaController.edit(inputInt, attributeDiEdit, nilaiBoolean);
-            }
             if (subInputInt == 7 && PenyimpananData.getPengguna().get(inputInt).getJenisPengguna().toLowerCase().equals("jurnal ilmiah")){
                 switch (inputStr.toLowerCase()){
                     case "y": inputStr = "Terindeks"; break;

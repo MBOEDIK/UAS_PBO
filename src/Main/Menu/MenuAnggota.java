@@ -19,9 +19,9 @@ import java.util.Scanner;
 public class MenuAnggota {
 
     //ATTRIBUTES
-    private static int inputInt, subInputInt, subSubInputInt;
-    private static String inputStr;
-    private static Boolean inputBool;
+    private static String judulBuku = null;
+    private static String kodeBuku = null, idAnggota = null;
+    private static int jumlahBukuDiPinjam = 0;
 
     //OBJECTS
     static Scanner input = new Scanner(System.in);
@@ -30,11 +30,9 @@ public class MenuAnggota {
     //============================================================================================================================================================================================================
 
     public static void peminjaman(){
-        String alamatLengkap = "", nomorHPPengguna = "", judulBuku = "", username = "", password = "";
-        String kodeBuku = "", idAnggota = "";
 
         loop : while (true){
-
+            //Cek ketersediaan Buku
             for (int i = 0; i < PenyimpananData.getBuku().size(); i++){
                 if (PenyimpananData.getBuku().get(i).getKetersediaanBuku()){
                     break;
@@ -45,37 +43,36 @@ public class MenuAnggota {
                 }
             }
 
-            ArrayList<Buku> bukuTersedia = new ArrayList<>();
-            for (int i = 0; i < PenyimpananData.getBuku().size(); i++){
-                if (PenyimpananData.getBuku().get(i).getKetersediaanBuku()){
-                    bukuTersedia.add(PenyimpananData.getBuku().get(i));
-                }
-            }
 
+
+            //Tampilkan buku yang attribute "ketersediaanBuku"-nya true
+            int numIndex = 1;
             System.out.print("\nDaftar Buku Tersedia:");
-            for (int i = 0; i < bukuTersedia.size(); i++){
-                System.out.print("\n      "+(i + 1)+". "+bukuTersedia.get(i).getJudulBuku());
+            subLoop : for (Buku buku : PenyimpananData.getBuku()){
+                if (!buku.getKetersediaanBuku()){
+                    continue subLoop;
+                }
+                System.out.print("\n      "+(numIndex)+". "+buku.getJudulBuku());
+                numIndex++;
             }
 
+
+
+            //Input judul buku
             System.out.print("\nPeminjaman Buku ->");
             System.out.print("\nMasukkan judul buku yang ingin dipinjam: "); judulBuku = input.nextLine();
 
-//            subLoop : for (int i = 0; i < PenyimpananData.getPengguna().size(); i++){
-//                if (PenyimpananData.getPengguna().get(i).getNamaPengguna().toLowerCase().equals(namaLengkap.toLowerCase())){
-//
-//                    break subLoop;
-//                }
-//                if (i == PenyimpananData.getPengguna().size() - 1){
-//                    System.out.print("Anda belum menjadi anggota, silahkan isi form di bawah ini terlebih dahulu ->");
-//                    System.out.print("\nMasukkan alamat lengkap Anda: "); alamatLengkap = input.nextLine();
-//                    System.out.print("Masukkan nomor handphone Anda: "); nomorHPPengguna = input.nextLine();
-//                    System.out.print("*Buat Username: "); username = input.nextLine();
-//                    System.out.print("*Buat Password: "); password = input.nextLine();
-//                    System.out.print("Masukkan judul buku yang ingin dipinjam: "); judulBuku = input.nextLine();
-//                    break subLoop;
-//                }
-//            }
 
+
+            //ngecek yg diinput itu String atau angka, jika angka maka loop utama diulang dari awal
+            if (judulBuku.matches(".*\\d.*")) {
+                System.out.println("Input tidak boleh angka!");
+                continue loop;
+            }
+
+
+
+            //Ngecek apakah input cocok dengan semua judul dari semua buku yang ada, kalo ga ada maka loop utama diulang dari awal
             subLoop : for (int i = 0; i < PenyimpananData.getBuku().size(); i++){
                 if (PenyimpananData.getBuku().get(i).getKetersediaanBuku()){
                     if (PenyimpananData.getBuku().get(i).getJudulBuku().toLowerCase().equals(judulBuku.toLowerCase())){
@@ -85,20 +82,17 @@ public class MenuAnggota {
                     }
                     if (i == PenyimpananData.getPengguna().size() - 1) {
                         System.out.print("Buku dengan judul tersebut sedang tidak tersedia.\n");
-                        break loop;
+                        continue loop;
                     }
                 }
             }
 
-            int jumlahBukuDiPinjam = 0;
-            String deadline = "";
 
+
+            //Ngecek apakah Anggota saat ini udh sampe batas maksimal peminjaman atau belum. Kalo udah, maka keluar dari loop utama.
+            String deadline = "";
             subLoop : for (int i = 0; i < PenyimpananData.getPengguna().size(); i++){
                 if (PenyimpananData.getPengguna().get(i).getNamaPengguna().toLowerCase().equals(LoginSystem.getPenggunaSaatIni().getNamaPengguna().toLowerCase())){
-                    if (PenyimpananData.getPengguna().get(i) instanceof Admin){
-                        System.out.print("Peminjaman ditolak! Admin tidak boleh meminjam buku melalui prosedur ini!\n");
-                        break loop;
-                    }
                     if (((Anggota) PenyimpananData.getPengguna().get(i)).getJumlahPinjamBuku() == ((Anggota) PenyimpananData.getPengguna().get(i)).getMaksimalPinjamBuku()){
                         if (((Anggota) PenyimpananData.getPengguna().get(i)).getTerlambatMengembalikan()){
                             System.out.print("Peminjaman ditolak! Anda telah meminjam " +
@@ -113,15 +107,21 @@ public class MenuAnggota {
                         break loop;
                     }
 
+                    //Nambah +1 jumlah buku yg dipinjam anggota ini
+                    //Ngambil jumlah semua buku yg udah dipinjam anggota saat ini selama ini
+                    //Netapin deadline
+                    //Ngambil id anggota saat ini utk dimasukkin ke informasi peminjaman
                     ((Anggota) PenyimpananData.getPengguna().get(i)).setJumlahPinjamBuku(1);
                     jumlahBukuDiPinjam = ((Anggota) PenyimpananData.getPengguna().get(i)).getJumlahPinjamBuku();
                     deadline = DateTimeTools.buatDeadline(7);
-
                     idAnggota = PenyimpananData.getPengguna().get(i).getIdPengguna();
                     break subLoop;
                 }
             }
 
+
+
+            //Tambah peminjaman dengan masukkin semua informasi peminjaman yg dibutuhin
             PeminjamanController.tambah(IdGenerator.generate(), idAnggota, kodeBuku, DateTimeTools.getTanggalHariIni(),"-", DateTimeTools.buatDeadline(7), "Tepat Waktu" );
             System.out.print("Peminjaman Buku Berhasil! Anda sekarang meminjam "+jumlahBukuDiPinjam+" buku. Deadline peminjaman buku ini adalah "+deadline+".\n");
             break loop;
@@ -132,32 +132,10 @@ public class MenuAnggota {
 
     public static void pengembalian(){
         loop : while (true){
-            System.out.print("" +
-                    "\n-- Manajemen Pengguna --" +
-                    "\n1. Tambah Pengguna" +
-                    "\n2. Edit Pengguna" +
-                    "\n3. Hapus Pengguna" +
-                    "\n4. Tampilkan Detail Pengguna" +
-                    "\n5. Kembali ke Halaman Admin" +
-                    "\nMasukkan Pilihan: ");
-            subInputInt = input.nextInt();
-            input.nextLine();
 
-            switch (subInputInt){
-                case 1:
-                    SubMenuManajemenPengguna.menuTambahPengguna();
-                    continue;
-                case 2:
-                    SubMenuManajemenPengguna.menuEditPengguna();
-                    continue;
-                case 3:
-                    SubMenuManajemenPengguna.menuHapusPengguna();
-                    continue;
-                case 4:
-                    SubMenuManajemenPengguna.menuDetailPengguna();
-                    continue;
-                case 5: break loop;
-            }
+
+            System.out.print("\nDaftar Buku yang Anda Pinjam: ");
+
         }
     }
 

@@ -6,16 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="dc6a1436-3eff-4291-bac5-c9c1dc1445f5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/PeminjamanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/PeminjamanController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controllers/PenggunaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/PenggunaController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main/LoginSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/LoginSystem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main/Menu/MenuAnggota.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Menu/MenuAnggota.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/Menu/MenuUtama.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Menu/MenuUtama.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/Menu/SubMenuAdmin/SubMenuDetailPeminjaman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Menu/SubMenuAdmin/SubMenuDetailPeminjaman.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Menu/SubMenuAdmin/SubMenuManajemenBuku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Menu/SubMenuAdmin/SubMenuManajemenBuku.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main/Menu/SubMenuAdmin/SubMenuManajemenPengguna.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Menu/SubMenuAdmin/SubMenuManajemenPengguna.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/Peminjaman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Peminjaman.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/User/Anggota.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/User/Anggota.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tools/DateTimeTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tools/DateTimeTools.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/User/Pengguna.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/User/Pengguna.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,15 +93,19 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Main/Menu/MenuAnggota.java</url>
-          <line>78</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.util.UnknownFormatConversionException" package="java.util" />
           <option name="timeStamp" value="10" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/Controllers/PenggunaController.java</url>
+          <line>26</line>
+          <properties class="Controllers.PenggunaController" method="edit">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
