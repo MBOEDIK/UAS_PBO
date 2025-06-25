@@ -4,11 +4,6 @@ import Main.Menu.SubMenuAdmin.SubMenuDetailPeminjaman;
 
 import java.util.Scanner;
 
-/*
- * Kelas MenuUtama merupakan pusat navigasi sistem yang mengatur alur menu utama untuk admin dan anggota.
- * Bertanggung jawab untuk menampilkan opsi menu dan mengarahkan pengguna ke fungsi yang sesuai berdasarkan peran (admin/anggota).
- * Berinteraksi dengan Scanner untuk input pengguna dan kelas MenuAdmin untuk fungsi administratif.
- */
 public class MenuUtama {
 
 //ATTRIBUTES
@@ -23,12 +18,8 @@ public class MenuUtama {
     //============================================================================================================================================================================================================
 
     /*
-     * Menyediakan antarmuka menu utama untuk pengguna dengan role admin.
-     * Method ini menampilkan pilihan menu admin dan mengarahkan ke fungsi yang sesuai.
-     * Menggunakan loop while untuk menjaga menu tetap aktif sampai admin memilih logout.
-     * Tidak menerima parameter dan tidak mengembalikan nilai.
-     * Catatan: Case 2 dan 3 masih perlu diimplementasikan untuk manajemen anggota dan peminjaman.
-     */
+    * Nampilin semua akses admin
+    * */
     public static void menuAdmin(){
         loop : while (true){
             System.out.print("" +
@@ -62,6 +53,9 @@ public class MenuUtama {
 
     //============================================================================================================================================================================================================
 
+    /*
+    * Nampilin semua akses anggota
+    * */
     public static void menuAnggota(){
         loop : while (true){
             System.out.print("" +

@@ -1,21 +1,21 @@
 package Main.Menu.SubMenuAdmin;
 
 import Controllers.PenggunaController;
-import Models.PenyimpananData;
 import Models.User.Admin;
 import Models.User.Anggota;
 import Tools.IdGenerator;
+import Tools.PersingkatPanggilData;
 
 import java.util.Scanner;
 
-public class SubMenuManajemenPengguna {
+public class SubMenuManajemenPengguna implements PersingkatPanggilData {
 
     //ATTRIBUTES
     private static String inputStr;
     private static Boolean inputBool;
 
     //OBJECTS
-    static Scanner input = new Scanner(System.in);
+    private static Scanner input = new Scanner(System.in);
 
     //METHODS
     //============================================================================================================================================================================================================
@@ -55,18 +55,18 @@ public class SubMenuManajemenPengguna {
         int inputInt, subInputInt;
 
         loop : while (true){
-            if (PenyimpananData.getPengguna().size() == 0){
+            if (dataPengguna.size() == 0){
                 System.out.print("Pengguna kosong!\n");
                 break loop;
             }
 
             System.out.print("\nEdit Pengguna ->");
-            for (int i = 0; i < PenyimpananData.getPengguna().size(); i++){
-                System.out.print("\n      "+(i + 1)+". "+PenyimpananData.getPengguna().get(i).getNamaPengguna());
+            for (int i = 0; i < dataPengguna.size(); i++){
+                System.out.print("\n      "+(i + 1)+". "+dataPengguna.get(i).getNamaPengguna());
             }
             System.out.print("\nPilih index Pengguna yang ingin diedit: "); inputInt = input.nextInt() - 1; input.nextLine();
 
-            if (inputInt > PenyimpananData.getPengguna().size()) {
+            if (inputInt > dataPengguna.size()) {
                 System.out.print("pilihan tidak ada!\n");
                 continue;
             }
@@ -77,7 +77,7 @@ public class SubMenuManajemenPengguna {
                     "\n      3. Alamat Pengguna" +
                     "\n      4. Nomor Handphone Pengguna");
 
-            switch (PenyimpananData.getPengguna().get(inputInt).getJenisPengguna().toLowerCase()){
+            switch (dataPengguna.get(inputInt).getJenisPengguna().toLowerCase()){
                 case "admin":
                     System.out.print("" +
                             "\n      5. NIP Admin" +
@@ -102,13 +102,13 @@ public class SubMenuManajemenPengguna {
                 case 3: placeHolder1 = "alamat baru"; attributeDiEdit = "alamat";  break;
                 case 4: placeHolder1 = "nomor handphone baru"; attributeDiEdit = "nomorHP"; break;
                 case 5:
-                    switch (PenyimpananData.getPengguna().get(inputInt).getJenisPengguna().toLowerCase()){
+                    switch (dataPengguna.get(inputInt).getJenisPengguna().toLowerCase()){
                         case "admin": placeHolder1 = "NIP Admin baru"; attributeDiEdit = "nipAdmin"; break;
                         case "anggota": placeHolder1 = "username baru"; attributeDiEdit = "username"; break;
                     }
                     break;
                 case 6:
-                    switch (PenyimpananData.getPengguna().get(inputInt).getJenisPengguna().toLowerCase()){
+                    switch (dataPengguna.get(inputInt).getJenisPengguna().toLowerCase()){
                         case "admin": placeHolder1 = "username baru"; attributeDiEdit = "username"; break;
                         case "anggota": placeHolder1 = "password baru"; attributeDiEdit = "password"; break;
                     }
@@ -138,23 +138,23 @@ public class SubMenuManajemenPengguna {
         String inputStr;
 
         loop : while (true){
-            if (PenyimpananData.getPengguna().size() == 0){
+            if (dataPengguna.size() == 0){
                 System.out.print("Pengguna kosong!\n");
                 break loop;
             }
 
             System.out.print("\nHapus Pengguna ->");
-            for (int i = 0; i < PenyimpananData.getPengguna().size(); i++){
-                System.out.print("\n      "+(i + 1)+". "+PenyimpananData.getPengguna().get(i).getNamaPengguna());
+            for (int i = 0; i < dataPengguna.size(); i++){
+                System.out.print("\n      "+(i + 1)+". "+dataPengguna.get(i).getNamaPengguna());
             }
             System.out.print("\nPilih index Pengguna yang ingin dihapus: "); inputInt = input.nextInt() - 1; input.nextLine();
 
-            if (inputInt > PenyimpananData.getPengguna().size() || inputInt < 0) {
+            if (inputInt > dataPengguna.size() || inputInt < 0) {
                 System.out.print("pilihan tidak ada!\n");
                 continue;
             }
 
-            System.out.print("Kamu yakin ingin menghapus Pengguna \""+PenyimpananData.getPengguna().get(inputInt).getNamaPengguna()+"\"? (y/n): "); inputStr = input.nextLine();
+            System.out.print("Kamu yakin ingin menghapus Pengguna \""+dataPengguna.get(inputInt).getNamaPengguna()+"\"? (y/n): "); inputStr = input.nextLine();
 
             switch (inputStr.toLowerCase()){
                 case "y":
@@ -175,39 +175,39 @@ public class SubMenuManajemenPengguna {
         String inputStr;
 
         loop : while (true){
-            if (PenyimpananData.getPengguna().size() == 0){
+            if (dataPengguna.size() == 0){
                 System.out.print("Pengguna kosong!\n");
                 break loop;
             }
 
             System.out.print("\nDetail Pengguna ->");
-            for (int i = 0; i < PenyimpananData.getPengguna().size(); i++){
-                System.out.print("\n      "+(i + 1)+". "+PenyimpananData.getPengguna().get(i).getNamaPengguna());
+            for (int i = 0; i < dataPengguna.size(); i++){
+                System.out.print("\n      "+(i + 1)+". "+dataPengguna.get(i).getNamaPengguna());
             }
             System.out.print("\nPilih index Pengguna yang ingin ditampilkan detail informasinya: "); inputInt = input.nextInt() - 1; input.nextLine();
 
-            if (inputInt > PenyimpananData.getPengguna().size() || inputInt < 0) {
+            if (inputInt > dataPengguna.size() || inputInt < 0) {
                 System.out.print("pilihan tidak ada!\n");
                 continue;
             }
 
             System.out.print("" +
-                    "      1. ID Pengguna: "+PenyimpananData.getPengguna().get(inputInt).getIdPengguna()+"" +
-                    "\n      2. Nama Pengguna: "+PenyimpananData.getPengguna().get(inputInt).getNamaPengguna()+"" +
-                    "\n      3. Jenis Pengguna: "+PenyimpananData.getPengguna().get(inputInt).getJenisPengguna()+"" +
-                    "\n      4. Alamat Pengguna: "+PenyimpananData.getPengguna().get(inputInt).getAlamatPengguna()+"" +
-                    "\n      5. Nomor HP Pengguna: "+PenyimpananData.getPengguna().get(inputInt).getNomorHPPengguna()+"");
+                    "      1. ID Pengguna: "+dataPengguna.get(inputInt).getIdPengguna()+"" +
+                    "\n      2. Nama Pengguna: "+dataPengguna.get(inputInt).getNamaPengguna()+"" +
+                    "\n      3. Jenis Pengguna: "+dataPengguna.get(inputInt).getJenisPengguna()+"" +
+                    "\n      4. Alamat Pengguna: "+dataPengguna.get(inputInt).getAlamatPengguna()+"" +
+                    "\n      5. Nomor HP Pengguna: "+dataPengguna.get(inputInt).getNomorHPPengguna()+"");
 
-            switch (PenyimpananData.getPengguna().get(inputInt).getJenisPengguna().toLowerCase()){
+            switch (dataPengguna.get(inputInt).getJenisPengguna().toLowerCase()){
                 case "admin":
-                    Admin admin = (Admin) PenyimpananData.getPengguna().get(inputInt);
+                    Admin admin = (Admin) dataPengguna.get(inputInt);
                     System.out.print("" +
                             "\n      6. NIP Pengguna: "+admin.getNipAdmin()+"" +
                             "\n      7. Username: "+admin.getUsername()+"" +
                             "\n      8. Password: "+admin.getPassword()+"");
                     break;
                 case "anggota":
-                    Anggota anggota = (Anggota) PenyimpananData.getPengguna().get(inputInt);
+                    Anggota anggota = (Anggota) dataPengguna.get(inputInt);
                     String terlambatMengembalikan;
                     if (anggota.getTerlambatMengembalikan()){
                         terlambatMengembalikan = "Ya";

@@ -1,44 +1,41 @@
 package Controllers;
 
-import Models.Book.JurnalIlmiah;
-import Models.Book.Majalah;
-import Models.Book.Novel;
-import Models.Book.TextBook;
-import Models.PenyimpananData;
 import Models.User.Admin;
 import Models.User.Anggota;
+import Tools.PersingkatPanggilData;
 
 //Ini class yang handle logika terkait pengguna
-public class PenggunaController {
+public class PenggunaController implements PersingkatPanggilData {
+
     //============================================================================================================================================================================================================
 
     public static void tambah(String idPengguna, String jenisPengguna, String namaPengguna, String alamatPengguna, String nomorHpPengguna, String username, String password, String nipAdmin){
-        PenyimpananData.getPengguna().add(new Admin(idPengguna, jenisPengguna, namaPengguna, alamatPengguna, nomorHpPengguna, username, password, nipAdmin));
+        dataPengguna.add(new Admin(idPengguna, jenisPengguna, namaPengguna, alamatPengguna, nomorHpPengguna, username, password, nipAdmin));
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     public static void tambah(String idPengguna, String jenisPengguna, String namaPengguna, String alamatPengguna, String nomorHpPengguna, String username, String password, Boolean terlambatMengembalikan,int maksimalPinjamBuku, int jumlahPinjamBuku){
-        PenyimpananData.getPengguna().add(new Anggota(idPengguna, jenisPengguna, namaPengguna, alamatPengguna, nomorHpPengguna, username, password, terlambatMengembalikan, maksimalPinjamBuku, jumlahPinjamBuku));
+        dataPengguna.add(new Anggota(idPengguna, jenisPengguna, namaPengguna, alamatPengguna, nomorHpPengguna, username, password, terlambatMengembalikan, maksimalPinjamBuku, jumlahPinjamBuku));
     }
 
     //============================================================================================================================================================================================================
 
     public static void edit(int indeksPengguna, String attribute, String nilai){
         switch (attribute){
-            case "jenis": PenyimpananData.getPengguna().get(indeksPengguna).setJenisPengguna(nilai); break;
-            case "nama": PenyimpananData.getPengguna().get(indeksPengguna).setNamaPengguna(nilai); break;
-            case "alamat": PenyimpananData.getPengguna().get(indeksPengguna).setAlamatPengguna(nilai); break;
-            case "nomorHP": PenyimpananData.getPengguna().get(indeksPengguna).setNomorHPPengguna(nilai); break;
-            case "username": PenyimpananData.getPengguna().get(indeksPengguna).setUsername(nilai); break;
-            case "password": PenyimpananData.getPengguna().get(indeksPengguna).setPassword(nilai); break;
+            case "jenis": dataPengguna.get(indeksPengguna).setJenisPengguna(nilai); break;
+            case "nama": dataPengguna.get(indeksPengguna).setNamaPengguna(nilai); break;
+            case "alamat": dataPengguna.get(indeksPengguna).setAlamatPengguna(nilai); break;
+            case "nomorHP": dataPengguna.get(indeksPengguna).setNomorHPPengguna(nilai); break;
+            case "username": dataPengguna.get(indeksPengguna).setUsername(nilai); break;
+            case "password": dataPengguna.get(indeksPengguna).setPassword(nilai); break;
         }
     }
 
     //============================================================================================================================================================================================================
 
     public static void hapus(int indeks){
-        PenyimpananData.getPengguna().remove(indeks);
+        dataPengguna.remove(indeks);
     }
 
     //============================================================================================================================================================================================================

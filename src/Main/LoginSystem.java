@@ -1,6 +1,5 @@
 package Main;
 
-import Main.Menu.MenuAdmin;
 import Main.Menu.MenuUtama;
 import Models.Book.Majalah;
 import Models.Book.Novel;
@@ -8,27 +7,29 @@ import Models.PenyimpananData;
 import Models.User.Admin;
 import Models.User.Anggota;
 import Models.User.Pengguna;
+import Tools.PersingkatPanggilData;
 import Tools.IdGenerator;
 
 import java.util.Scanner;
 
 //INI CLASS YG HANDLE SEMUA URUSAN LOGIN LOGINAN
-public class LoginSystem {
+public class LoginSystem implements PersingkatPanggilData {
 
 //ATTRIBUTE
     private static String username = "", password = "";
     private static String statusPengguna = "";
 
 //OBJECT
-    static Scanner input = new Scanner(System.in);
+    private static Scanner input = new Scanner(System.in);
     private static Pengguna penggunaSaatIni;
+
 
 //DATA SEMENTARA (UNTUK UJI COBA VALIDASI AJA, NANTI INI DIHAPUS AJA KALO UDH ADA DATABSE)
      public static void dummyData(){
-        PenyimpananData.getPengguna().add(new Admin(IdGenerator.generate(), "Admin","Prabowo", "Tegalgondo, Malang, Jawa Timur, Indoneisia", "08123456789", "a", "a", "53244342522423425"));
-        PenyimpananData.getPengguna().add(new Anggota(IdGenerator.generate(), "Anggota", "Budi", "Ngade, Ternate, Maluku Utara, Indonesia", "082278925369", "a", "a", false, 3, 0));
-        PenyimpananData.getBuku().add(new Majalah(IdGenerator.generate(), "Buku Majalah A", "Majalah", "Cahyono", "2022", true, "Fisika Kuantum"));
-        PenyimpananData.getBuku().add(new Novel(IdGenerator.generate(), "Buku Novel C", "Novel", "Agus", "1999", true, "Misteri"));
+        dataPengguna.add(new Admin(IdGenerator.generate(), "Admin","Prabowo", "Tegalgondo, Malang, Jawa Timur, Indoneisia", "08123456789", "a", "a", "53244342522423425"));
+        dataPengguna.add(new Anggota(IdGenerator.generate(), "Anggota", "Budi", "Ngade, Ternate, Maluku Utara, Indonesia", "082278925369", "a", "a", false, 3, 0));
+        dataBuku.add(new Majalah(IdGenerator.generate(), "Buku Majalah A", "Majalah", "Cahyono", "2022", true, "Fisika Kuantum"));
+        dataBuku.add(new Novel(IdGenerator.generate(), "Buku Novel C", "Novel", "Agus", "1999", true, "Misteri"));
      }
 
 //METHODS
@@ -70,7 +71,7 @@ public class LoginSystem {
                 int i = 0;
 
                 //validasi login
-                subSubLoop : for(Pengguna pengguna : PenyimpananData.getPengguna()){
+                subSubLoop : for(Pengguna pengguna : dataPengguna){
                     if(username.equals(pengguna.getUsername()) && password.equals(pengguna.getPassword())){
                         if(statusPengguna.equals("ADMIN") && pengguna instanceof Admin){
                             penggunaSaatIni = pengguna;
@@ -83,7 +84,7 @@ public class LoginSystem {
                             continue loop;
                         }
                     }
-                    if (i == PenyimpananData.getPengguna().size() - 1){
+                    if (i == dataPengguna.size() - 1){
                         System.out.print("Username/Password salah!\n");
                         continue subLoop;
                     }
