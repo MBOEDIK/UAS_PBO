@@ -5,17 +5,65 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dc6a1436-3eff-4291-bac5-c9c1dc1445f5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Tools/PersingkatPanggilData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/DTOs/Books/BukuDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/DTOs/Books/JurnalDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/DTOs/Books/MajalahDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/DTOs/Books/NovelDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/DTOs/Books/TextbookDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/DTOs/PeminjamanDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/DTOs/Users/AdminDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/DTOs/Users/AnggotaDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/DTOs/Users/PenggunaDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Enums/JenisBuku.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Enums/JenisPengguna.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Controllers/Books/BukuController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Controllers/Books/JurnalController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Controllers/Books/MajalahController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Controllers/Books/NovelController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Controllers/Books/TextbookController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Controllers/Factory/DTOtoModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Controllers/Users/AdminController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Controllers/Users/AnggotaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Repositories/BukuRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Repositories/PeminjamanRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Repositories/PenggunaRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/BukuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/BukuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/PeminjamanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/PeminjamanController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/PenggunaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/PenggunaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/LoginSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/LoginSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/Menu/MenuAnggota.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Menu/MenuAnggota.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/Menu/MenuUtama.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Menu/MenuUtama.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/Menu/SubMenuAdmin/SubMenuManajemenBuku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Menu/SubMenuAdmin/SubMenuManajemenBuku.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/Menu/SubMenuAdmin/SubMenuManajemenPengguna.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Menu/SubMenuAdmin/SubMenuManajemenPengguna.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tools/DateTimeTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tools/DateTimeTools.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Controllers/BukuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Controllers/Books/BukuController2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Controllers/PeminjamanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Controllers/PeminjamanController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Controllers/PenggunaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Controllers/Users/PenggunaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/Book/Buku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/Book/Buku.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/Book/JurnalIlmiah.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/Book/Jurnal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/Book/Majalah.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/Book/Majalah.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/Book/Novel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/Book/Novel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/Book/TextBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/Book/TextBook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/Peminjaman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/Peminjaman.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/User/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/User/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/User/Anggota.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/User/Anggota.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/User/Pengguna.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/User/Pengguna.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Views/console/LoginSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Sementara/LoginSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Views/console/MenuAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Sementara/MenuAdmin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Views/console/MenuAnggota.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Sementara/MenuAnggota.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Views/console/MenuUtama.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Sementara/MenuUtama.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Views/console/SubMenuAdmin/SubMenuDetailPeminjaman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Sementara/SubMenuAdmin/SubMenuDetailPeminjaman.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Views/console/SubMenuAdmin/SubMenuManajemenBuku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Sementara/SubMenuAdmin/SubMenuManajemenBuku.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Views/console/SubMenuAdmin/SubMenuManajemenPengguna.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Sementara/SubMenuAdmin/SubMenuManajemenPengguna.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Tools/PersingkatPanggilData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Tools/DataAccessHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/SistemManajemenPerpustakaan/MVC/Controllers/BukuController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/SistemManajemenPerpustakaan/MVC/Controllers/PeminjamanController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/SistemManajemenPerpustakaan/MVC/Controllers/PenggunaController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/SistemManajemenPerpustakaan/MVC/Models/Book/Buku.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/SistemManajemenPerpustakaan/MVC/Models/Book/Buku.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/SistemManajemenPerpustakaan/MVC/Models/Book/JurnalIlmiah.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/SistemManajemenPerpustakaan/MVC/Views/console/LoginSystem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/SistemManajemenPerpustakaan/MVC/Views/console/MenuAdmin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/SistemManajemenPerpustakaan/MVC/Views/console/MenuAnggota.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/SistemManajemenPerpustakaan/MVC/Views/console/MenuUtama.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/SistemManajemenPerpustakaan/MVC/Views/console/SubMenuAdmin/SubMenuDetailPeminjaman.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/SistemManajemenPerpustakaan/MVC/Views/console/SubMenuAdmin/SubMenuManajemenBuku.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/SistemManajemenPerpustakaan/MVC/Views/console/SubMenuAdmin/SubMenuManajemenPengguna.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/SistemManajemenPerpustakaan/Main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/SistemManajemenPerpustakaan/Main/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/SistemManajemenPerpustakaan/Tools/PersingkatPanggilData.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +73,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
-        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -46,38 +94,29 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
+    "Application.MainApp.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "tahap4-implementasi-controller-budi",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "tahap4.5-instal-maven-budi",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/KULIAH/-+=INFORMATIKA=+-/Gudang Kode/Java/PBO_F_Budi_256/Tugas",
+    "last_opened_file_path": "D:/KULIAH/-+=INFORMATIKA=+-/Gudang Kode/Java/UAS_PBO/UAS_PBO_REPO/UAS_PBO",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main.Main" />
-      <module name="ManajerPeminjamanBuku" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Main.Menu.SubMenuAdmin.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Main" />
-      </list>
-    </recent_temporary>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\KULIAH\-+=INFORMATIKA=+-\Gudang Kode\Java\UAS_PBO\UAS_PBO_REPO\UAS_PBO\target\classes\com\SistemManajemenPerpustakaan\Main" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\KULIAH\-+=INFORMATIKA=+-\Gudang Kode\Java\UAS_PBO\UAS_PBO_REPO\UAS_PBO\target\classes\com\SistemManajemenPerpustakaan\Main" />
+      <recent name="D:\KULIAH\-+=INFORMATIKA=+-\Gudang Kode\Java\UAS_PBO\UAS_PBO_REPO\UAS_PBO\src\main\java\com\SistemManajemenPerpustakaan" />
+      <recent name="D:\KULIAH\-+=INFORMATIKA=+-\Gudang Kode\Java\UAS_PBO\UAS_PBO_REPO\UAS_PBO\src\main\java" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -94,20 +133,5 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.util.UnknownFormatConversionException" package="java.util" />
-          <option name="timeStamp" value="10" />
-        </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Main/LoginSystem.java</url>
-          <line>54</line>
-          <option name="timeStamp" value="39" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
