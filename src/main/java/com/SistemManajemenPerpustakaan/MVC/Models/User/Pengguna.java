@@ -1,61 +1,61 @@
 package com.SistemManajemenPerpustakaan.MVC.Models.User;
 
+import com.SistemManajemenPerpustakaan.Enums.JenisPengguna;
+
 public abstract class Pengguna {
     //ATTRIBUTE
-    private String idPengguna;
-    private String jenisPengguna;
-    private String namaPengguna;
-    private String alamatPengguna;
-    private String nomorHpPengguna;
+    private String id;
+    private String jenis;
+    private String nama;
+    private String alamat;
+    private String nomorHP;
     private String username;
     private String password;
 
 
     //CONSTRUCTOR
-    public Pengguna (String idPengguna, String jenisPengguna,String namaPengguna, String alamatPengguna, String nomorHpPengguna, String username, String password) {
-        this.idPengguna = idPengguna;
-        this.jenisPengguna = jenisPengguna;
-        this.namaPengguna = namaPengguna ;
-        this.alamatPengguna = alamatPengguna ;
-        this.nomorHpPengguna = nomorHpPengguna ;
+    public Pengguna (String id, String jenis,String nama, String alamat, String nomorHP, String username, String password) {
+        this.id = id;
+        this.jenis = jenis;
+        this.nama = nama ;
+        this.alamat = alamat ;
+        this.nomorHP = nomorHP ;
         this.username = username;
         this.password = password;
     }
 
     //GETTER
-    public String getIdPengguna() {
-        return idPengguna;
+    public String getId() {
+        return id;
     }
-    public String getJenisPengguna() {
-        return jenisPengguna;
+    public String getJenis() { return jenis; }
+    public String getNama() {
+        return nama;
     }
-    public String getNamaPengguna() {
-        return namaPengguna;
+    public String getAlamat() {
+        return alamat;
     }
-    public String getAlamatPengguna() {
-        return alamatPengguna;
-    }
-    public String getNomorHPPengguna() {
-        return nomorHpPengguna;
+    public String getNomorHP() {
+        return nomorHP;
     }
     public String getUsername(){ return username; }
     public String getPassword(){ return password; }
 
     //SETTER
-    public void setIdPengguna(String idPengguna) {
-        this.idPengguna = idPengguna;
+    public void setId(String id) {
+        this.id = id;
     }
-    public void setJenisPengguna(String jenisPengguna) {
-        this.jenisPengguna = jenisPengguna;
+    public void setJenis(String jenis) {
+        this.jenis = jenis;
     }
-    public void setNamaPengguna(String namaPengguna) {
-        this.namaPengguna = namaPengguna;
+    public void setNama(String nama) {
+        this.nama = nama;
     }
-    public void setAlamatPengguna(String alamatPengguna) {
-        this.alamatPengguna = alamatPengguna;
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
     }
-    public void setNomorHPPengguna(String nomorHPPengguna) {
-        this.nomorHpPengguna = nomorHPPengguna;
+    public void setNomorHP(String nomorHPPengguna) {
+        this.nomorHP = nomorHPPengguna;
     }
     public void setUsername(String username){ this.username = username; }
     public void setPassword(String password){ this.password = password; }

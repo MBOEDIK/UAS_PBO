@@ -5,8 +5,8 @@ public class TextBook extends Buku {
     private String bidangIlmu;
 
     //CONSTRUCTOR
-    public TextBook(String kodeBuku, String judulBuku, String kategoriBuku, String pengarangBuku, String tahunTerbitBuku, Boolean ketersediaanBuku, String bidangIlmu) {
-        super(kodeBuku, judulBuku, kategoriBuku, pengarangBuku, tahunTerbitBuku, ketersediaanBuku);
+    public TextBook(String kode, String judul, String pengarang, String tahunTerbit, Boolean tersedia, String jenis, String bidangIlmu) {
+        super(kode, judul, pengarang, tahunTerbit, tersedia, jenis);
         this.bidangIlmu = bidangIlmu;
     }
 

@@ -2,17 +2,17 @@ package com.SistemManajemenPerpustakaan.MVC.Models.Book;
 
 public class Novel extends Buku {
     //ATTRIBUTE
-    private String genreBuku;
+    private String genre;
 
     //CONSTRUCTOR
-    public Novel(String kodeBuku, String judulBuku, String kategoriBuku, String pengarangBuku, String tahunTerbitBuku, Boolean ketersediaanBuku, String genreBuku) {
-        super(kodeBuku, judulBuku, kategoriBuku, pengarangBuku, tahunTerbitBuku, ketersediaanBuku);
-        this.genreBuku = genreBuku;
+    public Novel(String kode, String judul, String pengarang, String tahunTerbit, Boolean tersedia, String jenis, String genre) {
+        super(kode, judul, pengarang, tahunTerbit, tersedia, jenis);
+        this.genre = genre;
     }
 
     //GETTER
-    public String getGenreBuku(){ return genreBuku; }
+    public String getGenre(){ return genre; }
 
     //SETTER
-    public void setGenreBuku(String genreBuku){ this.genreBuku = genreBuku; }
+    public void setGenre(String genre){ this.genre = genre; }
 }

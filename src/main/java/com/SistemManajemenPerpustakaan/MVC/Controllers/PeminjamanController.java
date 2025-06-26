@@ -1,10 +1,10 @@
 package com.SistemManajemenPerpustakaan.MVC.Controllers;
 
 import com.SistemManajemenPerpustakaan.MVC.Models.Peminjaman;
-import com.SistemManajemenPerpustakaan.Tools.PersingkatPanggilData;
+import com.SistemManajemenPerpustakaan.Tools.DataAccessHelper;
 
 //Ini class yang handle logika Peminjaman
-public class PeminjamanController implements PersingkatPanggilData {
+public class PeminjamanController implements DataAccessHelper {
     //============================================================================================================================================================================================================
 
     public static void tambah(String idPeminjaman, String idAnggota, String idKodeBuku, String tglPinjam, String tglKembali, String deadlinePeminjaman, String statusPengembalian){
@@ -15,12 +15,12 @@ public class PeminjamanController implements PersingkatPanggilData {
 
     public static void edit(int indeksPeminjaman, String attribute, String nilai){
         switch (attribute){
-            case "idPeminjaman": dataPeminjaman.get(indeksPeminjaman).setIdPeminjaman(nilai); break;
+            case "idPeminjaman": dataPeminjaman.get(indeksPeminjaman).setId(nilai); break;
             case "idAnggota": dataPeminjaman.get(indeksPeminjaman).setIdAnggota(nilai); break;
             case "kodeBuku": dataPeminjaman.get(indeksPeminjaman).setKodeBuku(nilai); break;
             case "tanggalPinjam": dataPeminjaman.get(indeksPeminjaman).setTanggalPinjam(nilai); break;
             case "tanggalKembali": dataPeminjaman.get(indeksPeminjaman).setTanggalKembali(nilai); break;
-            case "deadlinePeminjaman": dataPeminjaman.get(indeksPeminjaman).setDeadlinePeminjaman(nilai); break;
+            case "deadlinePeminjaman": dataPeminjaman.get(indeksPeminjaman).setDeadline(nilai); break;
             case "status": dataPeminjaman.get(indeksPeminjaman).setStatusKeterlambatan(nilai); break;
         }
     }

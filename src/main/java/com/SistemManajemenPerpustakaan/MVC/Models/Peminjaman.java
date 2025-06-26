@@ -2,78 +2,67 @@ package com.SistemManajemenPerpustakaan.MVC.Models;
 
 public class Peminjaman {
     //ATTRIBUTE
-    private String idPeminjaman ;
+    private String id;
     private String idAnggota ;
-    private String idKodeBuku ;
-    private String tglPinjam ;
-    private String tglKembali ;
-    private String deadlinePeminjaman;
-    private String statusPengembalian ;
+    private String kodeBuku;
+    private String tanggalPinjam;
+    private String tanggalKembali;
+    private String deadline;
+    private String status;
 
     //CONSTRUCTOR
-    public Peminjaman (String idPeminjaman, String idAnggota, String idKodeBuku,  String tglPinjam, String tglKembali, String deadlinePeminjaman, String statusPengembalian) {
-        this.idPeminjaman = idPeminjaman ;
+    public Peminjaman (String id, String idAnggota, String idKodeBuku,  String tanggalPinjam, String tanggalKembali, String deadline, String status) {
+        this.id = id ;
         this.idAnggota = idAnggota;
-        this.idKodeBuku = idKodeBuku;
-        this.tglPinjam = tglPinjam;
-        this.tglKembali = tglKembali;
-        this.deadlinePeminjaman = deadlinePeminjaman;
-        this.statusPengembalian = statusPengembalian;
+        this.kodeBuku = idKodeBuku;
+        this.tanggalPinjam = tanggalPinjam;
+        this.tanggalKembali = tanggalKembali;
+        this.deadline = deadline;
+        this.status = status;
     }
     //GETTER
-    public String getIdPeminjaman() {
-        return idPeminjaman;
+    public String getId() {
+        return id;
     }
     public String getIdAnggota() {
         return idAnggota;
     }
     public String getKodebuku() {
-        return idKodeBuku;
+        return kodeBuku;
     }
     public String getTanggalPinjam() {
-        return tglPinjam;
+        return tanggalPinjam;
     }
     public String getTanggalKembali() {
-        return tglKembali;
+        return tanggalKembali;
     }
-    public String getDeadlinePeminjaman() {
-        return deadlinePeminjaman;
+    public String getDeadline() {
+        return deadline;
     }
-    public String getStatusKeterlambatanPengembalian() {
-        return statusPengembalian;
+    public String getStatus() {
+        return status;
     }
 
     //SETTER
-    public void setIdPeminjaman(String idPeminjaman) {
-        this.idPeminjaman = idPeminjaman;
+    public void setId(String id) {
+        this.id = id;
     }
     public void setIdAnggota(String idAnggota) {
         this.idAnggota = idAnggota;
     }
     public void setKodeBuku(String kodeBuku) {
-        this.idKodeBuku = kodeBuku;
+        this.kodeBuku = kodeBuku;
     }
     public void setTanggalPinjam(String tanggalPinjam) {
-        this.tglPinjam = tanggalPinjam;
+        this.tanggalPinjam = tanggalPinjam;
     }
     public void setTanggalKembali(String tanggalKembali) {
-        this.tglKembali = tanggalKembali;
+        this.tanggalKembali = tanggalKembali;
     }
-    public void setDeadlinePeminjaman(String deadlinePeminjaman) {
-        this.tglKembali = deadlinePeminjaman;
+    public void setDeadline(String deadline) {
+        this.tanggalKembali = deadline;
     }
-    public void setStatusKeterlambatan(String statusPengembalian) {
-        this.statusPengembalian = statusPengembalian;
-    }
-
-    //Method untuk nampilin data peminjaman
-    public String generateReport() {
-        return "ID Peminjaman : " + idPeminjaman + "\n" +
-                "ID Anggota    : " + idAnggota + "\n" +
-                "Kode Buku     : " + idKodeBuku + "\n" +
-                "Tanggal Pinjam: " + tglPinjam + "\n" +
-                "Tanggal Kembali: " + tglKembali + "\n" +
-                "Deadline Peminjaman" + deadlinePeminjaman+ "\n"+
-                "Status        : " + statusPengembalian;
+    public void setStatus(String statusPengembalian) {
+        this.status = statusPengembalian;
     }
 }

@@ -1,18 +1,20 @@
 package com.SistemManajemenPerpustakaan.MVC.Models.User;
 
+import com.SistemManajemenPerpustakaan.Enums.JenisPengguna;
+
 public class Admin extends Pengguna {
     //ATTRIBUTE
-    protected String nipAdmin ;
+    private String nip;
 
     //CONSTRUCTOR
-    public Admin(String idPengguna, String jenisPengguna, String namaPengguna, String alamatPengguna, String nomorHpPengguna, String username, String password, String nipAdmin) {
-        super(idPengguna, jenisPengguna, namaPengguna, alamatPengguna, nomorHpPengguna, username, password);
-        this.nipAdmin = nipAdmin;
+    public Admin(String idPengguna, String String, String namaPengguna, String alamatPengguna, String nomorHpPengguna, String username, String password, String nip) {
+        super(idPengguna, String, namaPengguna, alamatPengguna, nomorHpPengguna, username, password);
+        this.nip = nip;
     }
 
     //GETTER
-    public String getNipAdmin () { return nipAdmin ; }
+    public String getNip() { return nip; }
 
     //SETTER
-    public void setNipAdmin(String nipAdmin) { this.nipAdmin = nipAdmin; }
+    public void setNip(String nip) { this.nip = nip; }
 }

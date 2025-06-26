@@ -2,17 +2,18 @@ package com.SistemManajemenPerpustakaan.MVC.Models.Book;
 
 public class Majalah extends Buku {
     //ATTRIBUTE
-    private String topikBuku;
+    private String topik;
 
     //CONSTRUCTOR
-    public Majalah(String kodeBuku, String judulBuku, String kategoriBuku, String pengarangBuku, String tahunTerbitBuku, Boolean ketersediaanBuku, String topikBuku) {
-        super(kodeBuku, judulBuku, kategoriBuku, pengarangBuku, tahunTerbitBuku, ketersediaanBuku);
-        this.topikBuku = topikBuku;
+
+    public Majalah(String kode, String judul, String pengarang, String tahunTerbit, Boolean tersedia, String jenis, String topik) {
+        super(kode, judul, pengarang, tahunTerbit, tersedia, jenis);
+        this.topik = topik;
     }
 
     //GETTER
-    public String getTopikBuku(){ return topikBuku; }
+    public String getTopik(){ return topik; }
 
     //SETTER
-    public void setTopikBuku(String topikBuku){ this.topikBuku = topikBuku; }
+    public void setTopik(String topik){ this.topik = topik; }
 }
