@@ -1,32 +1,47 @@
 package com.SistemManajemenPerpustakaan.MVC.Models.User;
 
-import com.SistemManajemenPerpustakaan.Enums.JenisPengguna;
-
 public class Anggota extends Pengguna {
     //ATTRIBUTE
-    private boolean terlambatMengembalikan ;
-    private int maksimalPinjamBuku, jumlahPinjamBuku;
+    private Boolean terlambat;
+    private int maksimalPinjam, jumlahPinjam;
 
-    public Anggota(String idPengguna, String String, String namaPengguna, String alamatPengguna, String nomorHpPengguna, String username, String password, Boolean terlambatMengembalikan, int maksimalPinjamBuku, int jumlahPinjamBuku) {
-        super(idPengguna, String, namaPengguna, alamatPengguna, nomorHpPengguna, username, password);
-        this.terlambatMengembalikan = terlambatMengembalikan ;
-        this.maksimalPinjamBuku = maksimalPinjamBuku ;
-        this.jumlahPinjamBuku = jumlahPinjamBuku;
+    public Anggota(String id, String jenis, String nama, String alamat, String nomorHP, String username, String password, Boolean terlambat, int maksimalPinjam, int jumlahPinjam) {
+        super(id, jenis, nama, alamat, nomorHP, username, password);
+        this.terlambat = terlambat;
+        this.maksimalPinjam = maksimalPinjam;
+        this.jumlahPinjam = jumlahPinjam;
+    }
+
+    @Override
+    public void updateAttribute(String atribut, Object nilaiBaru) {
+        switch (atribut.toUpperCase()) {
+            case "ID": setId((String) nilaiBaru); break;
+            case "PENGARANG": setJenis((String) nilaiBaru); break;
+            case "NAMA": setNama((String) nilaiBaru); break;
+            case "ALAMAT": setAlamat((String) nilaiBaru); break;
+            case "NOMORHP": setNomorHP((String) nilaiBaru); break;
+            case "USERNAME": setUsername((String) nilaiBaru); break;
+            case "PASSWORD": setPassword((String) nilaiBaru); break;
+            case "TERLAMBAT": setTerlambat((Boolean) nilaiBaru); break;
+            case "MAKSIMALPINJAM": setMaksimalPinjam((int) nilaiBaru); break;
+            case "JUMLAHPINJAM": setJumlahPinjam((int) nilaiBaru); break;
+            default: System.out.println("Atribut tidak dikenali");
+        }
     }
 
     //GETTER
-    public boolean getTerlambatMengembalikan() {
-        return terlambatMengembalikan;
+    public boolean getTerlambat() {
+        return terlambat;
     }
-    public int getMaksimalPinjamBuku() {
-        return maksimalPinjamBuku;
+    public int getMaksimalPinjam() {
+        return maksimalPinjam;
     }
-    public int getJumlahPinjamBuku() {
-        return jumlahPinjamBuku;
+    public int getJumlahPinjam() {
+        return jumlahPinjam;
     }
 
     //SETTER
-    public void setTerlambatMengembalikan(boolean terlambatMengembalikan) { this.terlambatMengembalikan = terlambatMengembalikan; }
-    public void setMaksimalPinjamBuku(int maksimalPinjamBuku) { this.maksimalPinjamBuku = maksimalPinjamBuku; }
-    public void setJumlahPinjamBuku(int jumlahPinjamBuku) { this.jumlahPinjamBuku += jumlahPinjamBuku; }
+    public void setTerlambat(boolean terlambat) { this.terlambat = terlambat; }
+    public void setMaksimalPinjam(int maksimalPinjam) { this.maksimalPinjam = maksimalPinjam; }
+    public void setJumlahPinjam(int jumlahPinjam) { this.jumlahPinjam += jumlahPinjam; }
 }
