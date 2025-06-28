@@ -1,48 +1,57 @@
 package com.SistemManajemenPerpustakaan.MVC.Controllers.Users;
 
-import com.SistemManajemenPerpustakaan.MVC.Models.User.Admin;
-import com.SistemManajemenPerpustakaan.MVC.Models.User.Anggota;
-import com.SistemManajemenPerpustakaan.Tools.DataAccessHelper;
+import com.SistemManajemenPerpustakaan.DTOs.PenggunaDTO;
+import com.SistemManajemenPerpustakaan.MVC.Controllers.Factory.DTOtoModel;
+import com.SistemManajemenPerpustakaan.MVC.Models.User.Pengguna;
+import com.SistemManajemenPerpustakaan.MVC.Views.Console.Users.PenggunaView;
+import com.SistemManajemenPerpustakaan.Repositories.PenggunaRepository;
+import com.SistemManajemenPerpustakaan.Repositories.PenggunaRepository;
 
-//Ini class yang handle logika terkait pengguna
-public class PenggunaController implements DataAccessHelper {
+import java.util.List;
 
-    //============================================================================================================================================================================================================
+public class PenggunaController {
 
-    public static void tambah(String idPengguna, String jenisPengguna, String namaPengguna, String alamatPengguna, String nomorHpPengguna, String username, String password, String nipAdmin){
-        dataPengguna.add(new Admin(idPengguna, jenisPengguna, namaPengguna, alamatPengguna, nomorHpPengguna, username, password, nipAdmin));
-    }
-
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-    public static void tambah(String idPengguna, String jenisPengguna, String namaPengguna, String alamatPengguna, String nomorHpPengguna, String username, String password, Boolean terlambatMengembalikan,int maksimalPinjamBuku, int jumlahPinjamBuku){
-        dataPengguna.add(new Anggota(idPengguna, jenisPengguna, namaPengguna, alamatPengguna, nomorHpPengguna, username, password, terlambatMengembalikan, maksimalPinjamBuku, jumlahPinjamBuku));
-    }
-
-    //============================================================================================================================================================================================================
-
-    public static void edit(int indeksPengguna, String attribute, String nilai){
-        switch (attribute){
-            case "jenis": dataPengguna.get(indeksPengguna).setJenis(nilai); break;
-            case "nama": dataPengguna.get(indeksPengguna).setNama(nilai); break;
-            case "alamat": dataPengguna.get(indeksPengguna).setAlamat(nilai); break;
-            case "nomorHP": dataPengguna.get(indeksPengguna).setNomorHPPengguna(nilai); break;
-            case "username": dataPengguna.get(indeksPengguna).setUsername(nilai); break;
-            case "password": dataPengguna.get(indeksPengguna).setPassword(nilai); break;
+    //RUN
+    public static void jalankanPenggunaView(){
+        loop : while (true){
+            int pilihan = PenggunaView.menuPengguna();
+            switch (pilihan){
+                case 1: PenggunaView.tambahPengguna(); break;
+                case 2: if (!PenggunaView.isPenggunaKosong()) PenggunaView.detailPengguna(); break;
+                case 3: if (!PenggunaView.isPenggunaKosong()) PenggunaView.updatePengguna(); break;
+                case 4: if (!PenggunaView.isPenggunaKosong()) PenggunaView.hapusPengguna(); break;
+                case 5: break loop;
+            }
         }
     }
 
-    //============================================================================================================================================================================================================
-
-    public static void hapus(int indeks){
-        dataPengguna.remove(indeks);
+    //CREATE
+    public static void tambahPengguna(PenggunaDTO dto){
+        Pengguna pengguna = DTOtoModel.toPengguna(dto);
+        PenggunaRepository.tambah(pengguna);
     }
 
-    //============================================================================================================================================================================================================
-
-    public static void tampilkan(){
-
+    //READ
+    public static Pengguna ambilPengguna(String kodePengguna){
+        return  PenggunaRepository.ambilPenggunaById(kodePengguna);
     }
 
-    //============================================================================================================================================================================================================
+    public static List<Pengguna> AmbilSemuaPengguna(){
+        return PenggunaRepository.ambilSemua();
+    }
+
+    //UPDATE
+    public static boolean updateAtribut(String kodePengguna, String atribut, Object nilaiBaru) {
+        return PenggunaRepository.updateAtribut(kodePengguna, atribut, nilaiBaru);
+    }
+
+    public static void updatePengguna(String kodePengguna, PenggunaDTO dto){
+        Pengguna pengguna = DTOtoModel.toPengguna(dto);
+        PenggunaRepository.updatePengguna(kodePengguna, pengguna);
+    }
+
+    //DELETE
+    public static void hapusPengguna(String kodePengguna) {
+        PenggunaRepository.hapus(kodePengguna);
+    }
 }

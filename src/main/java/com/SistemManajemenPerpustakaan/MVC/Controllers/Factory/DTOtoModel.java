@@ -1,12 +1,9 @@
 package com.SistemManajemenPerpustakaan.MVC.Controllers.Factory;
 
-import com.SistemManajemenPerpustakaan.DTOs.Books.*;
+import com.SistemManajemenPerpustakaan.DTOs.BukuDTO;
 import com.SistemManajemenPerpustakaan.DTOs.PeminjamanDTO;
-import com.SistemManajemenPerpustakaan.DTOs.Users.AdminDTO;
-import com.SistemManajemenPerpustakaan.DTOs.Users.AnggotaDTO;
-import com.SistemManajemenPerpustakaan.DTOs.Users.PenggunaDTO;
+import com.SistemManajemenPerpustakaan.DTOs.PenggunaDTO;
 import com.SistemManajemenPerpustakaan.MVC.Models.Book.*;
-import com.SistemManajemenPerpustakaan.MVC.Models.Peminjaman;
 import com.SistemManajemenPerpustakaan.MVC.Models.User.Admin;
 import com.SistemManajemenPerpustakaan.MVC.Models.User.Anggota;
 import com.SistemManajemenPerpustakaan.MVC.Models.User.Pengguna;
@@ -18,32 +15,28 @@ public class DTOtoModel {
     public static Buku toBuku(BukuDTO dto){
         switch (dto.jenis){
             case JURNAL:
-                JurnalDTO a = (JurnalDTO) dto;
                 return new Jurnal(
-                        a.kode, a.judul, a.pengarang,
-                        a.tahunTerbit, a.tersedia, "Jurnal Ilmiah",
-                        a.institusi, a.terindeksSinta
+                        dto.kode, dto.judul, dto.pengarang,
+                        dto.tahunTerbit, dto.tersedia, "Jurnal",
+                        dto.institusiJURNAL, dto.terindeksSintaJURNAL
                 );
             case MAJALAH:
-                MajalahDTO b = (MajalahDTO) dto;
                 return new Majalah(
-                        b.kode, b.judul, b.pengarang,
-                        b.tahunTerbit, b.tersedia, "Majalah",
-                        b.topik
+                        dto.kode, dto.judul, dto.pengarang,
+                        dto.tahunTerbit, dto.tersedia, "Majalah",
+                        dto.topikMAJALAH
                 );
             case NOVEL:
-                NovelDTO c = (NovelDTO) dto;
                 return new Novel(
-                        c.kode, c.judul, c.pengarang,
-                        c.tahunTerbit, c.tersedia, "Novel",
-                        c.genre
+                        dto.kode, dto.judul, dto.pengarang,
+                        dto.tahunTerbit, dto.tersedia, "Novel",
+                        dto.genreNOVEL
                 );
             case TEXTBOOK:
-                TextbookDTO d = (TextbookDTO) dto;
                 return new TextBook(
-                        d.kode, d.judul, d.pengarang,
-                        d.tahunTerbit, d.tersedia, "Textbook",
-                        d.bidangIlmu
+                        dto.kode, dto.judul, dto.pengarang,
+                        dto.tahunTerbit, dto.tersedia, "Textbook",
+                        dto.bidangIlmuTEXTBOOK
                 );
         }
         return null;
@@ -53,28 +46,26 @@ public class DTOtoModel {
     public static Pengguna toPengguna(PenggunaDTO dto){
         switch (dto.jenis){
             case ADMIN:
-                AdminDTO a = (AdminDTO) dto;
                 return new Admin(
-                        a.id, "Admin", a.nama,
-                        a.alamat, a.nomorHP, a.username,
-                        a.password, a.nip
+                        dto.id, "Admin", dto.nama,
+                        dto.alamat, dto.nomorHP, dto.username,
+                        dto.password, dto.nipADMIN
                 );
             case ANGGOTA:
-                AnggotaDTO b = (AnggotaDTO) dto;
                 return new Anggota(
-                        b.id, "Anggota", b.nama,
-                        b.alamat, b.nomorHP, b.username,
-                        b.password, b.terlambatMengembalikan,
-                        b.maksimalPinjamBuku, b.jumlahPinjamBuku
+                        dto.id, "Anggota", dto.nama,
+                        dto.alamat, dto.nomorHP, dto.username,
+                        dto.password, dto.terlambatANGGOTA,
+                        dto.maksimalPinjamANGGOTA, dto.jumlahPinjamANGGOTA
                 );
         }
         return null;
     }
 
     //KONVERSI DTO KE OBJEK PEMINJAMAN
-    public static Peminjaman toPeminjaman(PeminjamanDTO dto){
+    public static com.SistemManajemenPerpustakaan.MVC.Models.Peminjaman toPeminjaman(PeminjamanDTO dto){
         PeminjamanDTO a = (PeminjamanDTO) dto;
-        return new Peminjaman(
+        return new com.SistemManajemenPerpustakaan.MVC.Models.Peminjaman(
                 a.id, a.idAnggota, a.kodeBuku,
                 a.tanggalPinjam, a.tanggalKembali,
                 a.deadline, a.status

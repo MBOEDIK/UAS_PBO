@@ -1,39 +1,47 @@
 package com.SistemManajemenPerpustakaan.MVC.Controllers;
 
+import com.SistemManajemenPerpustakaan.DTOs.PeminjamanDTO;
+import com.SistemManajemenPerpustakaan.MVC.Controllers.Factory.DTOtoModel;
 import com.SistemManajemenPerpustakaan.MVC.Models.Peminjaman;
-import com.SistemManajemenPerpustakaan.Tools.DataAccessHelper;
+import com.SistemManajemenPerpustakaan.MVC.Views.Console.PeminjamanView;
+import com.SistemManajemenPerpustakaan.Repositories.PeminjamanRepository;
 
-//Ini class yang handle logika Peminjaman
-public class PeminjamanController implements DataAccessHelper {
-    //============================================================================================================================================================================================================
+import java.util.List;
 
-    public static void tambah(String idPeminjaman, String idAnggota, String idKodeBuku, String tglPinjam, String tglKembali, String deadlinePeminjaman, String statusPengembalian){
-        dataPeminjaman.add(new Peminjaman(idPeminjaman, idAnggota, idKodeBuku, tglPinjam, tglKembali, deadlinePeminjaman, statusPengembalian));
+public class PeminjamanController {
+
+    //RUN
+    public static void jalankanPeminjamanView(){
+        PeminjamanView.detailPeminjaman();
     }
 
-    //============================================================================================================================================================================================================
-
-    public static void edit(int indeksPeminjaman, String attribute, String nilai){
-        switch (attribute){
-            case "idPeminjaman": dataPeminjaman.get(indeksPeminjaman).setId(nilai); break;
-            case "idAnggota": dataPeminjaman.get(indeksPeminjaman).setIdAnggota(nilai); break;
-            case "kodeBuku": dataPeminjaman.get(indeksPeminjaman).setKodeBuku(nilai); break;
-            case "tanggalPinjam": dataPeminjaman.get(indeksPeminjaman).setTanggalPinjam(nilai); break;
-            case "tanggalKembali": dataPeminjaman.get(indeksPeminjaman).setTanggalKembali(nilai); break;
-            case "deadlinePeminjaman": dataPeminjaman.get(indeksPeminjaman).setDeadline(nilai); break;
-            case "status": dataPeminjaman.get(indeksPeminjaman).setStatusKeterlambatan(nilai); break;
-        }
+    //CREATE
+    public static void tambahPeminjaman(PeminjamanDTO dto){
+        Peminjaman pengguna = DTOtoModel.toPeminjaman(dto);
+        PeminjamanRepository.tambah(pengguna);
     }
 
-    //============================================================================================================================================================================================================
-
-    public static void hapus(int indeks){
-        dataPeminjaman.remove(indeks);
+    //READ
+    public static Peminjaman ambilPeminjaman(String kodePeminjaman){
+        return  PeminjamanRepository.ambilPeminjamanById(kodePeminjaman);
     }
 
-    //============================================================================================================================================================================================================
+    public static List<Peminjaman> AmbilSemuaPeminjaman(){
+        return PeminjamanRepository.ambilSemua();
+    }
 
-    public static void tampilkan(){
+    //UPDATE
+    public static boolean updateAtribut(String kodePeminjaman, String atribut, Object nilaiBaru) {
+        return PeminjamanRepository.updateAtribut(kodePeminjaman, atribut, nilaiBaru);
+    }
 
+    public static void updatePeminjaman(String kodePeminjaman, PeminjamanDTO dto){
+        Peminjaman pengguna = DTOtoModel.toPeminjaman(dto);
+        PeminjamanRepository.updatePeminjaman(kodePeminjaman, pengguna);
+    }
+
+    //DELETE
+    public static void hapusPeminjaman(String kodePeminjaman) {
+        PeminjamanRepository.hapus(kodePeminjaman);
     }
 }

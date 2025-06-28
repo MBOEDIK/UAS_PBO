@@ -19,6 +19,9 @@ public abstract class Buku {
         this.jenis = jenis;
     }
 
+    //UPDATE ATTRIBUT SPESIFIK
+    public abstract void updateAttribute(String atribut, Object nilaiBaru);
+
     //INI GETTER
     public String getKode() { return kode; }
     public String getJudul() { return judul; }

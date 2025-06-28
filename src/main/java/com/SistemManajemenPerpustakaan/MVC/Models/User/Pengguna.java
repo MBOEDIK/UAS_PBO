@@ -1,7 +1,5 @@
 package com.SistemManajemenPerpustakaan.MVC.Models.User;
 
-import com.SistemManajemenPerpustakaan.Enums.JenisPengguna;
-
 public abstract class Pengguna {
     //ATTRIBUTE
     private String id;
@@ -14,7 +12,7 @@ public abstract class Pengguna {
 
 
     //CONSTRUCTOR
-    public Pengguna (String id, String jenis,String nama, String alamat, String nomorHP, String username, String password) {
+    public Pengguna(String id, String jenis, String nama, String alamat, String nomorHP, String username, String password) {
         this.id = id;
         this.jenis = jenis;
         this.nama = nama ;
@@ -23,6 +21,9 @@ public abstract class Pengguna {
         this.username = username;
         this.password = password;
     }
+
+    //METHOD UPDATE ATTRIBUTE SPESIFIK
+    public abstract void updateAttribute(String atribut, Object nilaiBaru);
 
     //GETTER
     public String getId() {

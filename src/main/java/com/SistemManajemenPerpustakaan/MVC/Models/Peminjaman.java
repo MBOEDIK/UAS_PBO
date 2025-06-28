@@ -20,6 +20,21 @@ public class Peminjaman {
         this.deadline = deadline;
         this.status = status;
     }
+
+    //METHOD UNTUK UPDATE ATRIBUTE SPESIFIK
+    public void updateAttribute(String atribut, Object nilaiBaru) {
+        switch (atribut.toUpperCase()) {
+            case "ID": setId((String) nilaiBaru); break;
+            case "IDANGGOTA": setIdAnggota((String) nilaiBaru); break;
+            case "KODEBUKU": setKodeBuku((String) nilaiBaru); break;
+            case "TANGGALPINJAM": setTanggalPinjam((String) nilaiBaru); break;
+            case "TANGGALKEMBALI": setTanggalKembali((String) nilaiBaru); break;
+            case "DEADLINE": setDeadline((String) nilaiBaru); break;
+            case "STATUS": setStatus((String) nilaiBaru); break;
+            default: System.out.println("Atribut tidak dikenali");
+        }
+    }
+
     //GETTER
     public String getId() {
         return id;
