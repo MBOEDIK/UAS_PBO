@@ -1,7 +1,5 @@
 package com.SistemManajemenPerpustakaan.Sementara.SubMenuAdmin;
 
-import com.SistemManajemenPerpustakaan.MVC.Models.PenyimpananData;
-
 import java.util.Scanner;
 
 public class SubMenuDetailPeminjaman {

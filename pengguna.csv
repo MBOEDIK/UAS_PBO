@@ -1,0 +1,4 @@
+id,jenis,nama,alamat,nomorHP,username,password,nipADMIN,terlambatANGGOTA,maksimalPinjamANGGOTA,jumlahPinjamANGGOTA
+P001,ADMIN,Budi Santoso,Jl. Merdeka 1,08123456789,a,a,199001012015031001,,,
+P002,ANGGOTA,Citra Lestari,Jl. Pahlawan 2,08987654321,citra,citra123,,false,5,1
+P003,ANGGOTA,Eko Prasetyo,Jl. Sudirman 3,08111222333,eko,eko123,,true,5,3

@@ -19,7 +19,7 @@ public class BukuController {
                 case 2: if (!BukuView.isBukuKosong()) BukuView.detailBuku(); break;
                 case 3: if (!BukuView.isBukuKosong()) BukuView.updateBuku(); break;
                 case 4: if (!BukuView.isBukuKosong()) BukuView.hapusBuku(); break;
-                    case 5: break loop;
+                case 5: break loop;
             }
         }
     }
@@ -51,6 +51,8 @@ public class BukuController {
 
     //DELETE
     public static void hapusBuku(String kodeBuku) {
-        BukuRepository.hapus(kodeBuku);
+        // ### PERUBAHAN DI SINI ###
+        // Memanggil method yang sudah benar di Repository
+        BukuRepository.hapusBuku(kodeBuku);
     }
 }
