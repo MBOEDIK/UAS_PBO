@@ -14,6 +14,12 @@ public class PeminjamanController {
     public static void jalankanPeminjamanView(){
         PeminjamanView.detailPeminjaman();
     }
+    public static void jalankanPeminjamanView(int x){
+        switch (x){
+            case 1 -> PeminjamanView.tambahPeminjaman();
+            case 2 -> PeminjamanView.kembalikanBukuPeminjaman();
+        }
+    }
 
     //CREATE
     public static void tambahPeminjaman(PeminjamanDTO dto){
@@ -26,7 +32,7 @@ public class PeminjamanController {
         return  PeminjamanRepository.ambilPeminjamanById(kodePeminjaman);
     }
 
-    public static List<Peminjaman> AmbilSemuaPeminjaman(){
+    public static List<Peminjaman> ambilSemuaPeminjaman(){
         return PeminjamanRepository.ambilSemua();
     }
 

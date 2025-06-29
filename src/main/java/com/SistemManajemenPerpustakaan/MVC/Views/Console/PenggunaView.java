@@ -1,8 +1,8 @@
-package com.SistemManajemenPerpustakaan.MVC.Views.Console.Users;
+package com.SistemManajemenPerpustakaan.MVC.Views.Console;
 
 import com.SistemManajemenPerpustakaan.DTOs.PenggunaDTO;
 import com.SistemManajemenPerpustakaan.Enums.JenisPengguna;
-import com.SistemManajemenPerpustakaan.MVC.Controllers.Users.PenggunaController;
+import com.SistemManajemenPerpustakaan.MVC.Controllers.PenggunaController;
 import com.SistemManajemenPerpustakaan.Utils.InformationPrinter;
 import com.SistemManajemenPerpustakaan.Utils.IdGenerator;
 
@@ -71,7 +71,7 @@ public class PenggunaView {
         while (true){
             if (isPenggunaKosong()) return;
 
-            InformationPrinter.tampilkanObjek(PenggunaController.AmbilSemuaPengguna(), "Pengguna yang tersedia", "nama");
+            InformationPrinter.tampilkanObjek(PenggunaController.ambilSemuaPengguna(), "Pengguna yang tersedia", "nama");
             String idPengguna = AmbilIdPengguna("tampilkan detailnya");
 
             if (idPengguna == null) return;
@@ -90,7 +90,7 @@ public class PenggunaView {
         while (true){
             if (isPenggunaKosong()) return;
 
-            InformationPrinter.tampilkanObjek(PenggunaController.AmbilSemuaPengguna(), "Pengguna yang tersedia", "nama");
+            InformationPrinter.tampilkanObjek(PenggunaController.ambilSemuaPengguna(), "Pengguna yang tersedia", "nama");
             String idPengguna = AmbilIdPengguna("update");
 
             if (idPengguna == null) return;
@@ -111,7 +111,7 @@ public class PenggunaView {
     public static void hapusPengguna () {
         if (isPenggunaKosong()) return;
 
-        InformationPrinter.tampilkanObjek(PenggunaController.AmbilSemuaPengguna(), "Pengguna yang tersedia", "nama");
+        InformationPrinter.tampilkanObjek(PenggunaController.ambilSemuaPengguna(), "Pengguna yang tersedia", "nama");
         String idPengguna = AmbilIdPengguna("hapus");
 
         System.out.print("Yakin ingin menghapus pengguna bernama \""+ PenggunaController.ambilPengguna(idPengguna).getNama()+"\"? (y/n): ");
@@ -132,18 +132,18 @@ public class PenggunaView {
         String y;
         int x;
         System.out.print("\nPilih nomor pengguna yang ingin di"+aksi+": "); x = input.nextInt() - 1; input.nextLine();
-        if (x >= PenggunaController.AmbilSemuaPengguna().size() || x < 0) {
+        if (x >= PenggunaController.ambilSemuaPengguna().size() || x < 0) {
             System.out.print("pilihan tidak ada!\n");
             y = null;
         }
         else {
-            y = PenggunaController.AmbilSemuaPengguna().get(x).getId();
+            y = PenggunaController.ambilSemuaPengguna().get(x).getId();
         }
         return y;
     }
 
     public static Boolean isPenggunaKosong(){
-        if (PenggunaController.AmbilSemuaPengguna().isEmpty()){
+        if (PenggunaController.ambilSemuaPengguna().isEmpty()){
             System.out.print("Pengguna kosong!\n");
             return true;
         }else {

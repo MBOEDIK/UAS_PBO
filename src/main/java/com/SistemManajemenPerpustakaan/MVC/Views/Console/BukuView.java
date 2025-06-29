@@ -1,10 +1,13 @@
-package com.SistemManajemenPerpustakaan.MVC.Views.Console.Books;
+package com.SistemManajemenPerpustakaan.MVC.Views.Console;
 
 import com.SistemManajemenPerpustakaan.DTOs.BukuDTO;
 import com.SistemManajemenPerpustakaan.Enums.JenisBuku;
-import com.SistemManajemenPerpustakaan.MVC.Controllers.Books.BukuController;
+import com.SistemManajemenPerpustakaan.MVC.Controllers.BukuController;
+import com.SistemManajemenPerpustakaan.MVC.Models.Book.Buku;
 import com.SistemManajemenPerpustakaan.Utils.InformationPrinter;
 import com.SistemManajemenPerpustakaan.Utils.IdGenerator;
+import com.SistemManajemenPerpustakaan.Utils.IsObjekKosong;
+import com.SistemManajemenPerpustakaan.Utils.ObjekIdGetter;
 
 import java.util.Scanner;
 
@@ -15,6 +18,19 @@ public class BukuView {
     
     //METHOD
     //PILIHAN AKSI KE BUKU
+
+    public static void TESS(){
+        BukuDTO bukuDTO = new BukuDTO();
+
+        String judul = input.nextLine();
+        String pengarang = input.nextLine();
+
+        bukuDTO.judul = judul;
+        bukuDTO.pengarang = pengarang;
+
+        BukuController.tambahBuku(bukuDTO);
+    }
+
     public static int menuBuku(){
         while (true){
             int x;
@@ -80,10 +96,13 @@ public class BukuView {
     //READ
     public static void detailBuku(){
         while (true){
-            if (isBukuKosong()) return;
-
-            InformationPrinter.tampilkanObjek(BukuController.AmbilSemuaBuku(), "Buku yang tersedia", "judul");
-            String kodeBuku = ambilKodeBuku("tampilkan detailnya");
+            //CEK APAKAH BUKU KOSONG, JIKA YA MAKA KELUAR DARI METHOD
+            if (IsObjekKosong.check(BukuController.ambilSemuaBuku(), "Buku")) return;
+            InformationPrinter.tampilkanObjek(
+                    BukuController.ambilSemuaBuku(), "Buku yang tersedia", "judul");
+            String kodeBuku = ObjekIdGetter.get(
+                    BukuController.ambilSemuaBuku(),
+                    "\nPilih nomor buku yang ingin dilihat detailnya: ", Buku::getKode);
 
             if (kodeBuku == null) return;
 
@@ -99,13 +118,18 @@ public class BukuView {
     //UPDATE
     public static void updateBuku(){
         while (true){
-            if (isBukuKosong()) return;
-
-            InformationPrinter.tampilkanObjek(BukuController.AmbilSemuaBuku(), "Buku yang tersedia", "judul");
-            String kodeBuku = ambilKodeBuku("update");
-
+            //CEK APAKAH BUKU KOSONG, JIKA YA MAKA KELUAR DARI METHOD
+            if (IsObjekKosong.check(BukuController.ambilSemuaBuku(), "Buku")) return;
+            //TAMPILKAN SEMUA BUKU
+            InformationPrinter.tampilkanObjek(
+                    BukuController.ambilSemuaBuku(), "Buku yang tersedia", "judul");
+            //MENGAMBIL KODE BUKU, JIKA TIDAK ADA MAKA KELUAR DARI METHOD
+            String kodeBuku = ObjekIdGetter.get(
+                    BukuController.ambilSemuaBuku(),
+                    "Pilih nomor buku yang ingin diupdate: ", Buku::getKode);
             if (kodeBuku == null) return;
 
+            //MEMILIH DAN MENGUPDATE ATRIBUTE YANG BISA DIUPDATE
             InformationPrinter.tampilkanUpdateAtribut(
                     BukuController.ambilBuku(kodeBuku),
                     " ", kodeBuku,
@@ -120,10 +144,12 @@ public class BukuView {
 
     //DELETE
     public static void hapusBuku () {
-        if (isBukuKosong()) return;
+        if (IsObjekKosong.check(BukuController.ambilSemuaBuku(), "Buku")) return;
 
-        InformationPrinter.tampilkanObjek(BukuController.AmbilSemuaBuku(), "Buku yang tersedia", "judul");
-        String kodeBuku = ambilKodeBuku("hapus");
+        InformationPrinter.tampilkanObjek(BukuController.ambilSemuaBuku(), "Buku yang tersedia", "judul");
+        String kodeBuku = ObjekIdGetter.get(
+                BukuController.ambilSemuaBuku(),
+                "Pilih nomor buku yang ingin dihapus: ", Buku::getKode);
 
         System.out.print("Yakin ingin menghapus buku berjudul \""+BukuController.ambilBuku(kodeBuku).getJudul()+"\"? (y/n): ");
         String x = input.nextLine();
@@ -136,30 +162,4 @@ public class BukuView {
             System.out.print("Hapus buku dibatalkan.\n");
         }
     }
-
-
-    //===TOOLS===
-    public static String ambilKodeBuku(String aksi){
-        String y;
-        int x;
-        System.out.print("\nPilih nomor buku yang ingin di"+aksi+": "); x = input.nextInt() - 1; input.nextLine();
-        if (x >= BukuController.AmbilSemuaBuku().size() || x < 0) {
-            System.out.print("pilihan tidak ada!\n");
-            y = null;
-        }
-        else {
-            y = BukuController.AmbilSemuaBuku().get(x).getKode();
-        }
-        return y;
-    }
-
-    public static Boolean isBukuKosong(){
-        if (BukuController.AmbilSemuaBuku().isEmpty()){
-            System.out.print("Buku kosong!\n");
-            return true;
-        }else {
-            return false;
-        }
-    }
-
 }
