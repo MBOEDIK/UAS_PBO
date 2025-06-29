@@ -16,8 +16,8 @@ public class LoginView {
     private static Scanner input = new Scanner(System.in);
 
     //MENAMPILKAN PILIHAN JENIS PENGGUNA
-    public static String menuInputJenisPengguna(){
-        String y;
+    public static JenisPengguna menuInputJenisPengguna(){
+        JenisPengguna y;
         int x;
         System.out.print("" +
                 "\n=== PILIH JENIS PENGGUNA ===" +
@@ -29,8 +29,8 @@ public class LoginView {
             x = input.nextInt();
             input.nextLine();
             switch (x){
-                case 1 -> y = "ADMIN";
-                case 2 -> y = "ANGGOTA";
+                case 1 -> y = JenisPengguna.ADMIN;
+                case 2 -> y = JenisPengguna.ANGGOTA;
                 default -> y = null;
             }
         } catch (InputMismatchException e) {

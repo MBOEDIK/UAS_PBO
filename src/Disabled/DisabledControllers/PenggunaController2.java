@@ -2,7 +2,6 @@ package com.SistemManajemenPerpustakaan.MVC.Controllers.DisabledControllers;
 
 import com.SistemManajemenPerpustakaan.MVC.Models.User.Admin;
 import com.SistemManajemenPerpustakaan.MVC.Models.User.Anggota;
-import com.SistemManajemenPerpustakaan.Utils.DataAccessHelper;
 
 //Ini class yang handle logika terkait pengguna
 public class PenggunaController2 implements DataAccessHelper {

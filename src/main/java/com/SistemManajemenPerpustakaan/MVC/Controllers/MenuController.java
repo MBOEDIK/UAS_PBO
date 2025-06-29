@@ -1,23 +1,15 @@
 package com.SistemManajemenPerpustakaan.MVC.Controllers;
 
-import com.SistemManajemenPerpustakaan.MVC.Controllers.Books.BukuController;
-import com.SistemManajemenPerpustakaan.MVC.Controllers.Users.PenggunaController;
-import com.SistemManajemenPerpustakaan.MVC.Views.Console.Books.BukuView;
 import com.SistemManajemenPerpustakaan.MVC.Views.Console.MenuView;
 
 public class MenuController{
-    //ATTRIBUTE
-    private static int pilihanMenuAdmin;
-    private static int pilihanMenuAnggota;
-
-    //OBJECT
-
     //METHOD
     //MENU ADMIN
     public static void menuAdmin(){
         while (true){
-            pilihanMenuAdmin = MenuView.menuAdmin();
-            switch (pilihanMenuAdmin){
+            int x = MenuView.menuAdmin();
+            if (x == 4) return;
+            switch (x){
                 case 1 -> BukuController.jalankanBukuView();
                 case 2 -> PenggunaController.jalankanPenggunaView();
                 case 3 -> PeminjamanController.jalankanPeminjamanView();
@@ -28,11 +20,11 @@ public class MenuController{
     //MENU ANGGOTA
     public static void menuAnggota(){
         while (true){
-            pilihanMenuAnggota = MenuView.menuAdmin();
-            switch (pilihanMenuAnggota){
-                case 1 -> BukuController.jalankanBukuView();
-                case 2 -> PenggunaController.jalankanPenggunaView();
-                case 3 -> PeminjamanController.jalankanPeminjamanView();
+            int x = MenuView.menuAnggota();
+            if (x == 3) return;
+            switch (x){
+                case 1 -> PeminjamanController.jalankanPeminjamanView(1);
+                case 2 -> PeminjamanController.jalankanPeminjamanView(2);
             }
         }
     }

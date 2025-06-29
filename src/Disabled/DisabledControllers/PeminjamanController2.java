@@ -1,7 +1,6 @@
 package com.SistemManajemenPerpustakaan.MVC.Controllers;
 
 import com.SistemManajemenPerpustakaan.MVC.Models.Peminjaman;
-import com.SistemManajemenPerpustakaan.Utils.DataAccessHelper;
 
 //Ini class yang handle logika Peminjaman
 public class PeminjamanController2 implements DataAccessHelper {

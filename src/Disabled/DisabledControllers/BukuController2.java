@@ -1,7 +1,6 @@
 package com.SistemManajemenPerpustakaan.MVC.Controllers.DisabledControllers;
 
 import com.SistemManajemenPerpustakaan.MVC.Models.Book.*;
-import com.SistemManajemenPerpustakaan.Utils.DataAccessHelper;
 
 public class BukuController2 implements DataAccessHelper {
     

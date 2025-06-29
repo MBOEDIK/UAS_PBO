@@ -4,11 +4,8 @@ import com.SistemManajemenPerpustakaan.DTOs.BukuDTO;
 import com.SistemManajemenPerpustakaan.DTOs.PenggunaDTO;
 import com.SistemManajemenPerpustakaan.Enums.JenisBuku;
 import com.SistemManajemenPerpustakaan.Enums.JenisPengguna;
-import com.SistemManajemenPerpustakaan.MVC.Controllers.Books.BukuController;
-import com.SistemManajemenPerpustakaan.MVC.Controllers.Users.PenggunaController;
-import com.SistemManajemenPerpustakaan.MVC.Models.Book.Majalah;
-import com.SistemManajemenPerpustakaan.MVC.Models.Book.Novel;
-import com.SistemManajemenPerpustakaan.MVC.Models.User.Anggota;
+import com.SistemManajemenPerpustakaan.MVC.Controllers.BukuController;
+import com.SistemManajemenPerpustakaan.MVC.Controllers.PenggunaController;
 
 public class DummyDataGenerator {
     public static void Generate(){
