@@ -3,14 +3,7 @@ module com.SistemManajemenPerpustakaan.Main {
     requires javafx.fxml;
     requires jdk.jdi;
     requires com.almasb.fxgl.core;
-    requires org.apache.commons.csv;
-    requires annotations;
-
-    // ==========================================================
-    // ### TAMBAHKAN BARIS INI UNTUK MEMPERBAIKI ERROR ###
-    // ==========================================================
-    requires java.sql;
-
+    requires java.desktop;
 
     opens com.SistemManajemenPerpustakaan.Main to javafx.fxml;
     exports com.SistemManajemenPerpustakaan.Main;

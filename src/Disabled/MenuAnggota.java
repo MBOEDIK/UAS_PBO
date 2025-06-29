@@ -21,7 +21,6 @@ public class MenuAnggota implements DataAccessHelper {
     //============================================================================================================================================================================================================
 
     public static void peminjaman(){
-
         loop : while (true){
             //Cek ketersediaan Buku
             for (int i = 0; i < dataBuku.size(); i++){
@@ -34,9 +33,6 @@ public class MenuAnggota implements DataAccessHelper {
                 }
             }
 
-
-
-            //Tampilkan buku yang attribute "ketersediaanBuku"-nya true
             int numIndex = 1;
             System.out.print("\nDaftar Buku Tersedia:");
             subLoop : for (Buku buku : dataBuku){
@@ -47,15 +43,9 @@ public class MenuAnggota implements DataAccessHelper {
                 numIndex++;
             }
 
-
-
-            //Input judul buku
             System.out.print("\nPeminjaman Buku ->");
             System.out.print("\nMasukkan judul buku yang ingin dipinjam: "); judulBuku = input.nextLine();
 
-
-
-            //ngecek yg diinput itu String atau angka, jika angka maka loop utama diulang dari awal
             boolean hanyaNonAngka = false;
             for (char c : judulBuku.toCharArray()){
                 if (!Character.isDigit(c)){
@@ -67,9 +57,6 @@ public class MenuAnggota implements DataAccessHelper {
                 continue loop;
             }
 
-
-
-            //Ngecek apakah input cocok dengan semua judul dari semua buku yang ada, kalo ga ada maka loop utama diulang dari awal
             subLoop : for (int i = 0; i < dataBuku.size(); i++){
                 if (dataBuku.get(i).getTersedia()){
                     if (dataBuku.get(i).getJudul().toLowerCase().equals(judulBuku.toLowerCase())){
@@ -84,9 +71,6 @@ public class MenuAnggota implements DataAccessHelper {
                 }
             }
 
-
-
-            //Ngecek apakah Anggota saat ini udh sampe batas maksimal peminjaman atau belum. Kalo udah, maka keluar dari loop utama.
             String deadline = "";
             subLoop : for (int i = 0; i < dataPengguna.size(); i++){
                 if (dataPengguna.get(i).getNama().toLowerCase().equals(LoginSystem.getPenggunaSaatIni().getNama().toLowerCase())){
@@ -104,10 +88,6 @@ public class MenuAnggota implements DataAccessHelper {
                         break loop;
                     }
 
-                    //Nambah +1 jumlah buku yg dipinjam anggota ini
-                    //Ngambil jumlah semua buku yg udah dipinjam anggota saat ini selama ini
-                    //Netapin deadline
-                    //Ngambil id anggota saat ini utk dimasukkin ke informasi peminjaman
                     ((Anggota) dataPengguna.get(i)).setJumlahPinjamBuku(1);
                     jumlahBukuDiPinjam = ((Anggota) dataPengguna.get(i)).getJumlahPinjamBuku();
                     deadline = DateTimeTools.buatDeadline(7);
@@ -116,9 +96,6 @@ public class MenuAnggota implements DataAccessHelper {
                 }
             }
 
-
-
-            //Tambah peminjaman dengan masukkin semua informasi peminjaman yg dibutuhin
             PeminjamanController2.tambah(IdGenerator.generate(), idAnggota, kodeBuku, DateTimeTools.getTanggalHariIni(),"-", DateTimeTools.buatDeadline(7), "Tepat Waktu" );
             System.out.print("Peminjaman Buku Berhasil! Anda sekarang meminjam "+jumlahBukuDiPinjam+" buku. Deadline peminjaman buku ini adalah "+deadline+".\n");
             break loop;

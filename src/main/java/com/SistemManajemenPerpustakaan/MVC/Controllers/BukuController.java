@@ -1,10 +1,11 @@
-package com.SistemManajemenPerpustakaan.MVC.Controllers.Books;
+package com.SistemManajemenPerpustakaan.MVC.Controllers;
 
 import com.SistemManajemenPerpustakaan.DTOs.BukuDTO;
 import com.SistemManajemenPerpustakaan.MVC.Controllers.Factory.DTOtoModel;
 import com.SistemManajemenPerpustakaan.MVC.Models.Book.Buku;
-import com.SistemManajemenPerpustakaan.MVC.Views.Console.Books.BukuView;
+import com.SistemManajemenPerpustakaan.MVC.Views.Console.BukuView;
 import com.SistemManajemenPerpustakaan.Repositories.BukuRepository;
+import com.SistemManajemenPerpustakaan.Utils.IsObjekKosong;
 
 import java.util.List;
 
@@ -16,9 +17,9 @@ public class BukuController {
             int pilihan = BukuView.menuBuku();
             switch (pilihan){
                 case 1: BukuView.tambahBuku(); break;
-                case 2: if (!BukuView.isBukuKosong()) BukuView.detailBuku(); break;
-                case 3: if (!BukuView.isBukuKosong()) BukuView.updateBuku(); break;
-                case 4: if (!BukuView.isBukuKosong()) BukuView.hapusBuku(); break;
+                case 2: if (!IsObjekKosong.check(BukuController.ambilSemuaBuku(), "Buku")) BukuView.detailBuku(); break;
+                case 3: if (!IsObjekKosong.check(BukuController.ambilSemuaBuku(), "Buku")) BukuView.updateBuku(); break;
+                case 4: if (!IsObjekKosong.check(BukuController.ambilSemuaBuku(), "Buku")) BukuView.hapusBuku(); break;
                 case 5: break loop;
             }
         }
@@ -35,7 +36,7 @@ public class BukuController {
         return  BukuRepository.ambilBukuById(kodeBuku);
     }
 
-    public static List<Buku> AmbilSemuaBuku(){
+    public static List<Buku> ambilSemuaBuku(){
         return BukuRepository.ambilSemua();
     }
 
@@ -51,8 +52,6 @@ public class BukuController {
 
     //DELETE
     public static void hapusBuku(String kodeBuku) {
-        // ### PERUBAHAN DI SINI ###
-        // Memanggil method yang sudah benar di Repository
-        BukuRepository.hapusBuku(kodeBuku);
+        BukuRepository.hapus(kodeBuku);
     }
 }

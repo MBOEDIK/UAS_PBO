@@ -366,6 +366,103 @@ public class InformationPrinter {
         }
     }
 
+    public static <T> void tampilkanObjek(List<T> daftarObjek, String judul,
+                                          String namaAtributFilter, Object nilaiFilter,
+                                          String namaAtributTampil,
+                                          Function<String, String> stringFilter) {
+        if (daftarObjek == null || daftarObjek.isEmpty()) {
+            System.out.println("Daftar objek kosong!");
+            return;
+        }
+
+        System.out.println(judul != null ? judul :
+                "\nDaftar Objek dengan " + namaAtributFilter + " = " + nilaiFilter + ":");
+
+        int counter = 1;
+        for (T objek : daftarObjek) {
+            try {
+                // Dapatkan field untuk filter
+                Field fieldFilter = cariAtribut(objek.getClass(), namaAtributFilter);
+                fieldFilter.setAccessible(true);
+                Object nilaiAtributFilter = fieldFilter.get(objek);
+
+                // Bandingkan nilai filter
+                if ((nilaiAtributFilter == null && nilaiFilter == null) ||
+                        (nilaiAtributFilter != null && nilaiAtributFilter.equals(nilaiFilter))) {
+
+                    // Dapatkan field untuk ditampilkan
+                    Field fieldTampil = cariAtribut(objek.getClass(), namaAtributTampil);
+                    fieldTampil.setAccessible(true);
+                    Object nilaiAtributTampil = fieldTampil.get(objek);
+
+                    // Format output
+                    String namaDisplay = formatNamaAtribut(namaAtributTampil, stringFilter);
+                    String nilaiDisplay = nilaiAtributTampil != null ?
+                            nilaiAtributTampil.toString() : "null";
+
+                    System.out.printf("      %d. (%s) %s: %s%n",
+                            counter++,
+                            objek.getClass().getSimpleName(),
+                            namaDisplay,
+                            nilaiDisplay);
+                }
+            } catch (Exception e) {
+                System.out.printf("      %d. (%s) Error: %s%n",
+                        counter++,
+                        objek.getClass().getSimpleName(),
+                        e.getMessage());
+            }
+        }
+
+        if (counter == 1) {
+            System.out.println("Tidak ada objek yang memenuhi kriteria");
+        }
+    }
+
+    // Overload tanpa stringFilter
+    public static <T> void tampilkanObjek(List<T> daftarObjek, String judul,
+                                          String namaAtributFilter, Object nilaiFilter,
+                                          String namaAtributTampil) {
+        tampilkanObjek(daftarObjek, judul, namaAtributFilter, nilaiFilter,
+                namaAtributTampil, null);
+    }
+
+    // Overload jika ingin menampilkan toString() objek
+    public static <T> void tampilkanObjek(List<T> daftarObjek, String judul,
+                                          String namaAtributFilter, Object nilaiFilter) {
+        if (daftarObjek == null || daftarObjek.isEmpty()) {
+            System.out.println("Daftar objek kosong!");
+            return;
+        }
+
+        System.out.println(judul != null ? judul :
+                "\nDaftar Objek dengan " + namaAtributFilter + " = " + nilaiFilter + ":");
+
+        int counter = 1;
+        for (T objek : daftarObjek) {
+            try {
+                Field fieldFilter = cariAtribut(objek.getClass(), namaAtributFilter);
+                fieldFilter.setAccessible(true);
+                Object nilaiAtributFilter = fieldFilter.get(objek);
+
+                if ((nilaiAtributFilter == null && nilaiFilter == null) ||
+                        (nilaiAtributFilter != null && nilaiAtributFilter.equals(nilaiFilter))) {
+
+                    System.out.printf("      %d. %s%n", counter++, objek.toString());
+                }
+            } catch (Exception e) {
+                System.out.printf("      %d. (%s) Error: %s%n",
+                        counter++,
+                        objek.getClass().getSimpleName(),
+                        e.getMessage());
+            }
+        }
+
+        if (counter == 1) {
+            System.out.println("Tidak ada objek yang memenuhi kriteria");
+        }
+    }
+
     // Overload tanpa stringFilter
     public static <T> void tampilkanObjek(List<T> daftarObjek, String judul, String namaAtribut) {
         tampilkanObjek(daftarObjek, judul, namaAtribut, null);

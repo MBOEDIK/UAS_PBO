@@ -9,5 +9,8 @@
         <module name="SistemManajemenPerpustakaan" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="UAS_PBO" target="23" />
+    </bytecodeTargetLevel>
   </component>
 </project>

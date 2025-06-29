@@ -1,42 +1,48 @@
 package com.SistemManajemenPerpustakaan.MVC.Controllers;
 
+import com.SistemManajemenPerpustakaan.Enums.JenisPengguna;
+import com.SistemManajemenPerpustakaan.MVC.Models.User.Admin;
+import com.SistemManajemenPerpustakaan.MVC.Models.User.Anggota;
 import com.SistemManajemenPerpustakaan.MVC.Models.User.Pengguna;
 import com.SistemManajemenPerpustakaan.MVC.Views.Console.LoginView;
 import com.SistemManajemenPerpustakaan.Repositories.PenggunaRepository;
-import com.SistemManajemenPerpustakaan.Utils.IdValidator;
+import com.SistemManajemenPerpustakaan.Utils.IsTwoSameChecker;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LoginController {
 
     //ATTRIBUTE
-    private static Pengguna penggunaSaatIni;
+    private static Pengguna anggotaSaatIni;
 
     //OBJECT
     private static List<Pengguna> penggunas = PenggunaRepository.ambilSemua();
 
     //MENGONTROL LOGIKA LOGIN
     public static void login(){
-        //MENAMPILKAN MENU LOGIN
-        String jenisPengguna = LoginView.menuInputJenisPengguna();
+        loop : while (true){
+            //MENAMPILKAN MENU LOGIN
+            JenisPengguna jenisPengguna = LoginView.menuInputJenisPengguna();
 
-        while (true){
             //VALIDASI USERNAME DAN PASSWORD
-            String[] tempStrArr = LoginView.inputLogin(jenisPengguna);
+            String[] tempStrArr = LoginView.inputLogin(jenisPengguna.toString());
             int i = 0;
             for (Pengguna pengguna : penggunas){
                 if (
-                        IdValidator.validasiStr(tempStrArr[0], pengguna.getUsername()) &&
-                                IdValidator.validasiStr(tempStrArr[1], pengguna.getPassword()) &&
-                                jenisPengguna.equals("ADMIN")){
+                        tempStrArr[0].equals(pengguna.getUsername()) &&
+                                tempStrArr[1].equals(pengguna.getPassword()) &&
+                                jenisPengguna == JenisPengguna.ADMIN && pengguna instanceof Admin){
+                    anggotaSaatIni = pengguna;
                     MenuController.menuAdmin();
+                    continue loop;
                 }
                 if (
-                        IdValidator.validasiStr(tempStrArr[0], pengguna.getUsername()) &&
-                                IdValidator.validasiStr(tempStrArr[1], pengguna.getPassword()) &&
-                                jenisPengguna.equals("ANGGOTA")){
-
+                        tempStrArr[0].equals(pengguna.getUsername()) &&
+                                tempStrArr[1].equals(pengguna.getPassword()) &&
+                                jenisPengguna == JenisPengguna.ANGGOTA && pengguna instanceof Anggota){
+                    anggotaSaatIni = pengguna;
+                    MenuController.menuAnggota();
+                    continue loop;
                 }
 
                 //MEMANGGIL TAMPILAN USERNAME/PASSOWRD SALAH
@@ -48,5 +54,5 @@ public class LoginController {
         }
     }
 
-    public static Pengguna getPenggunaSaatIni() { return penggunaSaatIni; }
+    public static Pengguna getPenggunaSaatIni() { return anggotaSaatIni; }
 }

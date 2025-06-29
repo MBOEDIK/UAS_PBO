@@ -1,10 +1,9 @@
-package com.SistemManajemenPerpustakaan.MVC.Controllers.Users;
+package com.SistemManajemenPerpustakaan.MVC.Controllers;
 
 import com.SistemManajemenPerpustakaan.DTOs.PenggunaDTO;
 import com.SistemManajemenPerpustakaan.MVC.Controllers.Factory.DTOtoModel;
 import com.SistemManajemenPerpustakaan.MVC.Models.User.Pengguna;
-import com.SistemManajemenPerpustakaan.MVC.Views.Console.Users.PenggunaView;
-import com.SistemManajemenPerpustakaan.Repositories.PenggunaRepository;
+import com.SistemManajemenPerpustakaan.MVC.Views.Console.PenggunaView;
 import com.SistemManajemenPerpustakaan.Repositories.PenggunaRepository;
 
 import java.util.List;
@@ -36,7 +35,7 @@ public class PenggunaController {
         return  PenggunaRepository.ambilPenggunaById(kodePengguna);
     }
 
-    public static List<Pengguna> AmbilSemuaPengguna(){
+    public static List<Pengguna> ambilSemuaPengguna(){
         return PenggunaRepository.ambilSemua();
     }
 
