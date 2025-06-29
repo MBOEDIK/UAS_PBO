@@ -2,7 +2,10 @@ package com.SistemManajemenPerpustakaan.MVC.Views.Console;
 
 import com.SistemManajemenPerpustakaan.DTOs.PenggunaDTO;
 import com.SistemManajemenPerpustakaan.Enums.JenisPengguna;
+import com.SistemManajemenPerpustakaan.MVC.Controllers.BukuController;
 import com.SistemManajemenPerpustakaan.MVC.Controllers.PenggunaController;
+import com.SistemManajemenPerpustakaan.MVC.Models.Book.Buku;
+import com.SistemManajemenPerpustakaan.MVC.Models.User.Pengguna;
 import com.SistemManajemenPerpustakaan.Utils.InformationPrinter;
 import com.SistemManajemenPerpustakaan.Utils.IdGenerator;
 
@@ -61,7 +64,7 @@ public class PenggunaView {
 
         }
 
-        penggunaDTO.id = IdGenerator.generate();
+        penggunaDTO.id = IdGenerator.generateUniqueId(PenggunaController.ambilSemuaPengguna(), Pengguna::getId);
         penggunaDTO.terlambatANGGOTA = false;
         PenggunaController.tambahPengguna(penggunaDTO);
     }

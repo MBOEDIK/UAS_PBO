@@ -88,7 +88,7 @@ public class BukuView {
 
         }
 
-        bukuDTO.kode = IdGenerator.generate();
+        bukuDTO.kode = IdGenerator.generateUniqueId(BukuController.ambilSemuaBuku(), Buku::getKode);
         bukuDTO.tersedia = true;
         BukuController.tambahBuku(bukuDTO);
     }

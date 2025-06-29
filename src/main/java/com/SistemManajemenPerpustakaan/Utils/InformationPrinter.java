@@ -482,6 +482,144 @@ public class InformationPrinter {
         }
     }
 
+    /**
+     * Menampilkan daftar objek tanpa penomoran urut dan tanpa newline otomatis
+     * @param <T> Tipe objek dalam list
+     * @param daftarObjek List berisi objek-objek
+     * @param namaAtribut Nama atribut yang akan ditampilkan
+     * @param stringFilter Fungsi untuk memformat string (opsional)
+     */
+    public static <T> void tampilkanObjekTanpaNomor(List<T> daftarObjek,
+                                                    String namaAtribut,
+                                                    Function<String, String> stringFilter) {
+        if (daftarObjek == null || daftarObjek.isEmpty()) {
+            System.out.print("Daftar objek kosong!");
+            return;
+        }
+
+        for (T objek : daftarObjek) {
+            try {
+                Field field = cariAtribut(objek.getClass(), namaAtribut);
+                field.setAccessible(true);
+                Object nilai = field.get(objek);
+
+                String namaDisplay = formatNamaAtribut(namaAtribut, stringFilter);
+                String nilaiDisplay = nilai != null ? nilai.toString() : "null";
+
+                System.out.print("(" + objek.getClass().getSimpleName()
+                        + ") " + namaDisplay + ": " + nilaiDisplay);
+            } catch (Exception e) {
+                System.out.print("(" + objek.getClass().getSimpleName()
+                        + ") Error: " + e.getMessage());
+            }
+        }
+    }
+
+    // Overload tanpa stringFilter
+    public static <T> void tampilkanObjekTanpaNomor(List<T> daftarObjek,
+                                                    String namaAtribut) {
+        tampilkanObjekTanpaNomor(daftarObjek, namaAtribut, null);
+    }
+
+    /**
+     * Menampilkan daftar objek dengan filter tanpa penomoran urut dan tanpa newline otomatis
+     * @param <T> Tipe objek dalam list
+     * @param daftarObjek List berisi objek-objek
+     * @param namaAtributFilter Nama atribut untuk filter
+     * @param nilaiFilter Nilai filter yang harus dipenuhi
+     * @param namaAtributTampil Nama atribut yang akan ditampilkan
+     * @param stringFilter Fungsi untuk memformat string (opsional)
+     */
+    public static <T> void tampilkanObjekTanpaNomor(List<T> daftarObjek,
+                                                    String namaAtributFilter, Object nilaiFilter,
+                                                    String namaAtributTampil,
+                                                    Function<String, String> stringFilter) {
+        if (daftarObjek == null || daftarObjek.isEmpty()) {
+            System.out.print("Daftar objek kosong!");
+            return;
+        }
+
+        boolean adaYangSesuai = false;
+        for (T objek : daftarObjek) {
+            try {
+                // Filter objek
+                Field fieldFilter = cariAtribut(objek.getClass(), namaAtributFilter);
+                fieldFilter.setAccessible(true);
+                Object nilaiAtributFilter = fieldFilter.get(objek);
+
+                if ((nilaiAtributFilter == null && nilaiFilter == null) ||
+                        (nilaiAtributFilter != null && nilaiAtributFilter.equals(nilaiFilter))) {
+
+                    // Tampilkan atribut yang diminta
+                    Field fieldTampil = cariAtribut(objek.getClass(), namaAtributTampil);
+                    fieldTampil.setAccessible(true);
+                    Object nilaiAtributTampil = fieldTampil.get(objek);
+
+                    String namaDisplay = formatNamaAtribut(namaAtributTampil, stringFilter);
+                    String nilaiDisplay = nilaiAtributTampil != null ?
+                            nilaiAtributTampil.toString() : "null";
+
+                    System.out.print("(" + objek.getClass().getSimpleName()
+                            + ") " + namaDisplay + ": " + nilaiDisplay);
+                    adaYangSesuai = true;
+                }
+            } catch (Exception e) {
+                System.out.print("(" + objek.getClass().getSimpleName()
+                        + ") Error: " + e.getMessage());
+            }
+        }
+
+        if (!adaYangSesuai) {
+            System.out.print("Tidak ada objek yang memenuhi kriteria");
+        }
+    }
+
+    // Overload tanpa stringFilter
+    public static <T> void tampilkanObjekTanpaNomor(List<T> daftarObjek,
+                                                    String namaAtributFilter, Object nilaiFilter,
+                                                    String namaAtributTampil) {
+        tampilkanObjekTanpaNomor(daftarObjek, namaAtributFilter, nilaiFilter,
+                namaAtributTampil, null);
+    }
+
+    /**
+     * Menampilkan toString() objek tanpa penomoran urut dan tanpa newline otomatis
+     * @param <T> Tipe objek dalam list
+     * @param daftarObjek List berisi objek-objek
+     * @param namaAtributFilter Nama atribut untuk filter
+     * @param nilaiFilter Nilai filter yang harus dipenuhi
+     */
+    public static <T> void tampilkanObjekTanpaNomor(List<T> daftarObjek,
+                                                    String namaAtributFilter, Object nilaiFilter) {
+        if (daftarObjek == null || daftarObjek.isEmpty()) {
+            System.out.print("Daftar objek kosong!");
+            return;
+        }
+
+        boolean adaYangSesuai = false;
+        for (T objek : daftarObjek) {
+            try {
+                Field fieldFilter = cariAtribut(objek.getClass(), namaAtributFilter);
+                fieldFilter.setAccessible(true);
+                Object nilaiAtributFilter = fieldFilter.get(objek);
+
+                if ((nilaiAtributFilter == null && nilaiFilter == null) ||
+                        (nilaiAtributFilter != null && nilaiAtributFilter.equals(nilaiFilter))) {
+
+                    System.out.print("" + objek.toString());
+                    adaYangSesuai = true;
+                }
+            } catch (Exception e) {
+                System.out.print("(" + objek.getClass().getSimpleName()
+                        + ") Error: " + e.getMessage());
+            }
+        }
+
+        if (!adaYangSesuai) {
+            System.out.print("Tidak ada objek yang memenuhi kriteria");
+        }
+    }
+
     // Metode untuk menutup scanner (opsional, panggil saat aplikasi benar-benar selesai)
     public static void tutupScanner() {
         scanner.close();

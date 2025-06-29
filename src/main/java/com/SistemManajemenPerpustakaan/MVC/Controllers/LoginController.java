@@ -55,4 +55,5 @@ public class LoginController {
     }
 
     public static Pengguna getPenggunaSaatIni() { return anggotaSaatIni; }
+    public static void setPenggunaSaatIni(Pengguna pengguna) { anggotaSaatIni = pengguna; }
 }

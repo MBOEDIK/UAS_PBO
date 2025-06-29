@@ -6,11 +6,13 @@ import com.SistemManajemenPerpustakaan.Enums.JenisBuku;
 import com.SistemManajemenPerpustakaan.Enums.JenisPengguna;
 import com.SistemManajemenPerpustakaan.MVC.Controllers.BukuController;
 import com.SistemManajemenPerpustakaan.MVC.Controllers.PenggunaController;
+import com.SistemManajemenPerpustakaan.MVC.Models.Book.Buku;
+import com.SistemManajemenPerpustakaan.MVC.Models.User.Pengguna;
 
 public class DummyDataGenerator {
     public static void Generate(){
         PenggunaDTO penggunaDTO1 = new PenggunaDTO();
-        penggunaDTO1.id = IdGenerator.generate();
+        penggunaDTO1.id = IdGenerator.generateUniqueId(PenggunaController.ambilSemuaPengguna(), Pengguna::getId);
         penggunaDTO1.nama = "Prabowo";
         penggunaDTO1.alamat = "Jakarta, Indonesia";
         penggunaDTO1.jenis = JenisPengguna.ADMIN;
@@ -21,7 +23,7 @@ public class DummyDataGenerator {
         PenggunaController.tambahPengguna(penggunaDTO1);
 
         PenggunaDTO penggunaDTO2 = new PenggunaDTO();
-        penggunaDTO2.id = IdGenerator.generate();
+        penggunaDTO2.id = IdGenerator.generateUniqueId(PenggunaController.ambilSemuaPengguna(), Pengguna::getId);
         penggunaDTO2.nama = "Budi";
         penggunaDTO2.alamat = "Tegalgondo, Malang, Jawa Timur, Indonesia";
         penggunaDTO2.jenis = JenisPengguna.ANGGOTA;
@@ -34,7 +36,7 @@ public class DummyDataGenerator {
         PenggunaController.tambahPengguna(penggunaDTO2);
 
         BukuDTO bukuDTO1 = new BukuDTO();
-        bukuDTO1.kode = IdGenerator.generate();
+        bukuDTO1.kode = IdGenerator.generateUniqueId(BukuController.ambilSemuaBuku(), Buku::getKode);
         bukuDTO1.judul = "Majalah A";
         bukuDTO1.pengarang = "Cahyono";
         bukuDTO1.tahunTerbit = "2022";
@@ -44,7 +46,7 @@ public class DummyDataGenerator {
         BukuController.tambahBuku(bukuDTO1);
 
         BukuDTO bukuDTO2 = new BukuDTO();
-        bukuDTO2.kode = IdGenerator.generate();
+        bukuDTO2.kode = IdGenerator.generateUniqueId(BukuController.ambilSemuaBuku(), Buku::getKode);
         bukuDTO2.judul = "Novel C";
         bukuDTO2.pengarang = "Agus";
         bukuDTO2.tahunTerbit = "1999";

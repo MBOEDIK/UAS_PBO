@@ -52,6 +52,6 @@ public class BukuController {
 
     //DELETE
     public static void hapusBuku(String kodeBuku) {
-        BukuRepository.hapus(kodeBuku);
+        BukuRepository.hapusBuku(kodeBuku);
     }
 }
