@@ -9,4 +9,7 @@ module com.SistemManajemenPerpustakaan.Main {
 
     opens com.SistemManajemenPerpustakaan.Main to javafx.fxml;
     exports com.SistemManajemenPerpustakaan.Main;
+
+    exports com.SistemManajemenPerpustakaan.MVC.Views.GUI;
+    opens com.SistemManajemenPerpustakaan.MVC.Views.GUI to javafx.fxml;
 }
