@@ -10,9 +10,9 @@ public class MenuController{
             int x = MenuView.menuAdmin();
             if (x == 4) return;
             switch (x){
-                case 1 -> BukuController.jalankanBukuView();
-                case 2 -> PenggunaController.jalankanPenggunaView();
-                case 3 -> PeminjamanController.jalankanPeminjamanView();
+                case 1 -> BukuController.kelolaMenuBuku();
+                case 2 -> PenggunaController.kelolaMenuPengguna();
+                case 3 -> PeminjamanController.handleDetailPeminjaman();
             }
         }
     }
@@ -23,8 +23,8 @@ public class MenuController{
             int x = MenuView.menuAnggota();
             if (x == 3) return;
             switch (x){
-                case 1 -> PeminjamanController.jalankanPeminjamanView(1);
-                case 2 -> PeminjamanController.jalankanPeminjamanView(2);
+                case 1 -> PeminjamanController.handleTambahPeminjaman();
+                case 2 -> PeminjamanController.handleKembalikanBuku();
             }
         }
     }

@@ -13,7 +13,7 @@ import java.util.List;
 public class LoginController {
 
     //ATTRIBUTE
-    private static Pengguna anggotaSaatIni;
+    public static Pengguna anggotaSaatIni;
 
     //OBJECT
     private static List<Pengguna> penggunas = PenggunaRepository.ambilSemua();
@@ -32,7 +32,6 @@ public class LoginController {
                         tempStrArr[0].equals(pengguna.getUsername()) &&
                                 tempStrArr[1].equals(pengguna.getPassword()) &&
                                 jenisPengguna == JenisPengguna.ADMIN && pengguna instanceof Admin){
-                    anggotaSaatIni = pengguna;
                     MenuController.menuAdmin();
                     continue loop;
                 }
@@ -55,5 +54,16 @@ public class LoginController {
     }
 
     public static Pengguna getPenggunaSaatIni() { return anggotaSaatIni; }
-    public static void setPenggunaSaatIni(Pengguna pengguna) { anggotaSaatIni = pengguna; }
+
+    public static void setPenggunaSaatIni(Pengguna pengguna) {
+        anggotaSaatIni = pengguna;
+    }
+
+    public static void refreshPenggunaSaatIni(Pengguna penggunaSaatIni) {
+        for (Pengguna pengguna : PenggunaController.ambilSemuaPengguna()){
+            if (pengguna.getId().equals(penggunaSaatIni.getId())) {
+                anggotaSaatIni = pengguna;
+            }
+        }
+    }
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="500.0" prefWidth="600.0" spacing="15.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SistemManajemenPerpustakaan.MVC.Views.GUI.subController.PinjamBukuController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    <children>
+        <Label text="Pinjam Buku">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label text="Pilih buku yang ingin Anda pinjam dari daftar di bawah ini:" />
+        <ListView fx:id="listViewBukuTersedia" VBox.vgrow="ALWAYS" />
+        <HBox alignment="CENTER_RIGHT" spacing="10.0">
+            <children>
+                <Button fx:id="btnBatal" onAction="#handleBatal" styleClass="secondary-button" text="Batal" />
+                <Button fx:id="btnPinjam" onAction="#handlePinjam" styleClass="primary-button" text="Pinjam Buku Terpilih" />
+            </children>
+        </HBox>
+    </children>
+</VBox>

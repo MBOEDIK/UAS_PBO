@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="602.0" prefWidth="938.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SistemManajemenPerpustakaan.MVC.Views.GUI.AdminMenuController">
+    <children>
+        <VBox prefHeight="602.0" prefWidth="938.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="570.0" styleClass="header-background" stylesheets="@AdminMenu.css">
+                    <children>
+                        <Label prefHeight="31.0" prefWidth="255.0" styleClass="header-title" text="Dashboard Admin" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="24.0" />
+                            </font>
+                        </Label>
+                        <Pane prefHeight="80.0" prefWidth="273.0" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="btnBackToAdminLogin" mnemonicParsing="false" onAction="#actBackToAdminLogin" prefWidth="108.0" styleClass="logout-button" text="Log out">
+                     <HBox.margin>
+                        <Insets right="25.0" />
+                     </HBox.margin>
+                  </Button>
+                        <Pane prefHeight="45.0" prefWidth="45.0" styleClass="profile-circle" />
+                    </children>
+                    <padding>
+                        <Insets left="40.0" right="40.0" />
+                    </padding>
+                </HBox>
+
+                <VBox prefHeight="522.0" prefWidth="938.0" spacing="15.0" VBox.vgrow="ALWAYS">
+                    <padding>
+                        <Insets bottom="30.0" left="40.0" right="40.0" top="20.0" />
+                    </padding>
+                    <children>
+                        <HBox alignment="CENTER" prefHeight="117.0" prefWidth="858.0" spacing="20.0">
+                            <children>
+                                <Button fx:id="btnDetailPeminjaman" mnemonicParsing="false" onAction="#actDetailPeminjaman" prefHeight="14.0" prefWidth="207.0" styleClass="manajemen-button" stylesheets="@AdminMenu.css" text="Detail Peminjaman">
+                           <HBox.margin>
+                              <Insets right="60.0" />
+                           </HBox.margin></Button>
+                                <Button fx:id="btnManajemenBuku" mnemonicParsing="false" onAction="#actManajemenBuku" prefWidth="185.0" styleClass="manajemen-button" stylesheets="@AdminMenu.css" text="Manajemen Buku">
+                           <HBox.margin>
+                              <Insets right="60.0" />
+                           </HBox.margin></Button>
+                                <Button fx:id="btnManajemenPengguna" mnemonicParsing="false" onAction="#actManajemenPengguna" prefWidth="204.0" styleClass="manajemen-button" stylesheets="@AdminMenu.css" text="Manajemen Pengguna" />
+                            </children>
+                     <VBox.margin>
+                        <Insets bottom="-5.0" top="-10.0" />
+                     </VBox.margin>
+                        </HBox>
+                  <Pane prefHeight="45.0" prefWidth="45.0" styleClass="separator-line" stylesheets="@AdminMenu.css" />
+
+                        <VBox prefHeight="455.0" prefWidth="858.0" spacing="15.0" VBox.vgrow="ALWAYS">
+                            <children>
+                                <BorderPane fx:id="contentArea" prefHeight="355.0" prefWidth="858.0" VBox.vgrow="ALWAYS" />
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

@@ -2,27 +2,40 @@ package com.SistemManajemenPerpustakaan.Main;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class MainApp extends Application { // <- Extend Application
+import java.io.IOException;
+import java.util.Objects;
 
-    public static void main(String[] args) {
-        launch(args); // <- Jalankan JavaFX
+public class MainApp extends Application {
+    @Override
+    public void start(Stage stage) throws IOException {
+
+        try {
+            Font.loadFont(getClass().getResourceAsStream("/fonts/Poppins-Thin.ttf"), 10);
+            Font.loadFont(getClass().getResourceAsStream("/fonts/Poppins-Regular.ttf"), 10);
+            Font.loadFont(getClass().getResourceAsStream("/fonts/Poppins-Bold.ttf"), 10);
+            Font.loadFont(getClass().getResourceAsStream("/fonts/Poppins-Black.ttf"), 10);
+            System.out.println("Varian font Poppins berhasil dimuat.");
+        } catch (Exception e) {
+            System.err.println("Gagal memuat font Poppins: " + e.getMessage());
+        }
+
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/com.SistemManajemenPerpustakaan/views/LoginView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 938, 602);
+
+        String cssPath = Objects.requireNonNull(getClass().getResource("/com.SistemManajemenPerpustakaan/views/StyleUtama.css")).toExternalForm();
+        scene.getStylesheets().add(cssPath);
+
+        stage.setTitle("Hello!");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
     }
 
-    @Override
-    public void start(Stage stage) throws Exception {
-        // Load FXML (roti)
-        Parent root = FXMLLoader.load(getClass().getResource("/login.fxml"));
-
-        // Setup Scene (piring)
-        Scene scene = new Scene(root, 800, 600);
-
-        // Kasih ke Stage (meja)
-        stage.setScene(scene);
-        stage.setTitle("Burger Apps");
-        stage.show();
+    public static void main(String[] args) {
+        launch(args);
     }
 }

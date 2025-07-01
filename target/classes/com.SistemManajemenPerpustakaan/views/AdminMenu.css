@@ -1,0 +1,128 @@
+/* General Font Style */
+.root {
+    -fx-font-family: 'Arial';
+}
+
+/* Header Section */
+.header-background {
+    -fx-background-color: #384282; /* Warna Teal Tua */
+}
+
+.header-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.logout-button {
+    -fx-background-radius: 25px;
+    -fx-border-radius: 25px;
+    -fx-font-size: 14px;
+    -fx-pref-height: 40px;
+
+    -fx-text-fill: white;
+    -fx-background-color: #3F51B5;
+
+    -fx-font-family: "Poppins", "Segoe UI", sans-serif;
+    -fx-font-weight: bold;
+
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 1);
+}
+
+.manajemen-button {
+    -fx-background-radius: 25px;
+    -fx-border-radius: 25px;
+    -fx-font-size: 14px;
+    -fx-pref-height: 40px;
+
+    -fx-text-fill: white;
+    -fx-background-color: #3F51B5;
+
+    -fx-font-family: "Poppins", "Segoe UI", sans-serif;
+    -fx-font-weight: bold;
+
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 1);
+}
+
+.button:hover {
+    -fx-background-color: #5c6bc0;
+}
+
+.button:pressed {
+    -fx-background-color: #303f9f; /* Warna menjadi lebih gelap */
+
+    /* Sedikit menggeser tombol ke bawah agar ada efek 'ditekan' */
+    -fx-translate-y: 1px;
+
+    /* Menghilangkan bayangan saat ditekan agar terlihat 'masuk' ke dalam */
+    -fx-effect: none;
+}
+
+.profile-circle {
+    -fx-background-color: white;
+    -fx-background-radius: 50; /* Membuatnya menjadi lingkaran sempurna */
+    -fx-min-width: 45px;
+    -fx-min-height: 45px;
+    -fx-max-width: 45px;
+    -fx-max-height: 45px;
+    -fx-margin-left: 20px;
+}
+
+.separator-line {
+    -fx-border-radius: 25px;
+    -fx-background-radius: 25px;
+    -fx-pref-height: 65px;
+    -fx-background-color: #468989;
+}
+
+.section-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #3C3C3C;
+}
+
+/* List Item Placeholder */
+.list-item {
+    -fx-background-color: #E1E7FF;
+    -fx-background-radius: 50px;
+    -fx-border-width: 2px;
+    -fx-min-height: 30px;;
+    -fx-max-height: 40px;
+}
+
+/* Custom ScrollPane Style */
+.custom-scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.custom-scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+/* Style for the vertical scroll bar */
+.custom-scroll-pane .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 8px;
+}
+
+/* Hiding the increment and decrement buttons */
+.custom-scroll-pane .scroll-bar .increment-button,
+.custom-scroll-pane .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-opacity: 0;
+}
+
+/* Style for the scroll bar track */
+.custom-scroll-pane .scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+    -fx-background-radius: 5px;
+    -fx-border-color: transparent;
+}
+
+/* Style for the scroll bar thumb (the part you drag) */
+.custom-scroll-pane .scroll-bar:vertical .thumb {
+    -fx-background-color: #BDE0E0; /* Warna Teal Muda */
+    -fx-background-radius: 5px;
+}

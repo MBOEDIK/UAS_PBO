@@ -1,0 +1,69 @@
+.label {
+    -fx-font-family: "Poppins";
+    -fx-font-weight: normal; /* atau 400 */
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffff;
+}
+
+.judul-utama-label {
+    -fx-font-family: "Poppins";
+    -fx-font-weight: bold; /* atau 900, membuatnya sangat tebal */
+    -fx-font-size: 50px;
+    -fx-text-fill: #ffff; /* Warna biru dongker */
+}
+
+/* --- Gaya untuk TextField dan PasswordField --- */
+.text-field, .password-field {
+    -fx-background-color: #ffff;
+    -fx-text-fill: #263238;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-border-width: 1px;
+    -fx-border-color: #343478   ;
+
+    -fx-font-family: "Poppins";
+    -fx-font-size: 14px;
+}
+
+
+.button {
+    /* Bentuk dan Ukuran */
+    -fx-background-radius: 25px; /* Sudut sangat tumpul/seperti pil */
+    -fx-border-radius: 25px;     /* Border juga mengikuti bentuk tumpul */
+    -fx-font-size: 14px;
+    -fx-pref-height: 40px;       /* Memberi tinggi yang pas agar mudah diklik */
+
+    /* Warna */
+    -fx-text-fill: white;        /* Teks warna putih */
+    -fx-background-color: #3f51b5; /* Warna biru indigo sebagai warna dasar */
+
+    /* Font */
+    -fx-font-family: "Poppins", "Segoe UI", sans-serif;
+    -fx-font-weight: bold;
+
+    /* Efek bayangan untuk membuatnya sedikit terangkat (opsional tapi bagus) */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 1);
+}
+
+.button:hover {
+    -fx-background-color: #5c6bc0; /* Warna menjadi lebih terang */
+}
+
+.button:pressed {
+    -fx-background-color: #303f9f; /* Warna menjadi lebih gelap */
+
+    /* Sedikit menggeser tombol ke bawah agar ada efek 'ditekan' */
+    -fx-translate-y: 1px;
+
+    /* Menghilangkan bayangan saat ditekan agar terlihat 'masuk' ke dalam */
+    -fx-effect: none;
+}
+
+/* Memberi latar belakang pada elemen yang memiliki style class .background-pane */
+.background-pane {
+    -fx-background-image: url('../images/Gemini_Generated_Image_mvf93vmvf93vmvf9.png'); /* Path relatif ke gambar */
+    -fx-background-size: cover; /* cover, contain, atau 100% 100% */
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+     -fx-background-color: #ffff;
+}

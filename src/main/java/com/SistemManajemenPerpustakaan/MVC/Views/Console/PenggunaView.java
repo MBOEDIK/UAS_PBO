@@ -1,156 +1,117 @@
 package com.SistemManajemenPerpustakaan.MVC.Views.Console;
 
 import com.SistemManajemenPerpustakaan.DTOs.PenggunaDTO;
-import com.SistemManajemenPerpustakaan.Enums.JenisPengguna;
-import com.SistemManajemenPerpustakaan.MVC.Controllers.BukuController;
-import com.SistemManajemenPerpustakaan.MVC.Controllers.PenggunaController;
-import com.SistemManajemenPerpustakaan.MVC.Models.Book.Buku;
 import com.SistemManajemenPerpustakaan.MVC.Models.User.Pengguna;
 import com.SistemManajemenPerpustakaan.Utils.InformationPrinter;
-import com.SistemManajemenPerpustakaan.Utils.IdGenerator;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class PenggunaView {
-    //OBJECT
-    private static Scanner input = new Scanner(System.in);
+    private static final Scanner input = new Scanner(System.in);
 
-    //METHOD
-    //PILIHAN AKSI KE BUKU
-    public static int menuPengguna(){
-        while (true){
-            int x;
-            System.out.print("" +
-                    "\n-- Manajemen Pengguna --" +
-                    "\n1. Tambah Pengguna" +
-                    "\n2. Tampilkan Detail Pengguna" +
-                    "\n3. Update Pengguna" +
-                    "\n4. Hapus Pengguna" +
-                    "\n5. Kembali ke Halaman Admin" +
-                    "\nMasukkan Pilihan: ");
-            x = input.nextInt();
-            input.nextLine();
-            if (x < 1 || x > 5) {
-                System.out.print("Pilihan tidak ada!\n");
-                continue;
-            }
-            return x;
-        }
+    /**
+     * Menampilkan menu utama untuk manajemen pengguna dan mengembalikan pilihan mentah pengguna.
+     * @return Pilihan integer dari pengguna.
+     */
+    public int tampilkanMenuPengguna() {
+        System.out.print("\n-- Manajemen Pengguna --" +
+                "\n1. Tambah Pengguna" +
+                "\n2. Tampilkan Detail Pengguna" +
+                "\n3. Update Pengguna" +
+                "\n4. Hapus Pengguna" +
+                "\n5. Kembali ke Halaman Admin" +
+                "\nMasukkan Pilihan: ");
+        int pilihan = input.nextInt();
+        input.nextLine(); // Membersihkan buffer
+        return pilihan;
     }
 
-    //CREATE
-    public static void tambahPengguna(){
-        PenggunaDTO penggunaDTO = new PenggunaDTO();
-        System.out.print("\nTAMBAH BUKU ->");
-        System.out.print("" +
-                "\nPilih jenis pengguna:" +
-                "\n" +
-                "\n      1. Admin" +
-                "\n      2. Anggota" +
-                "\n" +
+    /**
+     * Menampilkan header untuk form tambah pengguna.
+     */
+    public void tampilkanHeaderTambahPengguna() {
+        System.out.println("\n--- Tambah Pengguna Baru ---");
+    }
+
+    /**
+     * Meminta pengguna untuk memilih jenis pengguna (Admin atau Anggota).
+     * @return Pilihan integer dari pengguna (1 untuk Admin, 2 untuk Anggota).
+     */
+    public int mintaJenisPengguna() {
+        System.out.print("\nPilih jenis pengguna:" +
+                "\n1. Admin" +
+                "\n2. Anggota" +
                 "\nMasukkan pilihan: ");
-        int x = input.nextInt();
-        input.nextLine();
-
-        switch (x){
-            case 1:
-                InformationPrinter.tampilkanAtributDenganInput(penggunaDTO, "", 1, "nama", "alamat", "nomorHP", "username", "password", "nipADMIN");
-                penggunaDTO.jenis = JenisPengguna.ADMIN;
-                break;
-            case 2:
-                InformationPrinter.tampilkanAtributDenganInput(penggunaDTO, "", 1, "nama", "alamat", "nomorHP", "username", "password", "terlambatANGGOTA", "maksimalPinjamANGGOTA", "jumlahPinjamANGGOTA");
-                penggunaDTO.jenis = JenisPengguna.ANGGOTA;
-                break;
-
-        }
-
-        penggunaDTO.id = IdGenerator.generateUniqueId(PenggunaController.ambilSemuaPengguna(), Pengguna::getId);
-        penggunaDTO.terlambatANGGOTA = false;
-        PenggunaController.tambahPengguna(penggunaDTO);
+        int pilihan = input.nextInt();
+        input.nextLine(); // Membersihkan buffer
+        return pilihan;
     }
 
-    //READ
-    public static void detailPengguna(){
-        while (true){
-            if (isPenggunaKosong()) return;
-
-            InformationPrinter.tampilkanObjek(PenggunaController.ambilSemuaPengguna(), "Pengguna yang tersedia", "nama");
-            String idPengguna = AmbilIdPengguna("tampilkan detailnya");
-
-            if (idPengguna == null) return;
-
-            InformationPrinter.tampilkanAtributDenganNilai(PenggunaController.ambilPengguna(idPengguna),
-                    "", 0, "id");
-
-            System.out.print("\nApakah anda ingin melihat detail pengguna lainnya? (y/n): ");
-            String x = input.nextLine();
-            if (!(x.toUpperCase().equals("Y"))) break;
-        }
+    /**
+     * Menggunakan InformationPrinter untuk meminta input atribut dari pengguna dan mengisinya ke DTO.
+     * Metode ini tetap di View karena tugas utamanya adalah interaksi I/O (menampilkan prompt dan membaca input).
+     * @param penggunaDTO DTO untuk diisi.
+     * @param atribut Atribut yang akan diminta dari pengguna.
+     */
+    public void mintaInputAtributPengguna(PenggunaDTO penggunaDTO, String... atribut) {
+        InformationPrinter.tampilkanAtributDenganInput(penggunaDTO, "", 1, atribut);
     }
 
-    //UPDATE
-    public static void updatePengguna(){
-        while (true){
-            if (isPenggunaKosong()) return;
-
-            InformationPrinter.tampilkanObjek(PenggunaController.ambilSemuaPengguna(), "Pengguna yang tersedia", "nama");
-            String idPengguna = AmbilIdPengguna("update");
-
-            if (idPengguna == null) return;
-
-            InformationPrinter.tampilkanUpdateAtribut(
-                    PenggunaController.ambilPengguna(idPengguna),
-                    " ", idPengguna,
-                    data -> PenggunaController.updateAtribut(data.id, data.namaAtribut, data.nilaiBaru),
-                    0, "kode", "jenis");
-
-            System.out.print("\nApakah anda ingin meng-update atribut pengguna lainnya? (y/n): ");
-            String x = input.nextLine();
-            if (!(x.toUpperCase().equals("Y"))) break;
-        }
+    /**
+     * Menampilkan daftar pengguna yang tersedia dalam format bernomor.
+     * @param daftarPengguna List objek Pengguna yang akan ditampilkan.
+     * @param judul Judul untuk daftar.
+     */
+    public void tampilkanDaftarPengguna(List<Pengguna> daftarPengguna, String judul) {
+        InformationPrinter.tampilkanObjek(daftarPengguna, judul, "nama");
     }
 
-    //DELETE
-    public static void hapusPengguna () {
-        if (isPenggunaKosong()) return;
-
-        InformationPrinter.tampilkanObjek(PenggunaController.ambilSemuaPengguna(), "Pengguna yang tersedia", "nama");
-        String idPengguna = AmbilIdPengguna("hapus");
-
-        System.out.print("Yakin ingin menghapus pengguna bernama \""+ PenggunaController.ambilPengguna(idPengguna).getNama()+"\"? (y/n): ");
-        String x = input.nextLine();
-
-        if ((x.toUpperCase().equals("Y"))) {
-            PenggunaController.hapusPengguna(idPengguna);
-            System.out.print("Hapus pengguna berhasil!\n");
-        }
-        else {
-            System.out.print("Hapus pengguna dibatalkan.\n");
-        }
+    /**
+     * Meminta pengguna untuk memilih nomor dari daftar yang ditampilkan.
+     * @param aksi Teks aksi untuk ditampilkan di prompt (misal: "update", "hapus").
+     * @return Nomor (indeks + 1) yang dipilih oleh pengguna.
+     */
+    public int mintaPilihanPengguna(String aksi) {
+        System.out.print("\nPilih nomor pengguna yang ingin di-" + aksi + ": ");
+        int pilihan = input.nextInt();
+        input.nextLine(); // Membersihkan buffer
+        return pilihan;
     }
 
-
-    //===TOOLS===
-    public static String AmbilIdPengguna(String aksi){
-        String y;
-        int x;
-        System.out.print("\nPilih nomor pengguna yang ingin di"+aksi+": "); x = input.nextInt() - 1; input.nextLine();
-        if (x >= PenggunaController.ambilSemuaPengguna().size() || x < 0) {
-            System.out.print("pilihan tidak ada!\n");
-            y = null;
-        }
-        else {
-            y = PenggunaController.ambilSemuaPengguna().get(x).getId();
-        }
-        return y;
+    /**
+     * Menampilkan semua atribut dari satu objek Pengguna.
+     * @param pengguna Objek Pengguna yang detailnya akan ditampilkan.
+     */
+    public void tampilkanDetailPengguna(Pengguna pengguna) {
+        System.out.println("\n--- Detail Pengguna ---");
+        InformationPrinter.tampilkanAtributDenganNilai(pengguna, "", 0, "id");
     }
 
-    public static Boolean isPenggunaKosong(){
-        if (PenggunaController.ambilSemuaPengguna().isEmpty()){
-            System.out.print("Pengguna kosong!\n");
-            return true;
-        }else {
-            return false;
-        }
+    /**
+     * Meminta konfirmasi dari pengguna dengan pertanyaan ya/tidak.
+     * @param pesan Pesan pertanyaan yang akan ditampilkan.
+     * @return String "Y" atau "N" (dalam huruf besar) berdasarkan input pengguna.
+     */
+    public String mintaKonfirmasi(String pesan) {
+        System.out.print(pesan + " (y/n): ");
+        return input.nextLine().toUpperCase();
+    }
+
+    /**
+     * Menampilkan prompt konfirmasi spesifik sebelum menghapus pengguna.
+     * @param namaPengguna Nama pengguna yang akan dihapus.
+     * @return String "Y" atau "N" (dalam huruf besar).
+     */
+    public String mintaKonfirmasiHapus(String namaPengguna) {
+        return mintaKonfirmasi("Yakin ingin menghapus pengguna bernama \"" + namaPengguna + "\"?");
+    }
+
+    /**
+     * Menampilkan pesan umum ke konsol (misalnya, pesan error, sukses, atau informasi).
+     * @param pesan Teks pesan yang akan ditampilkan.
+     */
+    public void tampilkanPesan(String pesan) {
+        System.out.println(pesan);
     }
 }

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" prefWidth="400.0" spacing="15.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SistemManajemenPerpustakaan.MVC.Views.GUI.subController.DetailPeminjamanPopUpController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    <children>
+        <Label text="Rincian Peminjaman">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <GridPane hgap="10.0" vgap="8.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="250.0" />
+            </columnConstraints>
+            <children>
+                <Label text="ID Peminjaman" />
+                <Label text="ID Anggota" GridPane.rowIndex="1" />
+                <Label text="Kode Buku" GridPane.rowIndex="2" />
+                <Label text="Tanggal Pinjam" GridPane.rowIndex="3" />
+                <Label text="Tanggal Kembali" GridPane.rowIndex="4" />
+                <Label text="Deadline" GridPane.rowIndex="5" />
+                <Label text="Status" GridPane.rowIndex="6" />
+
+                <Label fx:id="labelIdPeminjaman" text="-" GridPane.columnIndex="1" />
+                <Label fx:id="labelIdAnggota" text="-" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label fx:id="labelKodeBuku" text="-" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Label fx:id="labelTglPinjam" text="-" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <Label fx:id="labelTglKembali" text="-" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <Label fx:id="labelDeadline" text="-" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <Label fx:id="labelStatus" text="-" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            </children>
+        </GridPane>
+        <Button fx:id="btnTutup" mnemonicParsing="false" onAction="#handleTutup" text="Tutup" />
+    </children>
+</VBox>
