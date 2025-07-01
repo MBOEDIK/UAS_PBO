@@ -32,7 +32,7 @@ public class AnggotaMenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // 5. Langsung panggil metode untuk memuat halaman daftar peminjaman
-        loadPage("/com.SistemManajemenPerpustakaan/views/subViews/PeminjamanListView.fxml");
+        loadPage("/com.SistemManajemenPerpustakaan/views/subViews/KembalikanBukuView.fxml");
     }
 
     private void loadPage(String fxmlPath) {
