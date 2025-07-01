@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="938.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.SistemManajemenPerpustakaan.MVC.Views.GUI.LoginAdminController">
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="938.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SistemManajemenPerpustakaan.MVC.Views.GUI.LoginAdminController">
     <children>
         <VBox alignment="TOP_CENTER" prefHeight="602.0" prefWidth="421.0" style="-fx-background-color: #ffff;" stylesheets="@LoginAdmin.css">
             <children>
@@ -40,7 +39,7 @@
                                 <Insets bottom="10.0" />
                             </VBox.margin>
                         </Label>
-                  <TextField>
+                  <TextField fx:id="inputUsername">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
@@ -50,7 +49,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <PasswordField>
+                  <PasswordField fx:id="inputPassword">
                      <VBox.margin>
                         <Insets bottom="30.0" />
                      </VBox.margin>

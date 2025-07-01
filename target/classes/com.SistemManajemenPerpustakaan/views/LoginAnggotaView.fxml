@@ -39,7 +39,7 @@
                                 <Insets bottom="10.0" />
                             </VBox.margin>
                         </Label>
-                        <TextField>
+                        <TextField fx:id="inputUsername">
                             <VBox.margin>
                                 <Insets bottom="10.0" />
                             </VBox.margin>
@@ -49,7 +49,7 @@
                                 <Insets bottom="10.0" />
                             </VBox.margin>
                         </Label>
-                        <PasswordField>
+                        <PasswordField fx:id="inputPassword">
                             <VBox.margin>
                                 <Insets bottom="30.0" />
                             </VBox.margin>
@@ -63,7 +63,7 @@
                     <children>
                         <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                             <children>
-                                <Button fx:id="btnAdminBack" mnemonicParsing="false" onAction="#actAdminBack" prefWidth="98.0" text="Kembali">
+                                <Button fx:id="btnAnggotaBack" mnemonicParsing="false" onAction="#actAnggotaBack" prefWidth="98.0" text="Kembali">
                                     <HBox.margin>
                                         <Insets right="20.0" />
                                     </HBox.margin>

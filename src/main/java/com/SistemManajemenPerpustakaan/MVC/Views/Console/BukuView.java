@@ -2,164 +2,105 @@ package com.SistemManajemenPerpustakaan.MVC.Views.Console;
 
 import com.SistemManajemenPerpustakaan.DTOs.BukuDTO;
 import com.SistemManajemenPerpustakaan.Enums.JenisBuku;
-import com.SistemManajemenPerpustakaan.MVC.Controllers.BukuController;
 import com.SistemManajemenPerpustakaan.MVC.Models.Book.Buku;
 import com.SistemManajemenPerpustakaan.Utils.InformationPrinter;
-import com.SistemManajemenPerpustakaan.Utils.IdGenerator;
-import com.SistemManajemenPerpustakaan.Utils.IsObjekKosong;
-import com.SistemManajemenPerpustakaan.Utils.ObjekIdGetter;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class BukuView {
 
-    //OBJECT
-    private static Scanner input = new Scanner(System.in);
-    
-    //METHOD
-    //PILIHAN AKSI KE BUKU
+    private final Scanner input = new Scanner(System.in);
 
-    public static void TESS(){
-        BukuDTO bukuDTO = new BukuDTO();
-
-        String judul = input.nextLine();
-        String pengarang = input.nextLine();
-
-        bukuDTO.judul = judul;
-        bukuDTO.pengarang = pengarang;
-
-        BukuController.tambahBuku(bukuDTO);
-    }
-
-    public static int menuBuku(){
-        while (true){
-            int x;
-            System.out.print("" +
-                    "\n-- Manajemen Buku --" +
-                    "\n1. Tambah Buku" +
-                    "\n2. Tampilkan Detail Buku" +
-                    "\n3. Update Buku" +
-                    "\n4. Hapus Buku" +
-                    "\n5. Kembali ke Halaman Admin" +
-                    "\nMasukkan Pilihan: ");
-            x = input.nextInt();
-            input.nextLine();
-            if (x < 1 || x > 5) {
-                System.out.print("Pilihan tidak ada!\n");
-                continue;
-            }
-            return x;
+    /**
+     * HANYA menampilkan menu dan mengembalikan pilihan mentah pengguna.
+     * Tugasnya murni presentasi dan input.
+     */
+    public int tampilkanMenuBuku() {
+        System.out.print("\n-- Manajemen Buku --" +
+                "\n1. Tambah Buku" +
+                "\n2. Tampilkan Detail Buku" +
+                "\n3. Update Buku" +
+                "\n4. Hapus Buku" +
+                "\n5. Kembali ke Halaman Admin" +
+                "\nMasukkan Pilihan: ");
+        try {
+            return Integer.parseInt(input.nextLine());
+        } catch (NumberFormatException e) {
+            return -1; // Mengembalikan nilai tidak valid untuk ditangani Controller
         }
     }
 
-    //CREATE
-    public static void tambahBuku(){
+    /**
+     * HANYA mengelola urutan prompt untuk membuat buku baru.
+     * Metode ini memanggil InformationPrinter karena tugas utamanya adalah mengelola
+     * presentasi input (menampilkan "masukkan judul:", "masukkan pengarang:", dst.).
+     * Mengembalikan DTO yang terisi data mentah.
+     */
+    public BukuDTO mintaInputBukuBaru() {
         BukuDTO bukuDTO = new BukuDTO();
-        System.out.print("\nTAMBAH BUKU ->");
-        System.out.print("" +
-                "\nPilih jenis buku:" +
-                "\n" +
-                "\n      1. Jurnal" +
-                "\n      2. Majalah" +
-                "\n      3. Novel" +
-                "\n      4. Textbook" +
-                "\n" +
-                "\nMasukkan pilihan: ");
-        int x = input.nextInt();
-        input.nextLine();
+        System.out.println("\n--- TAMBAH BUKU BARU ---");
+        System.out.print(
+                "Pilih jenis buku:\n" +
+                        "  1. Jurnal\n  2. Majalah\n  3. Novel\n  4. Textbook\n" +
+                        "Masukkan pilihan: ");
+        int pilihanJenis;
+        try {
+            pilihanJenis = Integer.parseInt(input.nextLine());
+        } catch (NumberFormatException e) {
+            return null; // Input tidak valid
+        }
 
-        switch (x){
+        switch (pilihanJenis) {
             case 1:
-                InformationPrinter.tampilkanAtributDenganInput(bukuDTO, "", 1, "judul", "pengarang", "tahunTerbit", "institusiJURNAL", "terindeksSintaJURNAL");
                 bukuDTO.jenis = JenisBuku.JURNAL;
+                InformationPrinter.tampilkanAtributDenganInput(bukuDTO, "", 1, "judul", "pengarang", "tahunTerbit", "institusiJURNAL", "terindeksSintaJURNAL");
                 break;
             case 2:
-                InformationPrinter.tampilkanAtributDenganInput(bukuDTO, "", 1, "judul", "pengarang", "tahunTerbit", "topikMAJALAH");
                 bukuDTO.jenis = JenisBuku.MAJALAH;
+                InformationPrinter.tampilkanAtributDenganInput(bukuDTO, "", 1, "judul", "pengarang", "tahunTerbit", "topikMAJALAH");
                 break;
             case 3:
-                InformationPrinter.tampilkanAtributDenganInput(bukuDTO, "", 1, "judul", "pengarang", "tahunTerbit", "genreNOVEL");
                 bukuDTO.jenis = JenisBuku.NOVEL;
+                InformationPrinter.tampilkanAtributDenganInput(bukuDTO, "", 1, "judul", "pengarang", "tahunTerbit", "genreNOVEL");
                 break;
             case 4:
-                InformationPrinter.tampilkanAtributDenganInput(bukuDTO, "", 1, "judul", "pengarang", "tahunTerbit", "bidangIlmuTEXTBOOK");
                 bukuDTO.jenis = JenisBuku.TEXTBOOK;
+                InformationPrinter.tampilkanAtributDenganInput(bukuDTO, "", 1, "judul", "pengarang", "tahunTerbit", "bidangIlmuTEXTBOOK");
                 break;
-
+            default:
+                return null; // Pilihan tidak valid
         }
-
-        bukuDTO.kode = IdGenerator.generateUniqueId(BukuController.ambilSemuaBuku(), Buku::getKode);
-        bukuDTO.tersedia = true;
-        BukuController.tambahBuku(bukuDTO);
+        return bukuDTO;
     }
 
-    //READ
-    public static void detailBuku(){
-        while (true){
-            //CEK APAKAH BUKU KOSONG, JIKA YA MAKA KELUAR DARI METHOD
-            if (IsObjekKosong.check(BukuController.ambilSemuaBuku(), "Buku")) return;
-            InformationPrinter.tampilkanObjek(
-                    BukuController.ambilSemuaBuku(), "Buku yang tersedia", "judul");
-            String kodeBuku = ObjekIdGetter.get(
-                    BukuController.ambilSemuaBuku(),
-                    "\nPilih nomor buku yang ingin dilihat detailnya: ", Buku::getKode);
-
-            if (kodeBuku == null) return;
-
-            InformationPrinter.tampilkanAtributDenganNilai(BukuController.ambilBuku(kodeBuku),
-                    "", 0, "kode");
-
-            System.out.print("\nApakah anda ingin melihat detail buku lainnya? (y/n): ");
-            String x = input.nextLine();
-            if (!(x.toUpperCase().equals("Y"))) break;
-        }
+    /**
+     * HANYA menampilkan daftar objek yang diberikan oleh Controller.
+     * Menggunakan InformationPrinter untuk formatting.
+     */
+    public void tampilkanDaftarBuku(List<Buku> daftarBuku) {
+        InformationPrinter.tampilkanObjek(daftarBuku, "Buku yang tersedia", "judul");
     }
 
-    //UPDATE
-    public static void updateBuku(){
-        while (true){
-            //CEK APAKAH BUKU KOSONG, JIKA YA MAKA KELUAR DARI METHOD
-            if (IsObjekKosong.check(BukuController.ambilSemuaBuku(), "Buku")) return;
-            //TAMPILKAN SEMUA BUKU
-            InformationPrinter.tampilkanObjek(
-                    BukuController.ambilSemuaBuku(), "Buku yang tersedia", "judul");
-            //MENGAMBIL KODE BUKU, JIKA TIDAK ADA MAKA KELUAR DARI METHOD
-            String kodeBuku = ObjekIdGetter.get(
-                    BukuController.ambilSemuaBuku(),
-                    "Pilih nomor buku yang ingin diupdate: ", Buku::getKode);
-            if (kodeBuku == null) return;
-
-            //MEMILIH DAN MENGUPDATE ATRIBUTE YANG BISA DIUPDATE
-            InformationPrinter.tampilkanUpdateAtribut(
-                    BukuController.ambilBuku(kodeBuku),
-                    " ", kodeBuku,
-                    data -> BukuController.updateAtribut(data.id, data.namaAtribut, data.nilaiBaru),
-                    0, "kode", "jenis");
-
-            System.out.print("\nApakah anda ingin meng-update atribut buku lainnya? (y/n): ");
-            String x = input.nextLine();
-            if (!(x.toUpperCase().equals("Y"))) break;
-        }
+    /**
+     * HANYA menampilkan detail satu buku yang diberikan oleh Controller.
+     */
+    public void tampilkanDetailBuku(Buku buku) {
+        InformationPrinter.tampilkanAtributDenganNilai(buku, "", 0, "kode");
     }
 
-    //DELETE
-    public static void hapusBuku () {
-        if (IsObjekKosong.check(BukuController.ambilSemuaBuku(), "Buku")) return;
+    /**
+     * HANYA menanyakan konfirmasi (y/n) dan mengembalikan boolean.
+     */
+    public boolean mintaKonfirmasi(String pesan) {
+        System.out.print(pesan + " (y/n): ");
+        return input.nextLine().equalsIgnoreCase("Y");
+    }
 
-        InformationPrinter.tampilkanObjek(BukuController.ambilSemuaBuku(), "Buku yang tersedia", "judul");
-        String kodeBuku = ObjekIdGetter.get(
-                BukuController.ambilSemuaBuku(),
-                "Pilih nomor buku yang ingin dihapus: ", Buku::getKode);
-
-        System.out.print("Yakin ingin menghapus buku berjudul \""+BukuController.ambilBuku(kodeBuku).getJudul()+"\"? (y/n): ");
-        String x = input.nextLine();
-
-        if ((x.toUpperCase().equals("Y"))) {
-            BukuController.hapusBuku(kodeBuku);
-            System.out.print("Hapus buku berhasil!\n");
-        }
-        else {
-            System.out.print("Hapus buku dibatalkan.\n");
-        }
+    /**
+     * HANYA menampilkan pesan string generik.
+     */
+    public void tampilkanPesan(String pesan) {
+        System.out.println(pesan);
     }
 }

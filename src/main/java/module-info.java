@@ -7,9 +7,10 @@ module com.SistemManajemenPerpustakaan.Main {
     requires java.sql;
     requires org.apache.commons.csv;
 
-    opens com.SistemManajemenPerpustakaan.Main to javafx.fxml;
     exports com.SistemManajemenPerpustakaan.Main;
-
     exports com.SistemManajemenPerpustakaan.MVC.Views.GUI;
+
+    opens com.SistemManajemenPerpustakaan.MVC.Views.GUI.subController to javafx.fxml;
+    opens com.SistemManajemenPerpustakaan.Main to javafx.fxml;
     opens com.SistemManajemenPerpustakaan.MVC.Views.GUI to javafx.fxml;
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="400.0" prefWidth="600.0" spacing="15.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SistemManajemenPerpustakaan.MVC.Views.GUI.subController.PeminjamanListController">
+    <children>
+        <Label text="Riwayat Peminjaman Perpustakaan">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <ListView fx:id="listViewPeminjaman" VBox.vgrow="ALWAYS" />
+    </children>
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+    </padding>
+</VBox>

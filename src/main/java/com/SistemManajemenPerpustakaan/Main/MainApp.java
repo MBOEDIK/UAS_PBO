@@ -7,6 +7,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class MainApp extends Application {
     @Override
@@ -24,6 +25,10 @@ public class MainApp extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/com.SistemManajemenPerpustakaan/views/LoginView.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 938, 602);
+
+        String cssPath = Objects.requireNonNull(getClass().getResource("/com.SistemManajemenPerpustakaan/views/StyleUtama.css")).toExternalForm();
+        scene.getStylesheets().add(cssPath);
+
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.setResizable(false);

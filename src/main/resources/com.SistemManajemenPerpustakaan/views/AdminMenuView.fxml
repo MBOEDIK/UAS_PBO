@@ -3,8 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -41,15 +41,15 @@
                     <children>
                         <HBox alignment="CENTER" prefHeight="117.0" prefWidth="858.0" spacing="20.0">
                             <children>
-                                <Button mnemonicParsing="false" prefHeight="14.0" prefWidth="207.0" styleClass="manajemen-button" stylesheets="@AdminMenu.css" text="Detail Peminjaman">
+                                <Button fx:id="btnDetailPeminjaman" mnemonicParsing="false" onAction="#actDetailPeminjaman" prefHeight="14.0" prefWidth="207.0" styleClass="manajemen-button" stylesheets="@AdminMenu.css" text="Detail Peminjaman">
                            <HBox.margin>
                               <Insets right="60.0" />
                            </HBox.margin></Button>
-                                <Button mnemonicParsing="false" prefWidth="185.0" styleClass="manajemen-button" stylesheets="@AdminMenu.css" text="Manajemen Buku">
+                                <Button fx:id="btnManajemenBuku" mnemonicParsing="false" onAction="#actManajemenBuku" prefWidth="185.0" styleClass="manajemen-button" stylesheets="@AdminMenu.css" text="Manajemen Buku">
                            <HBox.margin>
                               <Insets right="60.0" />
                            </HBox.margin></Button>
-                                <Button mnemonicParsing="false" prefWidth="204.0" styleClass="manajemen-button" stylesheets="@AdminMenu.css" text="Manajemen Pengguna" />
+                                <Button fx:id="btnManajemenPengguna" mnemonicParsing="false" onAction="#actManajemenPengguna" prefWidth="204.0" styleClass="manajemen-button" stylesheets="@AdminMenu.css" text="Manajemen Pengguna" />
                             </children>
                      <VBox.margin>
                         <Insets bottom="-5.0" top="-10.0" />
@@ -59,27 +59,7 @@
 
                         <VBox prefHeight="455.0" prefWidth="858.0" spacing="15.0" VBox.vgrow="ALWAYS">
                             <children>
-                                <Label styleClass="section-title" stylesheets="@AdminMenu.css" text="Daftar Peminjaman:">
-                                    <font>
-                                        <Font name="System Bold" size="18.0" />
-                                    </font>
-                                </Label>
-                                <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="custom-scroll-pane" stylesheets="@AdminMenu.css" VBox.vgrow="ALWAYS">
-                                    <content>
-                                        <VBox prefWidth="856.0" spacing="15.0">
-                                            <children>
-                                                <Pane prefHeight="70.0" styleClass="list-item" stylesheets="@AdminMenu.css" />
-                                                <Pane prefHeight="70.0" styleClass="list-item" stylesheets="@AdminMenu.css" />
-                                                <Pane prefHeight="70.0" styleClass="list-item" stylesheets="@AdminMenu.css" />
-                                                <Pane prefHeight="70.0" styleClass="list-item" stylesheets="@AdminMenu.css" />
-                                                <Pane prefHeight="70.0" styleClass="list-item" stylesheets="@AdminMenu.css" />
-                                            </children>
-                                            <padding>
-                                                <Insets right="10.0" />
-                                            </padding>
-                                        </VBox>
-                                    </content>
-                                </ScrollPane>
+                                <BorderPane fx:id="contentArea" prefHeight="355.0" prefWidth="858.0" VBox.vgrow="ALWAYS" />
                             </children>
                         </VBox>
                     </children>
