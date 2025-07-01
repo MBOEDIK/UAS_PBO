@@ -7,9 +7,11 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class ObjekIdGetter {
+    // MENDAPATKAN ID OBJEK.
+    // MENGAMBIL ID DARI OBJEK YANG DIPILIH BERDASARKAN INDEKS.
     public static <T> String get(List<T> list, String pesanSebelumInput, Function<T, String> idExtractor) {
         Scanner input = new Scanner(System.in);
-        System.out.print(pesanSebelumInput != null ? pesanSebelumInput : "Pilih index: ");
+        System.out.print(pesanSebelumInput != null ? pesanSebelumInput : "PILIH INDEKS: ");
 
         try {
             int x = input.nextInt() - 1;
@@ -21,17 +23,19 @@ public class ObjekIdGetter {
                 return null;
             }
         } catch (InputMismatchException e) {
-            System.out.println("Input harus berupa angka!");
+            System.out.println("INPUT HARUS BERUPA ANGKA!");
             input.nextLine();
             return null;
         }
     }
 
+    // MENDAPATKAN ID OBJEK BERSYARAT.
+    // MENGAMBIL ID DARI OBJEK YANG DIPILIH BERDASARKAN INDEKS DAN KONDISI.
     public static <T, V> String getBersyarat(List<T> list,
-                                    String pesanSebelumInput,
-                                    Function<T, String> idExtractor,
-                                    Function<T, V> att,
-                                    V attVal) {
+                                             String pesanSebelumInput,
+                                             Function<T, String> idExtractor,
+                                             Function<T, V> att,
+                                             V attVal) {
         // Filter list berdasarkan kriteria att == attVal (jika attVal tidak null)
         List<T> filteredList = attVal == null
                 ? list
@@ -40,7 +44,7 @@ public class ObjekIdGetter {
                 .collect(Collectors.toList());
 
         Scanner input = new Scanner(System.in);
-        System.out.print(pesanSebelumInput != null ? pesanSebelumInput : "Pilih index: ");
+        System.out.print(pesanSebelumInput != null ? pesanSebelumInput : "PILIH INDEKS: ");
 
         try {
             int x = input.nextInt() - 1;
@@ -52,7 +56,7 @@ public class ObjekIdGetter {
                 return null;
             }
         } catch (InputMismatchException e) {
-            System.out.println("Input harus berupa angka!");
+            System.out.println("INPUT HARUS BERUPA ANGKA!");
             input.nextLine();
             return null;
         }

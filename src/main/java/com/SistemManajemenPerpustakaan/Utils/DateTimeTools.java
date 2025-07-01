@@ -5,7 +5,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 public class DateTimeTools {
-    // Method untuk menyimpan tanggal hari ini ke atribut
+    // MENGAMBIL TANGGAL HARI INI.
+    // MENGEMBALIKAN TANGGAL SAAT INI DALAM FORMAT STRING.
     public static String getTanggalHariIni() {
         // Ambil tanggal hari ini
         LocalDate today = LocalDate.now();
@@ -16,6 +17,8 @@ public class DateTimeTools {
         return today.format(formatter);
     }
 
+    // MEMBUAT TANGGAL DEADLINE.
+    // MENENTUKAN DEADLINE BERDASARKAN JUMLAH HARI DARI SEKARANG.
     public static String buatDeadline(int xHariLagi) {
         if (xHariLagi < 0) {
             throw new IllegalArgumentException("Jumlah hari tidak boleh negatif");
@@ -28,6 +31,8 @@ public class DateTimeTools {
         return deadlineDate.format(formatter);
     }
 
+    // MENGHITUNG SISA HARI MENUJU DEADLINE.
+    // MENGEMBALIKAN JUMLAH HARI TERSISA SEBELUM DEADLINE.
     public static int sisaHariMenujuDeadline(String deadlineDateString) {
         // Parse tanggal deadline
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");

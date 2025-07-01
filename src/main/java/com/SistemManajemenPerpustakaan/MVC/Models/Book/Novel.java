@@ -1,15 +1,21 @@
+// INI JUAN YANG KASI KOMEN
+// CLASS NOVEL INI TURUNAN DARI BUKU UNTUK JENIS NOVEL
+
 package com.SistemManajemenPerpustakaan.MVC.Models.Book;
 
 public class Novel extends Buku {
-    //ATTRIBUTE
+
+    // ATRIBUT TAMBAHAN UNTUK NOVEL: GENRE NOVELNYA
     private String genre;
 
-    //CONSTRUCTOR
+    // CONSTRUCTOR UNTUK MENGISI SEMUA DATA NOVEL
     public Novel(String kode, String judul, String pengarang, String tahunTerbit, Boolean tersedia, String jenis, String genre) {
         super(kode, judul, pengarang, tahunTerbit, tersedia, jenis);
         this.genre = genre;
     }
 
+    // METHOD UNTUK UPDATE ATRIBUT NOVEL SECARA DINAMIS
+    // DIPANGGIL SAAT UPDATE DARI CONTROLLER
     @Override
     public void updateAttribute(String atribut, Object nilaiBaru) {
         switch (atribut.toUpperCase()) {
@@ -23,9 +29,9 @@ public class Novel extends Buku {
         }
     }
 
-    //GETTER
+    // GETTER UNTUK MENGAMBIL NILAI GENRE NOVEL
     public String getGenre(){ return genre; }
 
-    //SETTER
+    // SETTER UNTUK MENGUBAH NILAI GENRE NOVEL
     public void setGenre(String genre){ this.genre = genre; }
 }

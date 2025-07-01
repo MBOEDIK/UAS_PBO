@@ -8,17 +8,20 @@ import java.util.function.Function;
 import java.util.function.Consumer;
 
 public class InformationPrinter {
-    // Gunakan satu Scanner static untuk seluruh aplikasi
+    // GUNAKAN SATU SCANNER STATIC.
+    // UNTUK SELURUH APLIKASI.
     private static final Scanner scanner = new Scanner(System.in);
 
     // ==================== VERSI 1: TAMPILKAN ATRIBUT SAJA ====================
 
-    // Overload tanpa stringFilter
+    // OVERLOAD TANPA STRINGFILTER.
+    // MENAMPILKAN ATRIBUT DENGAN JUDUL DAN PILIHAN.
     public static void tampilkanAtribut(Object objek, String judul, int isInclude, String... atributTerpilih) {
         tampilkanAtribut(objek, judul, isInclude, null, atributTerpilih);
     }
 
-    // Versi lengkap dengan stringFilter
+    // VERSI LENGKAP DENGAN STRINGFILTER.
+    // MENAMPILKAN ATRIBUT DENGAN OPSI FILTER.
     public static void tampilkanAtribut(Object objek, String judul, int isInclude,
                                         Function<String, String> stringFilter, String... atributTerpilih) {
         Class<?> kelas = objek.getClass();
@@ -30,12 +33,14 @@ public class InformationPrinter {
 
     // ==================== VERSI 2: TAMPILKAN ATRIBUT DAN NILAI ====================
 
-    // Overload tanpa stringFilter
+    // OVERLOAD TANPA STRINGFILTER.
+    // MENAMPILKAN ATRIBUT DAN NILAINYA.
     public static void tampilkanAtributDenganNilai(Object objek, String judul, int isInclude, String... atributTerpilih) {
         tampilkanAtributDenganNilai(objek, judul, isInclude, null, atributTerpilih);
     }
 
-    // Versi lengkap dengan stringFilter
+    // VERSI LENGKAP DENGAN STRINGFILTER.
+    // MENAMPILKAN ATRIBUT BESERTA NILAINYA DENGAN FILTER.
     public static void tampilkanAtributDenganNilai(Object objek, String judul, int isInclude,
                                                    Function<String, String> stringFilter, String... atributTerpilih) {
         Class<?> kelas = objek.getClass();
@@ -47,12 +52,14 @@ public class InformationPrinter {
 
     // ==================== VERSI 3: INPUT NILAI ATRIBUT ====================
 
-    // Overload tanpa stringFilter
+    // OVERLOAD TANPA STRINGFILTER.
+    // MEMINTA INPUT UNTUK ATRIBUT.
     public static void tampilkanAtributDenganInput(Object objek, String judul, int isInclude, String... atributTerpilih) {
         tampilkanAtributDenganInput(objek, judul, isInclude, null, atributTerpilih);
     }
 
-    // Versi lengkap dengan stringFilter
+    // VERSI LENGKAP DENGAN STRINGFILTER.
+    // MEMINTA INPUT ATRIBUT DENGAN OPSI FILTER.
     public static void tampilkanAtributDenganInput(Object objek, String judul, int isInclude,
                                                    Function<String, String> stringFilter, String... atributTerpilih) {
         Class<?> kelas = objek.getClass();
@@ -64,7 +71,8 @@ public class InformationPrinter {
 
     // ==================== METODE BANTU ====================
 
-    // Metode untuk mengubah nama atribut menjadi format yang lebih mudah dibaca
+    // MEMFORMAT NAMA ATRIBUT.
+    // MENGUBAH NAMA ATRIBUT MENJADI LEBIH MUDAH DIBACA.
     private static String formatNamaAtribut(String namaAtribut, Function<String, String> stringFilter) {
         // Daftar pengecualian khusus
         if (namaAtribut.equalsIgnoreCase("id")) return "ID";
@@ -100,7 +108,8 @@ public class InformationPrinter {
         return stringFilter != null ? stringFilter.apply(formatted) : formatted;
     }
 
-    // Metode pembantu rekursif untuk menampilkan atribut
+    // METODE PEMBANTU REKURSIF.
+    // MENAMPILKAN ATRIBUT KELAS SECARA REKURSIF.
     private static int tampilkanAtributKelas(Class<?> kelas, Object objek,
                                              int startNumber,
                                              List<String> atributFilter,
@@ -131,7 +140,8 @@ public class InformationPrinter {
         return counter - startNumber; // Jumlah atribut yang benar-benar ditampilkan
     }
 
-    // Metode pembantu rekursif untuk meminta input atribut
+    // METODE PEMBANTU REKURSIF.
+    // MEMINTA INPUT UNTUK ATRIBUT KELAS SECARA REKURSIF.
     private static int tampilkanAtributDenganInputKelas(Class<?> kelas, Object objek,
                                                         int nomorUrut, List<String> atributFilter,
                                                         int isInclude, Function<String, String> stringFilter) {
@@ -186,6 +196,8 @@ public class InformationPrinter {
         return nomorUrut;
     }
 
+    // MENAMPILKAN OPSI UPDATE ATRIBUT.
+    // MEMUNGKINKAN PENGGUNA MEMILIH DAN MEMPERBARUI ATRIBUT.
     public static void tampilkanUpdateAtribut(Object objek, String judul, String id,
                                               Consumer<UpdateData> updateMethod,
                                               int isInclude,
@@ -236,7 +248,8 @@ public class InformationPrinter {
         }
     }
 
-    // Overload tanpa stringFilter
+    // OVERLOAD TANPA STRINGFILTER.
+    // MEMPERBARUI ATRIBUT OBJEK TANPA FILTER STRING.
     public static void tampilkanUpdateAtribut(Object objek, String judul, String id,
                                               Consumer<UpdateData> updateMethod,
                                               int isInclude,
@@ -244,7 +257,8 @@ public class InformationPrinter {
         tampilkanUpdateAtribut(objek, judul, id, updateMethod, isInclude, null, atributTerpilih);
     }
 
-    // Kelas pembungkus untuk data update
+    // KELAS PEMBUNGKUS DATA UPDATE.
+    // MENYIMPAN INFORMASI UNTUK OPERASI PEMBARUAN.
     public static class UpdateData {
         public final String id;
         public final String namaAtribut;
@@ -259,6 +273,8 @@ public class InformationPrinter {
 
     // ========== METHOD BANTU ==========
 
+    // MENCARI ATRIBUT BERDASARKAN NOMOR.
+    // MENGEMBALIKAN FIELD SESUAI NOMOR URUT DAN FILTER.
     private static Field cariAtributBerdasarkanNomor(Class<?> kelas, int nomor,
                                                      List<String> atributFilter,
                                                      int isInclude) {
@@ -287,6 +303,8 @@ public class InformationPrinter {
 //        return cariAtributBerdasarkanNomorRecursive(kelas, nomor, 1, atributFilter, isInclude);
 //    }
 
+    // METODE BANTU REKURSIF.
+    // MENCARI ATRIBUT BERDASARKAN NOMOR SECARA REKURSIF.
     private static Field cariAtributBerdasarkanNomorRecursive(Class<?> kelas, int nomorTarget,
                                                               int nomorSekarang,
                                                               List<String> atributFilter, int isInclude) {
@@ -320,6 +338,8 @@ public class InformationPrinter {
         return null;
     }
 
+    // MENGONVERSI NILAI STRING.
+    // MENGUBAH STRING KE TIPE DATA TARGET.
     private static Object konversiNilai(String nilai, Class<?> targetType) throws Exception {
         if (targetType == String.class) {
             return nilai;
@@ -337,6 +357,8 @@ public class InformationPrinter {
         throw new Exception("Tipe data tidak didukung: " + targetType.getSimpleName());
     }
 
+    // MENAMPILKAN ATRIBUT DARI DAFTAR OBJEK.
+    // MENAMPILKAN NILAI ATRIBUT DARI SETIAP OBJEK.
     public static <T> void tampilkanObjek(List<T> daftarObjek, String judul, String namaAtribut,
                                           Function<String, String> stringFilter) {
         if (daftarObjek == null || daftarObjek.isEmpty()) {
@@ -366,6 +388,8 @@ public class InformationPrinter {
         }
     }
 
+    // MENAMPILKAN OBJEK DENGAN FILTER.
+    // MENAMPILKAN ATRIBUT OBJEK YANG MEMENUHI KRITERIA.
     public static <T> void tampilkanObjek(List<T> daftarObjek, String judul,
                                           String namaAtributFilter, Object nilaiFilter,
                                           String namaAtributTampil,
@@ -419,7 +443,8 @@ public class InformationPrinter {
         }
     }
 
-    // Overload tanpa stringFilter
+    // OVERLOAD TANPA STRINGFILTER.
+    // MENAMPILKAN OBJEK DENGAN FILTER NAMA ATRIBUT.
     public static <T> void tampilkanObjek(List<T> daftarObjek, String judul,
                                           String namaAtributFilter, Object nilaiFilter,
                                           String namaAtributTampil) {
@@ -427,7 +452,8 @@ public class InformationPrinter {
                 namaAtributTampil, null);
     }
 
-    // Overload jika ingin menampilkan toString() objek
+    // OVERLOAD JIKA INGIN MENAMPILKAN TOSTRING() OBJEK.
+    // MENAMPILKAN REPRESENTASI STRING DARI OBJEK YANG DIFILTER.
     public static <T> void tampilkanObjek(List<T> daftarObjek, String judul,
                                           String namaAtributFilter, Object nilaiFilter) {
         if (daftarObjek == null || daftarObjek.isEmpty()) {
@@ -463,12 +489,14 @@ public class InformationPrinter {
         }
     }
 
-    // Overload tanpa stringFilter
+    // OVERLOAD TANPA STRINGFILTER.
+    // MENAMPILKAN OBJEK BERDASARKAN ATRIBUT.
     public static <T> void tampilkanObjek(List<T> daftarObjek, String judul, String namaAtribut) {
         tampilkanObjek(daftarObjek, judul, namaAtribut, null);
     }
 
-    // Method bantu untuk mencari atribut
+    // METHOD BANTU UNTUK MENCARI ATRIBUT.
+    // MENCARI FIELD BERDASARKAN NAMA ATRIBUT.
     private static Field cariAtribut(Class<?> kelas, String namaAtribut)
             throws NoSuchFieldException {
         try {
@@ -482,13 +510,8 @@ public class InformationPrinter {
         }
     }
 
-    /**
-     * Menampilkan daftar objek tanpa penomoran urut dan tanpa newline otomatis
-     * @param <T> Tipe objek dalam list
-     * @param daftarObjek List berisi objek-objek
-     * @param namaAtribut Nama atribut yang akan ditampilkan
-     * @param stringFilter Fungsi untuk memformat string (opsional)
-     */
+    // MENAMPILKAN DAFTAR OBJEK TANPA PENOMORAN.
+    // MENAMPILKAN ATRIBUT DARI OBJEK TANPA NOMOR URUT DAN NEWLINE.
     public static <T> void tampilkanObjekTanpaNomor(List<T> daftarObjek,
                                                     String namaAtribut,
                                                     Function<String, String> stringFilter) {
@@ -515,21 +538,15 @@ public class InformationPrinter {
         }
     }
 
-    // Overload tanpa stringFilter
+    // OVERLOAD TANPA STRINGFILTER.
+    // MENAMPILKAN ATRIBUT OBJEK TANPA NOMOR DAN FILTER.
     public static <T> void tampilkanObjekTanpaNomor(List<T> daftarObjek,
                                                     String namaAtribut) {
         tampilkanObjekTanpaNomor(daftarObjek, namaAtribut, null);
     }
 
-    /**
-     * Menampilkan daftar objek dengan filter tanpa penomoran urut dan tanpa newline otomatis
-     * @param <T> Tipe objek dalam list
-     * @param daftarObjek List berisi objek-objek
-     * @param namaAtributFilter Nama atribut untuk filter
-     * @param nilaiFilter Nilai filter yang harus dipenuhi
-     * @param namaAtributTampil Nama atribut yang akan ditampilkan
-     * @param stringFilter Fungsi untuk memformat string (opsional)
-     */
+    // MENAMPILKAN OBJEK DENGAN FILTER.
+    // MENAMPILKAN ATRIBUT DARI OBJEK YANG DIFILTER, TANPA NOMOR DAN NEWLINE.
     public static <T> void tampilkanObjekTanpaNomor(List<T> daftarObjek,
                                                     String namaAtributFilter, Object nilaiFilter,
                                                     String namaAtributTampil,
@@ -574,7 +591,8 @@ public class InformationPrinter {
         }
     }
 
-    // Overload tanpa stringFilter
+    // OVERLOAD TANPA STRINGFILTER.
+    // MENAMPILKAN OBJEK DIFILTER TANPA NOMOR ATAU PEMFORMATAN.
     public static <T> void tampilkanObjekTanpaNomor(List<T> daftarObjek,
                                                     String namaAtributFilter, Object nilaiFilter,
                                                     String namaAtributTampil) {
@@ -582,13 +600,8 @@ public class InformationPrinter {
                 namaAtributTampil, null);
     }
 
-    /**
-     * Menampilkan toString() objek tanpa penomoran urut dan tanpa newline otomatis
-     * @param <T> Tipe objek dalam list
-     * @param daftarObjek List berisi objek-objek
-     * @param namaAtributFilter Nama atribut untuk filter
-     * @param nilaiFilter Nilai filter yang harus dipenuhi
-     */
+    // MENAMPILKAN TOSTRING() OBJEK.
+    // MENAMPILKAN REPRESENTASI STRING DARI OBJEK YANG DIFILTER.
     public static <T> void tampilkanObjekTanpaNomor(List<T> daftarObjek,
                                                     String namaAtributFilter, Object nilaiFilter) {
         if (daftarObjek == null || daftarObjek.isEmpty()) {
@@ -620,7 +633,8 @@ public class InformationPrinter {
         }
     }
 
-    // Metode untuk menutup scanner (opsional, panggil saat aplikasi benar-benar selesai)
+    // MENUTUP SCANNER.
+    // MELEPASKAN SUMBER DAYA SCANNER.
     public static void tutupScanner() {
         scanner.close();
     }

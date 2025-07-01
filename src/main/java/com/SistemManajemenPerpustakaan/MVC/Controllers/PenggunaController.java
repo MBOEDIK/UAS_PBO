@@ -1,3 +1,6 @@
+// INI JUAN YANG KASI KOMEN
+// NGATUR FITUR ADMIN BUAT TAMBAH, LIHAT, EDIT, HAPUS PENGGUNA
+
 package com.SistemManajemenPerpustakaan.MVC.Controllers;
 
 import com.SistemManajemenPerpustakaan.DTOs.PenggunaDTO;
@@ -13,41 +16,27 @@ import java.util.List;
 
 public class PenggunaController {
 
-    // Letakkan kode ini di dalam class PenggunaController Anda
-// Pastikan untuk memiliki instance dari PenggunaView, misalnya:
+    // OBJEK VIEW UNTUK INTERAKSI USER DI TERMINAL
     private static PenggunaView view = new PenggunaView();
 
-    /**
-     * Mengelola alur utama untuk menu manajemen pengguna.
-     * Metode ini berisi loop utama yang akan terus berjalan sampai pengguna memilih untuk kembali.
-     */
+    // MENU UTAMA UNTUK KELOLA PENGGUNA
+    // DIJALANKAN DI MENU ADMIN
     public static void kelolaMenuPengguna() {
         while (true) {
             int pilihan = view.tampilkanMenuPengguna();
             switch (pilihan) {
-                case 1:
-                    handleTambahPengguna();
-                    break;
-                case 2:
-                    handleDetailPengguna();
-                    break;
-                case 3:
-                    handleUpdatePengguna();
-                    break;
-                case 4:
-                    handleHapusPengguna();
-                    break;
-                case 5:
-                    return; // Kembali ke menu sebelumnya (misal: Halaman Admin)
-                default:
-                    view.tampilkanPesan("Pilihan tidak valid. Silakan coba lagi.");
+                case 1 -> handleTambahPengguna();      // TAMBAH USER BARU
+                case 2 -> handleDetailPengguna();      // LIHAT DETAIL PENGGUNA
+                case 3 -> handleUpdatePengguna();      // UPDATE DATA PENGGUNA
+                case 4 -> handleHapusPengguna();       // HAPUS PENGGUNA
+                case 5 -> return;                      // KELUAR KE MENU SEBELUMNYA
+                default -> view.tampilkanPesan("Pilihan tidak valid. Silakan coba lagi.");
             }
         }
     }
 
-    /**
-     * Menangani logika untuk menambahkan pengguna baru.
-     */
+    // HANDLE LOGIKA PENAMBAHAN USER BARU
+    // BISA JADI ADMIN ATAU ANGGOTA
     public static void handleTambahPengguna() {
         view.tampilkanHeaderTambahPengguna();
         int jenisPilihan = view.mintaJenisPengguna();
@@ -55,16 +44,15 @@ public class PenggunaController {
         PenggunaDTO penggunaDTO = new PenggunaDTO();
 
         switch (jenisPilihan) {
-            case 1: // Admin
+            case 1: // ADMIN
                 view.mintaInputAtributPengguna(penggunaDTO, "nama", "alamat", "nomorHP", "username", "password", "nipADMIN");
                 penggunaDTO.jenis = JenisPengguna.ADMIN;
                 break;
-            case 2: // Anggota
+            case 2: // ANGGOTA
                 view.mintaInputAtributPengguna(penggunaDTO, "nama", "alamat", "nomorHP", "username", "password");
                 penggunaDTO.jenis = JenisPengguna.ANGGOTA;
-                // Nilai default untuk anggota baru diatur di sini, bukan di View
                 penggunaDTO.terlambatANGGOTA = false;
-                penggunaDTO.maksimalPinjamANGGOTA = 5; // Contoh nilai default
+                penggunaDTO.maksimalPinjamANGGOTA = 5;
                 penggunaDTO.jumlahPinjamANGGOTA = 0;
                 break;
             default:
@@ -72,15 +60,14 @@ public class PenggunaController {
                 return;
         }
 
-        // Logika pembuatan ID dan penyimpanan data adalah murni tanggung jawab Controller
+        // BUAT ID UNIK LALU TAMBAHKAN KE DATABASE
         penggunaDTO.id = IdGenerator.generateUniqueId(PenggunaController.ambilSemuaPengguna(), Pengguna::getId);
         PenggunaController.tambahPengguna(penggunaDTO);
         view.tampilkanPesan("Pengguna baru berhasil ditambahkan dengan ID: " + penggunaDTO.id);
     }
 
-    /**
-     * Menangani logika untuk menampilkan detail pengguna.
-     */
+    // LIHAT DETAIL TIAP PENGGUNA
+    // ADMIN BISA PILIH USER MANA SAJA
     public static void handleDetailPengguna() {
         while (true) {
             if (isPenggunaKosong()) return;
@@ -103,9 +90,7 @@ public class PenggunaController {
         }
     }
 
-    /**
-     * Menangani logika untuk memperbarui atribut pengguna.
-     */
+    // UPDATE ATRIBUT USER SEPERTI NAMA, HP, DLL
     public static void handleUpdatePengguna() {
         while (true) {
             if (isPenggunaKosong()) return;
@@ -118,14 +103,13 @@ public class PenggunaController {
             if (pilihan > 0 && pilihan <= semuaPengguna.size()) {
                 Pengguna pengguna = semuaPengguna.get(pilihan - 1);
 
-                // Lambda untuk logika update didefinisikan di dalam Controller.
-                // InformationPrinter dipanggil dari sini, bukan dari View, karena mengandung logika bisnis.
+                // GUNAKAN LAMBDA UNTUK UPDATE TIAP ATRIBUT
                 InformationPrinter.tampilkanUpdateAtribut(
                         pengguna,
                         " ",
                         pengguna.getId(),
                         data -> PenggunaController.updateAtribut(data.id, data.namaAtribut, data.nilaiBaru),
-                        0, "id", "jenis"); // Atribut yang tidak bisa diubah
+                        0, "id", "jenis"); // ID DAN JENIS TIDAK BOLEH DIUBAH
             } else {
                 view.tampilkanPesan("Pilihan tidak valid.");
             }
@@ -136,9 +120,7 @@ public class PenggunaController {
         }
     }
 
-    /**
-     * Menangani logika untuk menghapus pengguna.
-     */
+    // HAPUS USER BERDASARKAN PILIHAN
     public static void handleHapusPengguna() {
         if (isPenggunaKosong()) return;
 
@@ -162,10 +144,7 @@ public class PenggunaController {
         }
     }
 
-    /**
-     * Metode helper internal di dalam Controller untuk memeriksa apakah ada pengguna.
-     * @return true jika tidak ada pengguna, false jika ada.
-     */
+    // CEK APAKAH DATA PENGGUNA MASIH KOSONG
     private static boolean isPenggunaKosong() {
         if (PenggunaController.ambilSemuaPengguna().isEmpty()) {
             view.tampilkanPesan("Data pengguna kosong!");
@@ -174,48 +153,37 @@ public class PenggunaController {
         return false;
     }
 
+    // ======================== CRUD SECTION ========================
 
-//    //RUN
-//    public static void jalankanPenggunaView(){
-//        loop : while (true){
-//            int pilihan = PenggunaView.menuPengguna();
-//            switch (pilihan){
-//                case 1: PenggunaView.tambahPengguna(); break;
-//                case 2: if (!PenggunaView.isPenggunaKosong()) PenggunaView.detailPengguna(); break;
-//                case 3: if (!PenggunaView.isPenggunaKosong()) PenggunaView.updatePengguna(); break;
-//                case 4: if (!PenggunaView.isPenggunaKosong()) PenggunaView.hapusPengguna(); break;
-//                case 5: break loop;
-//            }
-//        }
-//    }
-
-    //CREATE
+    // TAMBAHKAN DATA PENGGUNA BARU KE REPOSITORY
     public static void tambahPengguna(PenggunaDTO dto){
         Pengguna pengguna = DTOtoModel.toPengguna(dto);
         PenggunaRepository.tambah(pengguna);
     }
 
-    //READ
+    // AMBIL DATA USER BERDASARKAN ID
     public static Pengguna ambilPengguna(String kodePengguna){
-        return  PenggunaRepository.ambilPenggunaById(kodePengguna);
+        return PenggunaRepository.ambilPenggunaById(kodePengguna);
     }
 
+    // AMBIL SEMUA USER YANG TERDAFTAR
     public static List<Pengguna> ambilSemuaPengguna(){
         return PenggunaRepository.ambilSemua();
     }
 
-    //UPDATE
+    // UPDATE SATU ATRIBUT PENGGUNA
     public static boolean updateAtribut(String kodePengguna, String atribut, Object nilaiBaru) {
         return PenggunaRepository.updateAtribut(kodePengguna, atribut, nilaiBaru);
     }
 
+    // GANTI DATA LAMA DENGAN OBJEK BARU
     public static void updatePengguna(String kodePengguna, PenggunaDTO dto){
         Pengguna pengguna = DTOtoModel.toPengguna(dto);
         PenggunaRepository.updatePengguna(kodePengguna, pengguna);
     }
 
-    //DELETE
+    // HAPUS PENGGUNA DARI DATABASE
     public static void hapusPengguna(String kodePengguna) {
-        PenggunaRepository.hapus(kodePengguna);
+        PenggunaRepository.hapusPengguna(kodePengguna);
     }
 }

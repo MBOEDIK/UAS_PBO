@@ -1,6 +1,11 @@
+// INI JUAN YANG KASI KOMEN
+// CLASS UNTUK MODEL DATA PEMINJAMAN BUKU OLEH ANGGOTA
+
 package com.SistemManajemenPerpustakaan.MVC.Models;
 
 public class Peminjaman {
+
+    // ATRIBUT YANG MENYIMPAN DETAIL PEMINJAMAN BUKU
     private String id;
     private String idAnggota;
     private String kodeBuku;
@@ -9,6 +14,7 @@ public class Peminjaman {
     private String deadline;
     private String status;
 
+    // CONSTRUCTOR UNTUK INISIALISASI SEMUA DATA PEMINJAMAN
     public Peminjaman(String id, String idAnggota, String idKodeBuku, String tanggalPinjam, String tanggalKembali, String deadline, String status) {
         this.id = id;
         this.idAnggota = idAnggota;
@@ -19,6 +25,7 @@ public class Peminjaman {
         this.status = status;
     }
 
+    // METHOD UNTUK UPDATE ATRIBUT PEMINJAMAN SECARA DINAMIS
     public void updateAttribute(String atribut, Object nilaiBaru) {
         switch (atribut.toUpperCase()) {
             case "ID": setId((String) nilaiBaru); break;
@@ -32,7 +39,7 @@ public class Peminjaman {
         }
     }
 
-    // GETTERS...
+    // GETTER UNTUK AMBIL NILAI SETIAP ATRIBUT
     public String getId() { return id; }
     public String getIdAnggota() { return idAnggota; }
     public String getKodebuku() { return kodeBuku; }
@@ -41,7 +48,7 @@ public class Peminjaman {
     public String getDeadline() { return deadline; }
     public String getStatus() { return status; }
 
-    // SETTERS...
+    // SETTER UNTUK MENGUBAH NILAI ATRIBUT PEMINJAMAN
     public void setId(String id) { this.id = id; }
     public void setIdAnggota(String idAnggota) { this.idAnggota = idAnggota; }
     public void setKodeBuku(String kodeBuku) { this.kodeBuku = kodeBuku; }
@@ -49,8 +56,8 @@ public class Peminjaman {
     public void setTanggalKembali(String tanggalKembali) { this.tanggalKembali = tanggalKembali; }
     public void setStatus(String statusPengembalian) { this.status = statusPengembalian; }
 
-    // ### PERBAIKAN DI SINI ###
+    // SETTER UNTUK DEADLINE (✅ SUDAH DIPERBAIKI)
     public void setDeadline(String deadline) {
-        this.deadline = deadline; // Seharusnya mengubah deadline, bukan tanggalKembali
+        this.deadline = deadline; // SEBELUMNYA SALAH NGUBAH TANGGALKEMBALI
     }
 }

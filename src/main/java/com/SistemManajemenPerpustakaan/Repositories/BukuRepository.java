@@ -1,3 +1,4 @@
+// INI JUAN YANG KOMEN
 package com.SistemManajemenPerpustakaan.Repositories;
 
 import com.SistemManajemenPerpustakaan.Enums.JenisBuku;
@@ -33,6 +34,8 @@ public class BukuRepository {
         }
     }
 
+    // FUNGSI UNTUK MENYIMPAN SEMUA DATA BUKU KE FILE CSV.
+    // MENGUBAH DAFTAR OBJEK BUKU MENJADI BARIS DATA UNTUK DISIMPAN.
     private static void simpanSemua(List<Buku> bukus) {
         List<List<Object>> dataRows = new ArrayList<>();
         for (Buku b : bukus) {
@@ -62,7 +65,8 @@ public class BukuRepository {
         }
     }
 
-    // ... sisa method tidak berubah ...
+    // FUNGSI UNTUK MENGAMBIL SEMUA DATA BUKU DARI FILE CSV.
+    // MEMBACA DAN MENGUBAH CATATAN CSV MENJADI OBJEK BUKU YANG DAPAT DIMODIFIKASI.
     private static List<Buku> ambilSemuaMutable() {
         try {
             List<CSVRecord> records = CsvUtil.readData(FILE_PATH, HEADERS);
@@ -100,22 +104,30 @@ public class BukuRepository {
         }
     }
 
+    // FUNGSI UNTUK MENAMBAHKAN BUKU BARU KE REPOSITORI.
+    // MENAMBAHKAN BUKU KE DAFTAR DAN MENYIMPAN PERUBAHAN.
     public static void tambah(Buku buku) {
         List<Buku> bukus = ambilSemuaMutable();
         bukus.add(buku);
         simpanSemua(bukus);
     }
 
+    // FUNGSI UNTUK MENGAMBIL BUKU BERDASARKAN KODE ID.
+    // MENCARI BUKU DALAM DAFTAR BERDASARKAN KODE UNIKNYA.
     public static Buku ambilBukuById(String kodeBuku) {
         return ambilSemuaMutable().stream()
                 .filter(b -> b.getKode().equals(kodeBuku))
                 .findFirst().orElse(null);
     }
 
+    // FUNGSI UNTUK MENGAMBIL SEMUA BUKU SEBAGAI DAFTAR YANG TIDAK DAPAT DIUBAH.
+    // MENGEMBALIKAN SALINAN DAFTAR BUKU UNTUK MENCEGAH MODIFIKASI LANGSUNG.
     public static List<Buku> ambilSemua() {
         return List.copyOf(ambilSemuaMutable());
     }
 
+    // FUNGSI UNTUK MEMPERBARUI DATA BUKU YANG ADA.
+    // MENGGANTI BUKU DENGAN KODE TERTENTU DENGAN DATA BUKU BARU.
     public static void updateBuku(String kodeBuku, Buku bukuBaru) {
         List<Buku> bukus = ambilSemuaMutable();
         boolean updated = false;
@@ -134,6 +146,8 @@ public class BukuRepository {
         }
     }
 
+    // FUNGSI UNTUK MENGHAPUS BUKU DARI REPOSITORI.
+    // MENGHAPUS BUKU BERDASARKAN KODE DAN MENYIMPAN PERUBAHAN.
     public static void hapusBuku(String kodeBuku) {
         List<Buku> bukus = ambilSemuaMutable();
         if (bukus.removeIf(buku -> buku.getKode().equals(kodeBuku))) {
@@ -141,6 +155,8 @@ public class BukuRepository {
         }
     }
 
+    // FUNGSI UNTUK MEMPERBARUI ATRIBUT SPESIFIK DARI BUKU.
+    // MENEMUKAN BUKU BERDASARKAN ID DAN MEMPERBARUI ATRIBUT YANG DIMINTA.
     public static boolean updateAtribut(String id, String atribut, Object nilaiBaru) {
         Buku buku = ambilBukuById(id);
         if (buku != null) {

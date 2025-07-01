@@ -1,3 +1,4 @@
+// INI JUAN YANG KOMEN
 package com.SistemManajemenPerpustakaan.Repositories;
 
 import com.SistemManajemenPerpustakaan.MVC.Models.Peminjaman;
@@ -28,6 +29,8 @@ public class PeminjamanRepository {
         }
     }
 
+    // FUNGSI UNTUK MENYIMPAN SEMUA DATA PEMINJAMAN KE FILE CSV.
+    // MENGUBAH DAFTAR OBJEK PEMINJAMAN MENJADI BARIS DATA UNTUK DISIMPAN.
     private static void simpanSemua(List<Peminjaman> peminjamans) {
         List<List<Object>> dataRows = new ArrayList<>();
         for (Peminjaman p : peminjamans) {
@@ -53,7 +56,8 @@ public class PeminjamanRepository {
         }
     }
 
-    // ... sisa method tidak berubah ...
+    // FUNGSI UNTUK MENGAMBIL SEMUA DATA PEMINJAMAN DARI FILE CSV.
+    // MEMBACA DAN MENGUBAH CATATAN CSV MENJADI OBJEK PEMINJAMAN YANG DAPAT DIMODIFIKASI.
     private static List<Peminjaman> ambilSemuaMutable() {
         try {
             List<CSVRecord> records = CsvUtil.readData(FILE_PATH, HEADERS);
@@ -72,22 +76,30 @@ public class PeminjamanRepository {
         }
     }
 
+    // FUNGSI UNTUK MENAMBAHKAN DATA PEMINJAMAN BARU KE REPOSITORI.
+    // MENAMBAHKAN OBJEK PEMINJAMAN KE DAFTAR DAN MENYIMPAN PERUBAHAN.
     public static void tambah(Peminjaman peminjaman) {
         List<Peminjaman> peminjamans = ambilSemuaMutable();
         peminjamans.add(peminjaman);
         simpanSemua(peminjamans);
     }
 
+    // FUNGSI UNTUK MENGAMBIL DATA PEMINJAMAN BERDASARKAN ID.
+    // MENCARI OBJEK PEMINJAMAN DALAM DAFTAR BERDASARKAN ID UNIKNYA.
     public static Peminjaman ambilPeminjamanById(String idPeminjaman) {
         return ambilSemuaMutable().stream()
                 .filter(p -> p.getId().equals(idPeminjaman))
                 .findFirst().orElse(null);
     }
 
+    // FUNGSI UNTUK MENGAMBIL SEMUA DATA PEMINJAMAN SEBAGAI DAFTAR YANG TIDAK DAPAT DIUBAH.
+    // MENGEMBALIKAN SALINAN DAFTAR PEMINJAMAN UNTUK MENCEGAH MODIFIKASI LANGSUNG.
     public static List<Peminjaman> ambilSemua() {
         return List.copyOf(ambilSemuaMutable());
     }
 
+    // FUNGSI UNTUK MEMPERBARUI DATA PEMINJAMAN YANG ADA.
+    // MENGGANTI OBJEK PEMINJAMAN DENGAN ID TERTENTU DENGAN DATA BARU.
     public static void updatePeminjaman(String idPeminjaman, Peminjaman peminjamanBaru) {
         List<Peminjaman> peminjamans = ambilSemuaMutable();
         boolean updated = false;
@@ -106,6 +118,8 @@ public class PeminjamanRepository {
         }
     }
 
+    // FUNGSI UNTUK MENGHAPUS DATA PEMINJAMAN DARI REPOSITORI.
+    // MENGHAPUS OBJEK PEMINJAMAN BERDASARKAN KODE DAN MENYIMPAN PERUBAHAN.
     public static void hapus(String kodePeminjaman) {
         List<Peminjaman> peminjamans = ambilSemuaMutable();
         if (peminjamans.removeIf(p -> p.getId().equals(kodePeminjaman))) {
@@ -113,10 +127,14 @@ public class PeminjamanRepository {
         }
     }
 
+    // FUNGSI UNTUK MENGHITUNG JUMLAH TOTAL PEMINJAMAN.
+    // MENGEMBALIKAN JUMLAH OBJEK PEMINJAMAN DALAM REPOSITORI.
     public static int jumlahPeminjaman() {
         return ambilSemuaMutable().size();
     }
 
+    // FUNGSI UNTUK MEMPERBARUI ATRIBUT SPESIFIK DARI PEMINJAMAN.
+    // MENEMUKAN PEMINJAMAN BERDASARKAN ID DAN MEMPERBARUI ATRIBUT YANG DIMINTA.
     public static boolean updateAtribut(String id, String atribut, Object nilaiBaru) {
         Peminjaman peminjaman = ambilPeminjamanById(id);
         if (peminjaman != null) {

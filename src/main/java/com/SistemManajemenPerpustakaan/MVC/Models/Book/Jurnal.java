@@ -1,17 +1,23 @@
+// INI JUAN YANG KASI KOMEN
+// CLASS JURNAL INI TURUNAN DARI BUKU, KHUSUS UNTUK JENIS JURNAL
+
 package com.SistemManajemenPerpustakaan.MVC.Models.Book;
 
 public class Jurnal extends Buku {
-    //ATTRIBUTE
+
+    // ATTRIBUTE TAMBAHAN KHUSUS JURNAL
     private String institusi;
     private String terindeksSinta;
 
-    //CONSTRUCTOR
+    // CONSTRUCTOR UNTUK INISIALISASI DATA JURNAL
     public Jurnal(String kode, String judul, String pengarang, String tahunTerbit, Boolean tersedia, String jenis, String institusi, String terindeksSinta) {
         super(kode, judul, pengarang, tahunTerbit, tersedia, jenis);
         this.institusi = institusi;
         this.terindeksSinta = terindeksSinta;
     }
 
+    // METHOD UNTUK UPDATE ATRIBUT SECARA DINAMIS
+    // DIPANGGIL DARI CONTROLLER SAAT UPDATE
     @Override
     public void updateAttribute(String atribut, Object nilaiBaru) {
         switch (atribut.toUpperCase()) {
@@ -26,11 +32,11 @@ public class Jurnal extends Buku {
         }
     }
 
-    //GETTER
+    // GETTER UNTUK AMBIL DATA KHUSUS JURNAL
     public String getInstitusi(){ return institusi; }
     public String getTerindeksSinta(){ return terindeksSinta; }
 
-    //SETTER
+    // SETTER UNTUK UBAH DATA KHUSUS JURNAL
     public void setInstitusi(String institusi){ this.institusi = institusi; }
     public void setTerindeksSinta(String terindeksSinta){ this.terindeksSinta = terindeksSinta; }
 }

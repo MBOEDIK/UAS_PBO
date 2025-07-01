@@ -1,3 +1,6 @@
+// INI JUAN YANG KASI KOMEN
+// CLASS VIEW YANG NAMPILIN MENU DAN INPUT KONSOL UNTUK BUKU
+
 package com.SistemManajemenPerpustakaan.MVC.Views.Console;
 
 import com.SistemManajemenPerpustakaan.DTOs.BukuDTO;
@@ -10,12 +13,10 @@ import java.util.Scanner;
 
 public class BukuView {
 
+    // SCANNER UNTUK INPUT DARI USER MELALUI TERMINAL
     private final Scanner input = new Scanner(System.in);
 
-    /**
-     * HANYA menampilkan menu dan mengembalikan pilihan mentah pengguna.
-     * Tugasnya murni presentasi dan input.
-     */
+    // MENAMPILKAN MENU UTAMA BUKU DAN MENGEMBALIKAN PILIHAN USER
     public int tampilkanMenuBuku() {
         System.out.print("\n-- Manajemen Buku --" +
                 "\n1. Tambah Buku" +
@@ -25,18 +26,13 @@ public class BukuView {
                 "\n5. Kembali ke Halaman Admin" +
                 "\nMasukkan Pilihan: ");
         try {
-            return Integer.parseInt(input.nextLine());
+            return Integer.parseInt(input.nextLine()); // MENGUBAH INPUT JADI ANGKA
         } catch (NumberFormatException e) {
-            return -1; // Mengembalikan nilai tidak valid untuk ditangani Controller
+            return -1; // MENGEMBALIKAN -1 KALAU INPUT TIDAK VALID
         }
     }
 
-    /**
-     * HANYA mengelola urutan prompt untuk membuat buku baru.
-     * Metode ini memanggil InformationPrinter karena tugas utamanya adalah mengelola
-     * presentasi input (menampilkan "masukkan judul:", "masukkan pengarang:", dst.).
-     * Mengembalikan DTO yang terisi data mentah.
-     */
+    // MENGAMBIL INPUT USER UNTUK MEMBUAT BUKU BARU (DTO)
     public BukuDTO mintaInputBukuBaru() {
         BukuDTO bukuDTO = new BukuDTO();
         System.out.println("\n--- TAMBAH BUKU BARU ---");
@@ -46,11 +42,12 @@ public class BukuView {
                         "Masukkan pilihan: ");
         int pilihanJenis;
         try {
-            pilihanJenis = Integer.parseInt(input.nextLine());
+            pilihanJenis = Integer.parseInt(input.nextLine()); // CEK ANGKA JENIS
         } catch (NumberFormatException e) {
-            return null; // Input tidak valid
+            return null; // RETURN NULL KALAU BUKAN ANGKA
         }
 
+        // MENENTUKAN JENIS BUKU & MINTA ATRIBUT KHUSUS SESUAI JENIS
         switch (pilihanJenis) {
             case 1:
                 bukuDTO.jenis = JenisBuku.JURNAL;
@@ -69,37 +66,28 @@ public class BukuView {
                 InformationPrinter.tampilkanAtributDenganInput(bukuDTO, "", 1, "judul", "pengarang", "tahunTerbit", "bidangIlmuTEXTBOOK");
                 break;
             default:
-                return null; // Pilihan tidak valid
+                return null; // JENIS TIDAK VALID = BATAL INPUT
         }
         return bukuDTO;
     }
 
-    /**
-     * HANYA menampilkan daftar objek yang diberikan oleh Controller.
-     * Menggunakan InformationPrinter untuk formatting.
-     */
+    // MENAMPILKAN SEMUA BUKU YANG DIKIRIM OLEH CONTROLLER
     public void tampilkanDaftarBuku(List<Buku> daftarBuku) {
         InformationPrinter.tampilkanObjek(daftarBuku, "Buku yang tersedia", "judul");
     }
 
-    /**
-     * HANYA menampilkan detail satu buku yang diberikan oleh Controller.
-     */
+    // MENAMPILKAN DETAIL 1 BUKU SAJA (DIAMBIL DARI CONTROLLER)
     public void tampilkanDetailBuku(Buku buku) {
         InformationPrinter.tampilkanAtributDenganNilai(buku, "", 0, "kode");
     }
 
-    /**
-     * HANYA menanyakan konfirmasi (y/n) dan mengembalikan boolean.
-     */
+    // MENAMPILKAN PROMPT Y/N DAN RETURN TRUE JIKA Y
     public boolean mintaKonfirmasi(String pesan) {
         System.out.print(pesan + " (y/n): ");
         return input.nextLine().equalsIgnoreCase("Y");
     }
 
-    /**
-     * HANYA menampilkan pesan string generik.
-     */
+    // MENAMPILKAN PESAN TEKS BIASA (ERROR, BERHASIL, DLL)
     public void tampilkanPesan(String pesan) {
         System.out.println(pesan);
     }

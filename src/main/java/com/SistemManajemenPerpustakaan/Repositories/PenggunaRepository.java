@@ -1,3 +1,4 @@
+// INI JUAN YANG KOMEN
 package com.SistemManajemenPerpustakaan.Repositories;
 
 import com.SistemManajemenPerpustakaan.Enums.JenisPengguna;
@@ -31,6 +32,8 @@ public class PenggunaRepository {
         }
     }
 
+    // FUNGSI UNTUK MENYIMPAN SEMUA DATA PENGGUNA KE FILE CSV.
+    // MENGKONVERSI DAFTAR OBJEK PENGGUNA MENJADI BARIS DATA SESUAI JENIS PENGGUNA.
     private static void simpanSemua(List<Pengguna> penggunas) {
         List<List<Object>> dataRows = new ArrayList<>();
         for (Pengguna p : penggunas) {
@@ -65,7 +68,8 @@ public class PenggunaRepository {
         }
     }
 
-    // ... sisa method tidak berubah ...
+    // FUNGSI UNTUK MENGAMBIL SEMUA DATA PENGGUNA DARI FILE CSV.
+    // MEMBACA DAN MENGUBAH CATATAN CSV MENJADI OBJEK PENGGUNA SESUAI JENISNYA.
     private static List<Pengguna> ambilSemuaMutable() {
         try {
             List<CSVRecord> records = CsvUtil.readData(FILE_PATH, HEADERS);
@@ -98,12 +102,16 @@ public class PenggunaRepository {
         }
     }
 
+    // FUNGSI UNTUK MENAMBAHKAN PENGGUNA BARU KE REPOSITORI.
+    // MENAMBAHKAN OBJEK PENGGUNA KE DAFTAR DAN MENYIMPAN PERUBAHAN.
     public static void tambah(Pengguna pengguna) {
         List<Pengguna> penggunas = ambilSemuaMutable();
         penggunas.add(pengguna);
         simpanSemua(penggunas);
     }
 
+    // FUNGSI UNTUK MENGAMBIL PENGGUNA BERDASARKAN ID.
+    // MENCARI OBJEK PENGGUNA DALAM DAFTAR BERDASARKAN ID UNIKNYA.
     public static Pengguna ambilPenggunaById(String idPengguna) {
         return ambilSemuaMutable().stream()
                 .filter(p -> p.getId().equals(idPengguna))
@@ -111,10 +119,14 @@ public class PenggunaRepository {
                 .orElse(null);
     }
 
+    // FUNGSI UNTUK MENGAMBIL SEMUA PENGGUNA SEBAGAI DAFTAR YANG TIDAK DAPAT DIUBAH.
+    // MENGEMBALIKAN SALINAN DAFTAR PENGGUNA UNTUK MENCEGAH MODIFIKASI LANGSUNG.
     public static List<Pengguna> ambilSemua() {
         return List.copyOf(ambilSemuaMutable());
     }
 
+    // FUNGSI UNTUK MEMPERBARUI DATA PENGGUNA YANG ADA.
+    // MENGGANTI OBJEK PENGGUNA DENGAN ID TERTENTU DENGAN DATA BARU.
     public static void updatePengguna(String idPengguna, Pengguna penggunaBaru) {
         List<Pengguna> penggunas = ambilSemuaMutable();
         boolean updated = false;
@@ -133,6 +145,8 @@ public class PenggunaRepository {
         }
     }
 
+    // FUNGSI UNTUK MENGHAPUS PENGGUNA DARI REPOSITORI.
+    // MENGHAPUS OBJEK PENGGUNA BERDASARKAN KODE DAN MENYIMPAN PERUBAHAN.
     public static void hapus(String kodePengguna) {
         List<Pengguna> penggunas = ambilSemuaMutable();
         boolean removed = penggunas.removeIf(pengguna -> pengguna.getId().equals(kodePengguna));
@@ -141,6 +155,8 @@ public class PenggunaRepository {
         }
     }
 
+    // FUNGSI UNTUK MEMPERBARUI ATRIBUT SPESIFIK DARI PENGGUNA.
+    // MENEMUKAN PENGGUNA BERDASARKAN ID DAN MEMPERBARUI ATRIBUT YANG DIMINTA.
     public static boolean updateAtribut(String id, String atribut, Object nilaiBaru) {
         Pengguna pengguna = ambilPenggunaById(id);
         if (pengguna != null) {

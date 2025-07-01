@@ -1,3 +1,6 @@
+// INI JUAN YANG KASI KOMEN
+// CLASS VIEW BUAT TAMPILAN DAN INPUT PEMINJAMAN DI TERMINAL
+
 package com.SistemManajemenPerpustakaan.MVC.Views.Console;
 
 import com.SistemManajemenPerpustakaan.MVC.Models.Book.Buku;
@@ -10,31 +13,21 @@ import java.util.Scanner;
 public class PeminjamanView {
     private static final Scanner input = new Scanner(System.in);
 
-    // Sebuah record sederhana untuk membungkus data yang akan ditampilkan di daftar pengembalian.
-    // Ini adalah pola ViewModel sederhana untuk mempermudah View.
+    // RECORD KHUSUS UNTUK TAMPILAN DAFTAR PINJAMAN
     public record PeminjamanDetailDisplay(String judulBuku, String statusDeadline) {}
 
-    /**
-     * Menampilkan pesan umum ke konsol (misalnya, pesan error, sukses, atau informasi).
-     * @param pesan Teks pesan yang akan ditampilkan.
-     */
+    // TAMPILIN PESAN UMUM KE TERMINAL
     public void tampilkanPesan(String pesan) {
         System.out.println(pesan);
     }
 
-    /**
-     * Menampilkan daftar buku yang tersedia untuk dipinjam.
-     * @param daftarBuku List objek Buku yang tersedia.
-     */
+    // TAMPILIN SEMUA BUKU YANG MASIH TERSEDIA DIPINJAM
     public void tampilkanBukuTersedia(List<Buku> daftarBuku) {
         System.out.println("\n--- Buku yang Tersedia untuk Dipinjam ---");
         InformationPrinter.tampilkanObjek(daftarBuku, "", "judul");
     }
 
-    /**
-     * Menampilkan daftar buku yang sedang dipinjam oleh pengguna saat ini.
-     * @param daftarPinjaman List berisi objek PeminjamanDetailDisplay yang sudah disiapkan Controller.
-     */
+    // TAMPILIN DAFTAR BUKU YANG DIPINJAM OLEH USER SAAT INI
     public void tampilkanDaftarPinjamanPengguna(List<PeminjamanDetailDisplay> daftarPinjaman) {
         System.out.println("\n--- Daftar Buku yang Anda Pinjam ---");
         if (daftarPinjaman.isEmpty()) {
@@ -48,53 +41,35 @@ public class PeminjamanView {
         }
     }
 
-    /**
-     * Menampilkan daftar semua peminjaman yang ada di sistem (untuk Admin).
-     * @param daftarPeminjaman List semua objek Peminjaman.
-     */
+    // TAMPILIN SEMUA DATA PEMINJAMAN YANG ADA (KHUSUS ADMIN)
     public void tampilkanSemuaPeminjaman(List<Peminjaman> daftarPeminjaman) {
         System.out.println("\n--- Semua Data Peminjaman ---");
         InformationPrinter.tampilkanObjek(daftarPeminjaman, "", "tanggalPinjam");
     }
 
-    /**
-     * Meminta pengguna untuk memilih nomor dari daftar yang ditampilkan.
-     * @param aksi Teks aksi untuk ditampilkan di prompt (misal: "pinjam", "kembalikan").
-     * @return Nomor (indeks + 1) yang dipilih oleh pengguna.
-     */
+    // MINTA INPUT USER UNTUK PILIH NOMOR BUKU YANG AKAN DIPINJAM/KEMBALI
     public int mintaPilihanBuku(String aksi) {
         System.out.print("\nMasukkan nomor buku yang ingin di-" + aksi + ": ");
         int pilihan = input.nextInt();
-        input.nextLine(); // Membersihkan buffer
+        input.nextLine(); // BERSIHKAN BUFFER ENTER
         return pilihan;
     }
 
-    /**
-     * Meminta pengguna untuk memilih nomor dari daftar peminjaman.
-     * @param aksi Teks aksi untuk ditampilkan di prompt.
-     * @return Nomor (indeks + 1) yang dipilih oleh pengguna.
-     */
+    // MINTA USER PILIH NOMOR PEMINJAMAN YANG MAU DI PROSES
     public int mintaPilihanPeminjaman(String aksi) {
         System.out.print("\nPilih nomor peminjaman yang ingin di-" + aksi + ": ");
         int pilihan = input.nextInt();
-        input.nextLine(); // Membersihkan buffer
+        input.nextLine();
         return pilihan;
     }
 
-    /**
-     * Menampilkan semua atribut dari satu objek Peminjaman.
-     * @param peminjaman Objek Peminjaman yang detailnya akan ditampilkan.
-     */
+    // TAMPILKAN DETAIL LENGKAP DARI SATU OBJEK PEMINJAMAN
     public void tampilkanDetailPeminjaman(Peminjaman peminjaman) {
         System.out.println("\n--- Detail Peminjaman ---");
         InformationPrinter.tampilkanAtributDenganNilai(peminjaman, "", 0, "id");
     }
 
-    /**
-     * Meminta konfirmasi dari pengguna dengan pertanyaan ya/tidak.
-     * @param pesan Pesan pertanyaan yang akan ditampilkan.
-     * @return String "Y" atau "N" (dalam huruf besar) berdasarkan input pengguna.
-     */
+    // MINTA KONFIRMASI USER UNTUK MELAKUKAN TINDAKAN (Y/N)
     public String mintaKonfirmasi(String pesan) {
         System.out.print(pesan + " (y/n): ");
         return input.nextLine().toUpperCase();

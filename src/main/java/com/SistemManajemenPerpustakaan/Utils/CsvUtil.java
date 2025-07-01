@@ -1,3 +1,4 @@
+// INI JUAN YANG KOMEN
 package com.SistemManajemenPerpustakaan.Utils;
 
 import org.apache.commons.csv.CSVFormat;
@@ -21,6 +22,8 @@ public class CsvUtil {
      * @param headers Header dari file CSV.
      * @return List dari CSVRecord.
      */
+    // FUNGSI UNTUK MEMBACA SEMUA DATA DARI FILE CSV.
+    // MENGEMBALIKAN DAFTAR RECORD CSV SESUAI DENGAN HEADER YANG DIBERIKAN.
     public static List<CSVRecord> readData(String filePath, String[] headers) throws IOException {
         try (
                 Reader reader = new FileReader(filePath);
@@ -40,6 +43,8 @@ public class CsvUtil {
      * @param headers Header untuk ditulis di baris pertama.
      * @param data List dari baris data, dimana setiap baris adalah List<Object>.
      */
+    // FUNGSI UNTUK MENULIS ATAU MENIMPA SEMUA DATA KE FILE CSV.
+    // MENULISKAN HEADER DAN SEMUA BARIS DATA YANG DISEDIAKAN KE FILE.
     public static void writeData(String filePath, String[] headers, List<List<Object>> data) throws IOException {
         try (
                 BufferedWriter writer = Files.newBufferedWriter(Paths.get(filePath));

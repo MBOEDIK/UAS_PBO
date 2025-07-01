@@ -10,6 +10,8 @@ import com.SistemManajemenPerpustakaan.MVC.Models.Book.Buku;
 import com.SistemManajemenPerpustakaan.MVC.Models.User.Pengguna;
 
 public class DummyDataGenerator {
+    // MENGHASILKAN DATA DUMMY.
+    // MENAMBAHKAN PENGGUNA DAN BUKU UNTUK PENGUJIAN.
     public static void Generate(){
         PenggunaDTO penggunaDTO1 = new PenggunaDTO();
         penggunaDTO1.id = IdGenerator.generateUniqueId(PenggunaController.ambilSemuaPengguna(), Pengguna::getId);

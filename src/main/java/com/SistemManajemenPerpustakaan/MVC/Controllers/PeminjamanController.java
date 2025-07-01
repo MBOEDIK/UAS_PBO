@@ -1,3 +1,6 @@
+// INI JUAN YANG KASI KOMEN
+// CONTROLLER UNTUK LOGIKA PINJAM DAN KEMBALIKAN BUKU
+
 package com.SistemManajemenPerpustakaan.MVC.Controllers;
 
 import com.SistemManajemenPerpustakaan.DTOs.PeminjamanDTO;
@@ -19,9 +22,8 @@ public class PeminjamanController {
 
     private static PeminjamanView view = new PeminjamanView();
 
-    /**
-     * Menangani seluruh alur logika untuk menambahkan peminjaman baru.
-     */
+    // HANDLE LOGIKA UNTUK PINJAM BUKU
+    // VALIDASI USER, KUOTA, DAN STATUS BUKU
     public static void handleTambahPeminjaman() {
         Anggota penggunaSaatIni = (Anggota) LoginController.getPenggunaSaatIni();
         if (penggunaSaatIni == null) {
@@ -29,7 +31,7 @@ public class PeminjamanController {
             return;
         }
 
-        // 1. Validasi dan Pra-kondisi
+        // CEK APAKAH ADA BUKU DAN ADA YANG TERSEDIA
         if (BukuController.ambilSemuaBuku().isEmpty()) {
             view.tampilkanPesan("Maaf, tidak ada buku di perpustakaan saat ini.");
             return;
@@ -44,21 +46,21 @@ public class PeminjamanController {
             return;
         }
 
+        // CEK APAKAH USER SUDAH MAKSIMAL MEMINJAM
         if (penggunaSaatIni.getJumlahPinjam() >= penggunaSaatIni.getMaksimalPinjam()) {
-            String pesanLimit = "Peminjaman ditolak! Anda telah mencapai batas maksimal peminjaman buku (" +
-                    penggunaSaatIni.getMaksimalPinjam() + " buku).";
-            if (penggunaSaatIni.getMaksimalPinjam() < 3) { // Asumsi batas normal adalah 3 atau lebih
-                pesanLimit += " Batas Anda dikurangi karena ada keterlambatan pengembalian sebelumnya.";
+            String pesanLimit = "Peminjaman ditolak! Anda telah mencapai batas maksimal.";
+            if (penggunaSaatIni.getMaksimalPinjam() < 3) {
+                pesanLimit += " Batas Anda dikurangi karena keterlambatan.";
             }
             view.tampilkanPesan(pesanLimit);
             return;
         }
 
-        // 2. Interaksi dengan View
+        // TAMPILKAN BUKU YANG BISA DIPINJAM
         view.tampilkanBukuTersedia(bukuTersedia);
         int pilihan = view.mintaPilihanBuku("pinjam");
 
-        // 3. Proses Input dan Eksekusi Logika
+        // VALIDASI INPUT USER
         if (pilihan <= 0 || pilihan > bukuTersedia.size()) {
             view.tampilkanPesan("Pilihan tidak valid.");
             return;
@@ -66,9 +68,9 @@ public class PeminjamanController {
 
         Buku bukuDipilih = bukuTersedia.get(pilihan - 1);
 
-        // 4. Persiapan DTO dan Update Data
+        // BUAT DTO PEMINJAMAN UNTUK DISIMPAN
         PeminjamanDTO peminjamanDTO = new PeminjamanDTO();
-        peminjamanDTO.id = IdGenerator.generateUniqueId(PeminjamanController.ambilSemuaPeminjaman(), Peminjaman::getId);
+        peminjamanDTO.id = IdGenerator.generateUniqueId(ambilSemuaPeminjaman(), Peminjaman::getId);
         peminjamanDTO.idAnggota = penggunaSaatIni.getId();
         peminjamanDTO.kodeBuku = bukuDipilih.getKode();
         peminjamanDTO.tanggalPinjam = DateTimeTools.getTanggalHariIni();
@@ -76,20 +78,18 @@ public class PeminjamanController {
         peminjamanDTO.tanggalKembali = "-";
         peminjamanDTO.status = "Belum Dikembalikan";
 
-        // 5. Lakukan Transaksi ke Controller Lain
-        PeminjamanController.tambahPeminjaman(peminjamanDTO);
+        // SIMPAN TRANSAKSI DAN UPDATE SEMUA ATRIBUT TERKAIT
+        tambahPeminjaman(peminjamanDTO);
         BukuController.updateAtribut(bukuDipilih.getKode(), "tersedia", false);
-        PenggunaController.updateAtribut(penggunaSaatIni.getId(), "jumlahPinjam", (penggunaSaatIni.getJumlahPinjam() + 1));
-
-        // Refresh data pengguna saat ini setelah update
+        PenggunaController.updateAtribut(penggunaSaatIni.getId(), "jumlahPinjam", penggunaSaatIni.getJumlahPinjam() + 1);
         LoginController.refreshPenggunaSaatIni(PenggunaController.ambilPengguna(penggunaSaatIni.getId()));
 
-        view.tampilkanPesan("Peminjaman Buku Berhasil! Deadline pengembalian adalah " + peminjamanDTO.deadline + ".");
+        // KASIH PESAN SUKSES + DEADLINE
+        view.tampilkanPesan("Peminjaman Buku Berhasil! Deadline: " + peminjamanDTO.deadline);
     }
 
-    /**
-     * Menangani seluruh alur logika untuk mengembalikan buku.
-     */
+    // HANDLE LOGIKA UNTUK KEMBALIKAN BUKU
+    // CEK STATUS, UPDATE ATRIBUT, BERES
     public static void handleKembalikanBuku() {
         Anggota penggunaSaatIni = (Anggota) LoginController.getPenggunaSaatIni();
         if (penggunaSaatIni == null) {
@@ -97,8 +97,8 @@ public class PeminjamanController {
             return;
         }
 
-        // 1. Persiapan Data untuk Ditampilkan
-        List<Peminjaman> pinjamanAktif = PeminjamanController.ambilSemuaPeminjaman().stream()
+        // FILTER BUKU YANG MASIH BELUM DIKEMBALIKAN
+        List<Peminjaman> pinjamanAktif = ambilSemuaPeminjaman().stream()
                 .filter(p -> p.getIdAnggota().equals(penggunaSaatIni.getId()) && p.getStatus().equals("Belum Dikembalikan"))
                 .collect(Collectors.toList());
 
@@ -107,23 +107,22 @@ public class PeminjamanController {
             return;
         }
 
-        // Membuat list data yang siap ditampilkan oleh View
+        // SIAPKAN TAMPILAN DETAIL PINJAMAN
         List<PeminjamanView.PeminjamanDetailDisplay> daftarTampilan = new ArrayList<>();
         for (Peminjaman p : pinjamanAktif) {
             Buku b = BukuController.ambilBuku(p.getKodebuku());
             String judul = (b != null) ? b.getJudul() : "Buku Tidak Ditemukan";
             long sisaHari = DateTimeTools.sisaHariMenujuDeadline(p.getDeadline());
             String statusDeadline = (sisaHari < 0)
-                    ? String.format("(Terlambat %d hari)", -sisaHari)
-                    : String.format("(Sisa %d hari)", sisaHari);
+                    ? "(Terlambat " + (-sisaHari) + " hari)"
+                    : "(Sisa " + sisaHari + " hari)";
             daftarTampilan.add(new PeminjamanView.PeminjamanDetailDisplay(judul, statusDeadline));
         }
 
-        // 2. Interaksi dengan View
+        // PILIH BUKU YANG INGIN DIKEMBALIKAN
         view.tampilkanDaftarPinjamanPengguna(daftarTampilan);
         int pilihan = view.mintaPilihanBuku("kembalikan");
 
-        // 3. Proses Input dan Eksekusi Logika
         if (pilihan <= 0 || pilihan > pinjamanAktif.size()) {
             view.tampilkanPesan("Pilihan tidak valid.");
             return;
@@ -132,38 +131,32 @@ public class PeminjamanController {
         Peminjaman peminjamanDipilih = pinjamanAktif.get(pilihan - 1);
         long sisaHari = DateTimeTools.sisaHariMenujuDeadline(peminjamanDipilih.getDeadline());
 
-        // 4. Lakukan Transaksi berdasarkan Kondisi
+        // JIKA TERLAMBAT, MAKA DIKURANGI BATAS PINJAM
         if (sisaHari < 0) {
-            // Logika jika terlambat
-            PenggunaController.updateAtribut(penggunaSaatIni.getId(), "maksimalPinjam", (penggunaSaatIni.getMaksimalPinjam() - 1));
+            PenggunaController.updateAtribut(penggunaSaatIni.getId(), "maksimalPinjam", penggunaSaatIni.getMaksimalPinjam() - 1);
             PenggunaController.updateAtribut(penggunaSaatIni.getId(), "terlambat", true);
-            view.tampilkanPesan("Anda terlambat mengembalikan buku. Batas maksimal peminjaman Anda dikurangi 1.");
+            view.tampilkanPesan("Anda terlambat! Batas maksimal dipotong.");
         } else {
-            // Logika jika tepat waktu
-            view.tampilkanPesan("Terima kasih telah mengembalikan buku tepat waktu.");
+            view.tampilkanPesan("Terima kasih! Pengembalian tepat waktu.");
         }
 
-        // Logika yang sama untuk kedua kondisi
-        PeminjamanController.updateAtribut(peminjamanDipilih.getId(), "tanggalKembali", DateTimeTools.getTanggalHariIni());
-        PeminjamanController.updateAtribut(peminjamanDipilih.getId(), "status", "Sudah dikembalikan");
+        // UPDATE STATUS DAN DATA LAINNYA
+        updateAtribut(peminjamanDipilih.getId(), "tanggalKembali", DateTimeTools.getTanggalHariIni());
+        updateAtribut(peminjamanDipilih.getId(), "status", "Sudah dikembalikan");
         BukuController.updateAtribut(peminjamanDipilih.getKodebuku(), "tersedia", true);
-        PenggunaController.updateAtribut(penggunaSaatIni.getId(), "jumlahPinjam", (penggunaSaatIni.getJumlahPinjam() - 1));
-
-        // Refresh data pengguna saat ini setelah update
+        PenggunaController.updateAtribut(penggunaSaatIni.getId(), "jumlahPinjam", penggunaSaatIni.getJumlahPinjam() - 1);
         LoginController.refreshPenggunaSaatIni(penggunaSaatIni);
     }
 
-    /**
-     * Menangani alur untuk melihat detail peminjaman (biasanya untuk Admin).
-     */
+    // DIGUNAKAN ADMIN UNTUK MELIHAT SEMUA RIWAYAT PINJAMAN
     public static void handleDetailPeminjaman() {
         while (true) {
-            if (PeminjamanController.ambilSemuaPeminjaman().isEmpty()) {
+            if (ambilSemuaPeminjaman().isEmpty()) {
                 view.tampilkanPesan("Belum ada data peminjaman di sistem.");
                 return;
             }
 
-            List<Peminjaman> semuaPeminjaman = PeminjamanController.ambilSemuaPeminjaman();
+            List<Peminjaman> semuaPeminjaman = ambilSemuaPeminjaman();
             view.tampilkanSemuaPeminjaman(semuaPeminjaman);
             int pilihan = view.mintaPilihanPeminjaman("lihat detailnya");
 
@@ -180,43 +173,36 @@ public class PeminjamanController {
         }
     }
 
-//    //RUN
-//    public static void jalankanPeminjamanView(){
-//        PeminjamanView.detailPeminjaman();
-//    }
-//    public static void jalankanPeminjamanView(int x){
-//        switch (x){
-//            case 1 -> PeminjamanView.tambahPeminjaman();
-//            case 2 -> PeminjamanView.kembalikanBukuPeminjaman();
-//        }
-//    }
+    // ======================== CRUD SECTION ========================
 
-    //CREATE
+    // TAMBAH DATA PEMINJAMAN KE REPOSITORY
     public static void tambahPeminjaman(PeminjamanDTO dto){
         Peminjaman pengguna = DTOtoModel.toPeminjaman(dto);
         PeminjamanRepository.tambah(pengguna);
     }
 
-    //READ
+    // AMBIL DATA PEMINJAMAN BERDASARKAN ID
     public static Peminjaman ambilPeminjaman(String kodePeminjaman){
-        return  PeminjamanRepository.ambilPeminjamanById(kodePeminjaman);
+        return PeminjamanRepository.ambilPeminjamanById(kodePeminjaman);
     }
 
+    // AMBIL SEMUA DATA PEMINJAMAN YANG ADA
     public static List<Peminjaman> ambilSemuaPeminjaman(){
         return PeminjamanRepository.ambilSemua();
     }
 
-    //UPDATE
+    // UPDATE ATRIBUT SPESIFIK DI DATA PEMINJAMAN
     public static boolean updateAtribut(String kodePeminjaman, String atribut, Object nilaiBaru) {
         return PeminjamanRepository.updateAtribut(kodePeminjaman, atribut, nilaiBaru);
     }
 
+    // UPDATE KESELURUHAN OBJEK PEMINJAMAN
     public static void updatePeminjaman(String kodePeminjaman, PeminjamanDTO dto){
         Peminjaman pengguna = DTOtoModel.toPeminjaman(dto);
         PeminjamanRepository.updatePeminjaman(kodePeminjaman, pengguna);
     }
 
-    //DELETE
+    // HAPUS DATA PEMINJAMAN DARI SISTEM
     public static void hapusPeminjaman(String kodePeminjaman) {
         PeminjamanRepository.hapus(kodePeminjaman);
     }

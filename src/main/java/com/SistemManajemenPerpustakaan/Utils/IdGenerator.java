@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 //Generate ID dengan format: TAHUNBULAN-001 (202406-001)
 public class IdGenerator {
+    // MENGHASILKAN ID UNIK.
+    // MEMASTIKAN ID BARU BELUM ADA DALAM DAFTAR.
     public static <T> String generateUniqueId(List<T> list, Function<T, String> idExtractor) {
 
         Set<String> existingIds = new HashSet<>();
@@ -25,6 +27,8 @@ public class IdGenerator {
         return newId;
     }
 
+    // MENGHASILKAN ID ACAK.
+    // MEMBUAT ID DENGAN KOMBINASI HURUF DAN ANGKA.
     private static String generateRandomId() {
         String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String numbers = "0123456789";

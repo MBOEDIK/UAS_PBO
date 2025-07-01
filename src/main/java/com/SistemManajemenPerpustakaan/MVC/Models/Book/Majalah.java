@@ -1,16 +1,21 @@
+// INI JUAN YANG KASI KOMEN
+// CLASS MAJALAH TURUNAN DARI BUKU, KHUSUS UNTUK JENIS MAJALAH
+
 package com.SistemManajemenPerpustakaan.MVC.Models.Book;
 
 public class Majalah extends Buku {
-    //ATTRIBUTE
+
+    // ATRIBUT TAMBAHAN UNTUK MAJALAH: TOPIK UTAMA
     private String topik;
 
-    //CONSTRUCTOR
-
+    // CONSTRUCTOR UNTUK SET SEMUA DATA MAJALAH
     public Majalah(String kode, String judul, String pengarang, String tahunTerbit, Boolean tersedia, String jenis, String topik) {
         super(kode, judul, pengarang, tahunTerbit, tersedia, jenis);
         this.topik = topik;
     }
 
+    // METHOD UNTUK UPDATE DATA MAJALAH BERDASARKAN ATRIBUT
+    // DIPAKAI SAAT EDIT DI MENU UPDATE
     @Override
     public void updateAttribute(String atribut, Object nilaiBaru) {
         switch (atribut.toUpperCase()) {
@@ -24,9 +29,9 @@ public class Majalah extends Buku {
         }
     }
 
-    //GETTER
+    // GETTER UNTUK AMBIL NILAI TOPIK MAJALAH
     public String getTopik(){ return topik; }
 
-    //SETTER
+    // SETTER UNTUK UBAH NILAI TOPIK MAJALAH
     public void setTopik(String topik){ this.topik = topik; }
 }

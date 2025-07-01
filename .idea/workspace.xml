@@ -5,14 +5,46 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dc6a1436-3eff-4291-bac5-c9c1dc1445f5" name="Changes" comment="Menambahkan halaman login (untuk admin dan anggota) dan halamana menu (untuk admin dan anggota)">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buku.csv" beforeDir="false" afterPath="$PROJECT_DIR$/buku.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/peminjaman.csv" beforeDir="false" afterPath="$PROJECT_DIR$/peminjaman.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pengguna.csv" beforeDir="false" afterPath="$PROJECT_DIR$/pengguna.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Controllers/BukuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Controllers/BukuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Controllers/Factory/DTOtoModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Controllers/Factory/DTOtoModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Controllers/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Controllers/MenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Controllers/PeminjamanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Controllers/PeminjamanController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Controllers/PenggunaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Controllers/PenggunaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/Book/Buku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/Book/Buku.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/Book/Jurnal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/Book/Jurnal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/Book/Majalah.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/Book/Majalah.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/Book/Novel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/Book/Novel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/Book/TextBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/Book/TextBook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/Peminjaman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/Peminjaman.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/User/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/User/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/User/Anggota.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/User/Anggota.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/User/Pengguna.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Models/User/Pengguna.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Views/Console/BukuView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Views/Console/BukuView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Views/Console/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Views/Console/LoginView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Views/Console/MenuView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Views/Console/MenuView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Views/Console/PeminjamanView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Views/Console/PeminjamanView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Views/Console/PenggunaView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Views/Console/PenggunaView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Views/GUI/AdminMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Views/GUI/AdminMenuController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Views/GUI/AnggotaMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Views/GUI/AnggotaMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/SistemManajemenPerpustakaan/MVC/Views/GUI/AdminMenuController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/SistemManajemenPerpustakaan/MVC/Views/GUI/AdminMenuController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/SistemManajemenPerpustakaan/MVC/Views/GUI/AnggotaMenuController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/SistemManajemenPerpustakaan/MVC/Views/GUI/AnggotaMenuController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Views/GUI/LoginAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Views/GUI/LoginAdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Views/GUI/LoginAnggotaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Views/GUI/LoginAnggotaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Views/GUI/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Views/GUI/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Main/MainApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Main/MainApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Repositories/BukuRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Repositories/BukuRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Repositories/PeminjamanRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Repositories/PeminjamanRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Repositories/PenggunaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Repositories/PenggunaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Utils/CsvUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Utils/CsvUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Utils/DateTimeTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Utils/DateTimeTools.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Utils/DummyDataGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Utils/DummyDataGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Utils/IdGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Utils/IdGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Utils/InformationPrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Utils/InformationPrinter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Utils/IsObjekKosong.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Utils/IsObjekKosong.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Utils/IsTwoSameChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Utils/IsTwoSameChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Utils/ObjekIdGetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/Utils/ObjekIdGetter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +87,6 @@
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="2yrWDzp1lrWjiJiWlY40tbAbNlM" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -67,10 +98,10 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "komen__juan",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/KULIAH/-+=INFORMATIKA=+-/Gudang Kode/Java/UAS_PBO/UAAA/UAS_PBO",
+    "last_opened_file_path": "C:/Users/juan/Downloads/UAS_PBO",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -171,14 +202,11 @@
           <properties class="java.lang.reflect.InvocationTargetException" package="java.lang.reflect" />
           <option name="timeStamp" value="55" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/MVC/Controllers/LoginController.java</url>
-          <line>25</line>
-          <properties class="com.SistemManajemenPerpustakaan.MVC.Controllers.LoginController">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="54" />
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/src/main/java/com/SistemManajemenPerpustakaan/DTOs/BukuDTO.java</url>
+          <line>11</line>
+          <properties field="jenis" class="com.SistemManajemenPerpustakaan.DTOs.BukuDTO" />
+          <option name="timeStamp" value="56" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -1,3 +1,5 @@
+// INI YANG KOMEN JUAN
+
 package com.SistemManajemenPerpustakaan.MVC.Views.GUI;
 
 import javafx.event.ActionEvent;
@@ -20,66 +22,50 @@ import java.util.ResourceBundle;
 
 public class AnggotaMenuController implements Initializable {
 
-    // Deklarasi elemen FXML yang akan digunakan
     @FXML private BorderPane contentArea;
     @FXML private Button btnPinjamBuku;
     @FXML private Button btnBackToAnggotaLogin;
 
-    /**
-     * Metode ini dijalankan secara otomatis saat FXML selesai dimuat.
-     * Kita akan langsung menampilkan halaman "Kembalikan Buku" di sini.
-     */
+    // SAAT PERTAMA DIBUKA LANGSUNG TAMPILKAN HALAMAN PENGEMBALIAN BUKU
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // 5. Langsung panggil metode untuk memuat halaman daftar peminjaman
         loadPage("/com.SistemManajemenPerpustakaan/views/subViews/KembalikanBukuView.fxml");
     }
 
+    // MEMUAT HALAMAN KE DALAM TAMPILAN UTAMA
+    // TAMPILKAN ERROR JIKA GAGAL
     private void loadPage(String fxmlPath) {
         try {
             Parent page = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlPath)));
             contentArea.setCenter(page);
         } catch (IOException | NullPointerException e) {
-            // MENAMPILKAN ALERT JIKA FILE TIDAK DITEMUKAN ATAU GAGAL DIMUAT
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Memuat Halaman");
-            alert.setHeaderText("Gagal memuat file: " + fxmlPath);
-            alert.setContentText("Pesan Error: " + e.getMessage());
+            alert.setTitle("ERROR MEMUAT HALAMAN");
+            alert.setHeaderText("GAGAL MEMUAT FILE: " + fxmlPath);
+            alert.setContentText("PESAN ERROR: " + e.getMessage());
             alert.showAndWait();
             e.printStackTrace();
         }
     }
 
-    /**
-     * Aksi untuk membuka jendela pop-up "Pinjam Buku".
-     */
+    // TAMPILKAN POPUP UNTUK PINJAM BUKU
+    // SETELAH ITU SEGARKAN TAMPILAN
     @FXML
     public void actPinjamBuku(ActionEvent event) {
         try {
-            // Muat FXML untuk pop-up
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com.SistemManajemenPerpustakaan/views/subViews/PinjamBukuView.fxml")));
-
-            // Buat Stage (jendela) baru
             Stage stage = new Stage();
             stage.setTitle("Pinjam Buku");
             stage.setScene(new Scene(root));
-            stage.initModality(Modality.APPLICATION_MODAL); // Blokir jendela utama
-
-            // Tampilkan jendela dan tunggu sampai ditutup
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
-
-            // Setelah pop-up ditutup, segarkan kembali daftar pinjaman
-            // untuk menampilkan buku yang baru saja dipinjam.
             loadPageIntoPlaceholder("/com.SistemManajemenPerpustakaan/views/subViews/KembalikanBukuView.fxml");
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    /**
-     * Helper untuk memuat FXML ke dalam placeholder contentArea.
-     */
+    // MEMUAT HALAMAN PENGEMBALIAN BUKU KE DALAM BORDERPANE
     private void loadPageIntoPlaceholder(String fxmlFile) {
         try {
             Parent page = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com.SistemManajemenPerpustakaan/views/subViews/KembalikanBukuView.fxml")));
@@ -89,7 +75,7 @@ public class AnggotaMenuController implements Initializable {
         }
     }
 
-    // Metode logout, tidak ada perubahan
+    // TOMBOL UNTUK KEMBALI KE LOGIN ANGGOTA
     @FXML
     public void actBackToAnggotaLogin(ActionEvent event) throws IOException {
         Parent loginAnggota = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com.SistemManajemenPerpustakaan/views/LoginAnggotaView.fxml")));

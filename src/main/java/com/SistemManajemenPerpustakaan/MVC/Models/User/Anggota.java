@@ -1,9 +1,15 @@
+// INI JUAN YANG KASI KOMEN
+// CLASS ANGGOTA TURUNAN PENGGUNA UNTUK USER BIASA / PEMINJAM
+
 package com.SistemManajemenPerpustakaan.MVC.Models.User;
 
 public class Anggota extends Pengguna {
+
+    // ATRIBUT KHUSUS ANGGOTA: STATUS TERLAMBAT, MAKS PINJAM, DAN JUMLAH PINJAM
     private Boolean terlambat;
     private int maksimalPinjam, jumlahPinjam;
 
+    // CONSTRUCTOR UNTUK MENGISI DATA ANGGOTA LENGKAP
     public Anggota(String id, String jenis, String nama, String alamat, String nomorHP, String username, String password, Boolean terlambat, int maksimalPinjam, int jumlahPinjam) {
         super(id, jenis, nama, alamat, nomorHP, username, password);
         this.terlambat = terlambat;
@@ -11,12 +17,13 @@ public class Anggota extends Pengguna {
         this.jumlahPinjam = jumlahPinjam;
     }
 
+    // METHOD UNTUK UPDATE ATRIBUT ANGGOTA SECARA DINAMIS
+    // DIPAKAI SAAT EDIT DATA DI CONTROLLER
     @Override
     public void updateAttribute(String atribut, Object nilaiBaru) {
         switch (atribut.toUpperCase()) {
             case "ID": setId((String) nilaiBaru); break;
-            // ### PERBAIKAN DI SINI ###
-            case "JENIS": setJenis((String) nilaiBaru); break; // Sebelumnya "PENGARANG"
+            case "JENIS": setJenis((String) nilaiBaru); break; // ✅ SUDAH DIPERBAIKI DARI "PENGARANG"
             case "NAMA": setNama((String) nilaiBaru); break;
             case "ALAMAT": setAlamat((String) nilaiBaru); break;
             case "NOMORHP": setNomorHP((String) nilaiBaru); break;
@@ -29,16 +36,15 @@ public class Anggota extends Pengguna {
         }
     }
 
-    //GETTER
+    // GETTER UNTUK AMBIL DATA KHUSUS ANGGOTA
     public boolean getTerlambat() { return terlambat; }
     public int getMaksimalPinjam() { return maksimalPinjam; }
     public int getJumlahPinjam() { return jumlahPinjam; }
 
-    //SETTER
+    // SETTER UNTUK UBAH DATA KHUSUS ANGGOTA
     public void setTerlambat(boolean terlambat) { this.terlambat = terlambat; }
     public void setMaksimalPinjam(int maksimalPinjam) { this.maksimalPinjam = maksimalPinjam; }
 
-    // ### PERBAIKAN DI SINI ###
-    // Setter seharusnya mengatur nilai, bukan menambahkan.
+    // ✅ PERBAIKAN: LANGSUNG SET NILAI, BUKAN DITAMBAHIN
     public void setJumlahPinjam(int jumlahPinjam) { this.jumlahPinjam = jumlahPinjam; }
 }
